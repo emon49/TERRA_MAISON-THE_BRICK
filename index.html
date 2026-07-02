@@ -1586,6 +1586,52 @@
       width: 100%;
     }
 
+    .difficulty-selector {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      border: 1px solid rgba(245, 242, 237, 0.05);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .difficulty-label {
+      font-size: 0.6rem;
+      color: var(--color-text-muted);
+      letter-spacing: 0.1em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .difficulty-buttons {
+      display: flex;
+      gap: 0.25rem;
+    }
+
+    .difficulty-btn {
+      flex: 1;
+      font-size: 0.65rem;
+      padding: 0.5rem 0.25rem;
+      background: transparent;
+      border: 1px solid rgba(245, 242, 237, 0.1);
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .difficulty-btn:hover {
+      border-color: rgba(245, 242, 237, 0.3);
+      color: var(--color-text);
+    }
+
+    .difficulty-btn--active {
+      background: rgba(0, 255, 255, 0.1);
+      border-color: var(--color-cyan);
+      color: var(--color-cyan);
+      box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+    }
+
     .utility-toggle {
       flex: 1;
       height: 48px;
@@ -3391,6 +3437,16 @@
             <div class="arcade-controls">
               <button id="btn-play-pause" class="button-arcade-ctrl neon-btn-cyan">PAUSE</button>
               <button id="btn-restart" class="button-arcade-ctrl neon-btn-pink">RESTART</button>
+
+              <!-- Difficulty Selector -->
+              <div class="difficulty-selector">
+                <span class="difficulty-label">DIFFICULTY &times;<span id="difficulty-multiplier-display">1.0</span></span>
+                <div class="difficulty-buttons">
+                  <button class="difficulty-btn" data-difficulty="easy">EASY</button>
+                  <button class="difficulty-btn" data-difficulty="medium">MED</button>
+                  <button class="difficulty-btn" data-difficulty="hard">HARD</button>
+                </div>
+              </div>
               
               <div class="utility-row">
                 <button id="btn-mute" class="utility-toggle utility-toggle--active" aria-label="Toggle sound">
@@ -4398,10 +4454,20 @@
         let screenShakeAmount = 0;
         let activeFloatingTexts = [];
         let gameState = 'idle'; // 'idle', 'falling', 'chainchecking'
+
+        // Difficulty Settings
+        const difficultyLevels = {
+          easy: { interval: 1000, multiplier: 1.0 },
+          medium: { interval: 500, multiplier: 1.5 },
+          hard: { interval: 250, multiplier: 2.0 }
+        };
+        let currentDifficulty = localStorage.getItem('brick_pop_difficulty') || 'easy';
+        if (!difficultyLevels[currentDifficulty]) currentDifficulty = 'easy';
         
         // Falling brick state
         let fallingBrick = null;
         let lastDropTime = 0;
+        let currentBrickInterval = difficultyLevels[currentDifficulty].interval;
 
         // Display High Score immediately
         document.getElementById('game-high-score').textContent = String(highScore).padStart(4, '0');
@@ -4816,7 +4882,8 @@
 
           const basePoints = group.length * 20;
           const comboBonus = comboChain > 1 ? comboChain * 50 : 0;
-          const earned = (basePoints + comboBonus) * level;
+          const difficultyMultiplier = difficultyLevels[currentDifficulty].multiplier;
+          const earned = Math.floor((basePoints + comboBonus) * level * difficultyMultiplier);
           
           score += earned;
           
@@ -4980,6 +5047,16 @@
         function updateUI() {
           document.getElementById('game-score').textContent = String(score).padStart(4, '0');
           document.getElementById('game-level').textContent = level;
+
+          // Update Difficulty UI
+          document.getElementById('difficulty-multiplier-display').textContent = difficultyLevels[currentDifficulty].multiplier.toFixed(1);
+          document.querySelectorAll('.difficulty-btn').forEach(btn => {
+            if (btn.dataset.difficulty === currentDifficulty) {
+              btn.classList.add('difficulty-btn--active');
+            } else {
+              btn.classList.remove('difficulty-btn--active');
+            }
+          });
           
           const bombBtnEl = document.getElementById('btn-bomb');
           const bombBadge = document.getElementById('bomb-count-badge');
@@ -5056,6 +5133,9 @@
         }
 
         function spawnNextBrick() {
+          // Apply difficulty change on next spawn
+          currentBrickInterval = difficultyLevels[currentDifficulty].interval;
+
           const spawnCol = Math.floor(GRID_COLUMNS / 2);
           if (grid[spawnCol][0] !== null) {
             isGameOver = true;
@@ -5238,6 +5318,24 @@
           if (typeof triggerHaptic === 'function') triggerHaptic([10]);
         });
 
+        // Difficulty selector wiring
+        document.querySelectorAll('.difficulty-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const diff = btn.dataset.difficulty;
+            currentDifficulty = diff;
+            localStorage.setItem('brick_pop_difficulty', diff);
+
+            // If game is not started or is over, apply immediately to visual
+            if (!isGameStarted || isGameOver) {
+              currentBrickInterval = difficultyLevels[diff].interval;
+            }
+
+            showToast(`DIFFICULTY: ${diff.toUpperCase()}`);
+            updateUI();
+            triggerHaptic([20]);
+          });
+        });
+
         // Vibe toggle config (BGM style)
         const btnVibe = document.getElementById('btn-vibe');
         btnVibe.addEventListener('click', () => {
@@ -5314,10 +5412,15 @@
               screenShakeAmount *= 0.9;
             }
 
-            // 0. Update active falling brick drop timer (1 grid by 1 second!)
+            // 0. Update active falling brick drop timer
             if (gameState === 'idle' && fallingBrick) {
               const now = timestamp;
-              if (now - lastDropTime >= 1000) {
+              // Base speed from difficulty + level ramp (level 1 = 1x, level 2 = 0.9x, etc.)
+              // Clamp minimum interval to 100ms
+              const levelRamp = Math.max(0.4, 1 - (level - 1) * 0.08);
+              const effectiveInterval = Math.max(100, currentBrickInterval * levelRamp);
+
+              if (now - lastDropTime >= effectiveInterval) {
                 if (fallingBrick.row + 1 < GRID_ROWS && grid[fallingBrick.col][fallingBrick.row + 1] === null) {
                   fallingBrick.row++;
                 } else {
