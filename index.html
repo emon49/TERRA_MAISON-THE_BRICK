@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TERRA MAISON — THE BRICK™</title>
+  <!-- Anti-flash theme script -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('tm_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230D0D0D'/%3E%3Ctext x='16' y='21' font-family='serif' font-size='18' fill='%23D4AF37' text-anchor='middle' font-weight='bold'%3ETM%3C/text%3E%3C/svg%3E">
   <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230D0D0D'/%3E%3Ctext x='16' y='21' font-family='serif' font-size='18' fill='%23D4AF37' text-anchor='middle' font-weight='bold'%3ETM%3C/text%3E%3C/svg%3E">
   
@@ -65,10 +74,15 @@
     /* --- LUXURY DESIGN SYSTEM --- */
     :root, html[data-theme="dark"] {
       /* Colors */
+      --color-white: #FFFFFF;
+      --color-black: #000000;
+      --color-neon-pink: #FF00FF;
+      --color-neon-cyan: #00FFFF;
       --color-bg: #0D0D0D;             /* Absolute Charcoal Black */
       --color-bg-secondary: #080808;   /* Deepest black for sections */
       --color-bg-tertiary: #0D0D0D;    /* Main black/charcoal */
       --color-bg-reviews: #090909;     /* Deep card/review background */
+      --color-bg-footer: #080808;
       --color-card-bg: rgba(255, 255, 255, 0.02); /* Translucent overlay */
       --color-text: #F5F2ED;           /* Pearl Ivory / Cream */
       --color-text-muted: rgba(245, 242, 237, 0.6); /* Soft Warm Gray */
@@ -79,21 +93,29 @@
       --color-gold-muted: #BFA16F;     /* Burnished Brass */
       --color-glass-bg: rgba(13, 13, 13, 0.7);
       --color-glass-border: rgba(245, 242, 237, 0.1);
+      --color-border-muted: rgba(245, 242, 237, 0.05);
       --color-slide-bg: radial-gradient(circle at center, #1b1212 0%, #0d0d0d 100%);
       --color-slide-overlay: linear-gradient(90deg, rgba(13,13,13,0.95) 20%, rgba(13,13,13,0.7) 60%, rgba(13,13,13,0.95) 100%);
       --color-card-grad: linear-gradient(145deg, #121212, #080808);
       --color-drawer-bg: #0A0A0A;
       --color-drawer-header-bg: #0E0E0E;
       --color-preloader-bg: #050505;
+      --color-cursor-dot: #D4AF37;
       --color-cursor-ring: rgba(212, 175, 55, 0.4);
       --color-card-shadow: rgba(0, 0, 0, 0.4);
       --color-section-shadow: rgba(0, 0, 0, 0.6);
+      --color-overlay-bg: rgba(0, 0, 0, 0.85);
+      --color-input-bg: rgba(255, 255, 255, 0.02);
+      --color-success: #00FF66;
+      --color-error: #FF3366;
       --color-interactive-hover-border: rgba(245, 242, 237, 0.3);
       --color-interactive-hover-bg: rgba(245, 242, 237, 0.05);
       
       --color-arcade-section-bg: #0b0714;
       --color-arcade-section-grad: radial-gradient(circle at 50% 40%, #1e1135 0%, #06040a 100%);
       --color-arcade-section-grid: rgba(138, 43, 226, 0.08);
+      --color-arcade-cabinet-bg: #0f0b18;
+      --color-arcade-screen-bg: #14101f;
 
       /* Typography */
       --font-serif: 'Playfair Display', Georgia, serif;
@@ -105,10 +127,15 @@
     }
 
     html[data-theme="light"] {
+      --color-white: #FFFFFF;
+      --color-black: #000000;
+      --color-neon-pink: #FF00FF;
+      --color-neon-cyan: #00FFFF;
       --color-bg: #FAFBFE;
       --color-bg-secondary: #F5F7FB;
       --color-bg-tertiary: #FFFFFF;
       --color-bg-reviews: #F0F3F8;
+      --color-bg-footer: #F5F7FB;
       --color-card-bg: #FFFFFF;
       --color-text: #1B2431;
       --color-text-muted: rgba(27, 36, 49, 0.6);
@@ -117,23 +144,31 @@
       --color-accent-hover: #A93529;
       --color-gold: #AA841C;
       --color-gold-muted: #8B6D1E;
-      --color-glass-bg: rgba(255, 255, 255, 0.75);
+      --color-glass-bg: rgba(250, 251, 254, 0.85);
       --color-glass-border: #EAEEF6;
+      --color-border-muted: #EAEEF6;
       --color-slide-bg: radial-gradient(circle at center, #FFFFFF 0%, #F5F7FB 100%);
       --color-slide-overlay: linear-gradient(90deg, rgba(250,251,254,0.95) 20%, rgba(250,251,254,0.7) 60%, rgba(250,251,254,0.95) 100%);
       --color-card-grad: linear-gradient(145deg, #FFFFFF, #FAFBFD);
       --color-drawer-bg: #FFFFFF;
       --color-drawer-header-bg: #F5F7FB;
       --color-preloader-bg: #FAFBFE;
+      --color-cursor-dot: #AA841C;
       --color-cursor-ring: rgba(170, 132, 28, 0.4);
-      --color-card-shadow: rgba(27, 36, 49, 0.06);
-      --color-section-shadow: rgba(27, 36, 49, 0.03);
+      --color-card-shadow: rgba(27, 36, 49, 0.08);
+      --color-section-shadow: rgba(27, 36, 49, 0.04);
+      --color-overlay-bg: rgba(27, 36, 49, 0.85);
+      --color-input-bg: #FFFFFF;
+      --color-success: #10B981;
+      --color-error: #E11D48;
       --color-interactive-hover-border: rgba(27, 36, 49, 0.3);
       --color-interactive-hover-bg: rgba(27, 36, 49, 0.05);
       
       --color-arcade-section-bg: #F5F7FB;
       --color-arcade-section-grad: radial-gradient(circle at 50% 40%, #EAEEF6 0%, #F5F7FB 100%);
       --color-arcade-section-grid: rgba(138, 43, 226, 0.03);
+      --color-arcade-cabinet-bg: #EAEEF6;
+      --color-arcade-screen-bg: #FFFFFF;
     }
 
     /* Theme transitions */
@@ -325,8 +360,8 @@
     }
 
     .navbar__cart:hover .navbar__cart-icon-wrapper {
-      border-color: rgba(245, 242, 237, 0.3);
-      background-color: rgba(245, 242, 237, 0.05);
+      border-color: var(--color-interactive-hover-border);
+      background-color: var(--color-interactive-hover-bg);
     }
 
     .navbar__cart-badge {
@@ -376,22 +411,36 @@
       100% { transform: translate(0, 0); }
     }
 
+    :root, html[data-theme="dark"] {
+      --hero-grad-1: #171515;
+      --hero-grad-2: #1f1413;
+      --hero-grad-3: #151515;
+      --hero-grad-bg: #0D0D0D;
+    }
+
+    html[data-theme="light"] {
+      --hero-grad-1: #EAEEF6;
+      --hero-grad-2: #E0E7F1;
+      --hero-grad-3: #F0F3F8;
+      --hero-grad-bg: #F5F7FB;
+    }
+
     .hero__bg-gradient {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 30% 30%, #171515 0%, #0D0D0D 80%);
+      background: radial-gradient(circle at 30% 30%, var(--hero-grad-1) 0%, var(--hero-grad-bg) 80%);
       z-index: 0;
       pointer-events: none;
       animation: gradientShift 18s ease infinite alternate;
     }
 
     @keyframes gradientShift {
-      0% { background: radial-gradient(circle at 30% 30%, #171515 0%, #0D0D0D 80%); }
-      50% { background: radial-gradient(circle at 70% 60%, #1f1413 0%, #0D0D0D 85%); }
-      100% { background: radial-gradient(circle at 40% 80%, #151515 0%, #0D0D0D 80%); }
+      0% { background: radial-gradient(circle at 30% 30%, var(--hero-grad-1) 0%, var(--hero-grad-bg) 80%); }
+      50% { background: radial-gradient(circle at 70% 60%, var(--hero-grad-2) 0%, var(--hero-grad-bg) 85%); }
+      100% { background: radial-gradient(circle at 40% 80%, var(--hero-grad-3) 0%, var(--hero-grad-bg) 80%); }
     }
 
     /* --- HERO SECTION WITH LEFT METADATA PANEL --- */
@@ -424,7 +473,7 @@
       align-items: center;
       border-right: 1px solid var(--color-glass-border);
       padding: 3rem 0;
-      background-color: rgba(13, 13, 13, 0.3);
+      background-color: var(--color-interactive-hover-bg);
       opacity: 0;
     }
 
@@ -543,7 +592,7 @@
     .hero__subtitle {
       font-size: clamp(0.95rem, 1.2vw, 1.1rem);
       font-weight: 300;
-      color: rgba(245, 242, 237, 0.7);
+      color: var(--color-text-muted);
       max-width: 520px;
       margin-bottom: 3.5rem;
       line-height: 1.8;
@@ -615,7 +664,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(0, 0, 0, 0.85);
+      background-color: var(--color-overlay-bg);
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
       z-index: 10005;
@@ -641,7 +690,7 @@
       position: relative;
       transform: translateY(20px);
       transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-      box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+      box-shadow: 0 40px 80px var(--color-section-shadow);
     }
 
     .modal-overlay.active .modal-container {
@@ -687,7 +736,7 @@
 
     .form-input {
       width: 100%;
-      background: rgba(255, 255, 255, 0.02);
+      background: var(--color-input-bg);
       border: 1px solid var(--color-glass-border);
       padding: 1rem;
       color: var(--color-text);
@@ -733,7 +782,7 @@
       position: absolute;
       width: 90%;
       height: 90%;
-      border: 1px solid rgba(245, 242, 237, 0.05);
+      border: 1px solid var(--color-border-muted);
       border-radius: 4px;
       pointer-events: none;
       z-index: 1;
@@ -803,7 +852,7 @@
     .hero__scroll-line {
       width: 1px;
       height: 40px;
-      background-color: rgba(245, 242, 237, 0.15);
+      background-color: var(--color-border-muted);
       position: relative;
       overflow: hidden;
     }
@@ -895,10 +944,10 @@
     .spec-label {
       position: absolute;
       z-index: 10;
-      background: rgba(13, 13, 13, 0.8);
+      background: var(--color-glass-bg);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(245, 242, 237, 0.1);
+      border: 1px solid var(--color-glass-border);
       padding: 1.5rem 2rem;
       pointer-events: none;
       opacity: 0;
@@ -1166,7 +1215,7 @@
     .footer__dot {
       width: 8px;
       height: 8px;
-      background-color: #10B981; /* pulsing emerald green */
+      background-color: var(--color-success); /* pulsing emerald green */
       border-radius: 50%;
     }
 
@@ -1189,7 +1238,7 @@
       left: 0;
       width: 100%;
       height: 250px;
-      background: linear-gradient(to top, rgba(138, 43, 226, 0.12), transparent);
+      background: linear-gradient(to top, var(--color-arcade-section-grid), transparent);
       pointer-events: none;
       z-index: 1;
     }
@@ -1235,7 +1284,7 @@
       font-family: var(--font-serif);
       font-size: clamp(2.5rem, 5vw, 4.5rem);
       font-weight: 300;
-      color: #fff;
+      color: var(--color-white);
       text-transform: uppercase;
       letter-spacing: 0.15em;
       text-shadow: 0 0 10px rgba(255, 0, 255, 0.6), 0 0 30px rgba(255, 0, 255, 0.3);
@@ -1299,8 +1348,8 @@
     }
 
     .arcade-card {
-      background: rgba(13, 13, 13, 0.8);
-      border: 1px solid rgba(245, 242, 237, 0.08);
+      background: var(--color-glass-bg);
+      border: 1px solid var(--color-glass-border);
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
@@ -1325,7 +1374,7 @@
       font-size: 2.25rem;
       font-weight: 600;
       line-height: 1;
-      color: #fff;
+      color: var(--color-white);
     }
 
     /* Neon Borders */
@@ -1334,7 +1383,7 @@
       border-color: rgba(0, 255, 255, 0.2);
     }
     .neon-card-cyan .arcade-card-value {
-      color: #00FFFF;
+      color: var(--color-neon-cyan);
       text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
     }
 
@@ -1343,7 +1392,7 @@
       border-color: rgba(138, 43, 226, 0.2);
     }
     .neon-card-purple .arcade-card-value {
-      color: #BFA16F;
+      color: var(--color-gold-muted);
     }
 
     .neon-card-pink {
@@ -1351,12 +1400,12 @@
       border-color: rgba(255, 0, 255, 0.2);
     }
     .neon-card-pink .arcade-card-value {
-      color: #FF00FF;
+      color: var(--color-neon-pink);
       text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
     }
 
     .neon-card-gray {
-      border-color: rgba(245, 242, 237, 0.15);
+      border-color: var(--color-border-muted);
     }
 
     .arcade-card-help {
@@ -1390,8 +1439,8 @@
     }
 
     .arcade-bomb-btn:not(:disabled) {
-      color: #FF00FF;
-      border-color: #FF00FF;
+      color: var(--color-neon-pink);
+      border-color: var(--color-neon-pink);
       background: rgba(255, 0, 255, 0.1);
       box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
     }
@@ -1407,22 +1456,22 @@
 
     .arcade-bomb-btn--armed {
       animation: bombPulse 0.8s infinite alternate !important;
-      color: #fff !important;
-      background: #FF00FF !important;
-      box-shadow: 0 0 30px #FF00FF !important;
+      color: var(--color-white) !important;
+      background: var(--color-neon-pink) !important;
+      box-shadow: 0 0 30px var(--color-neon-pink) !important;
     }
 
     @keyframes bombPulse {
-      0% { box-shadow: 0 0 10px #FF00FF; transform: scale(1); }
-      100% { box-shadow: 0 0 35px #FF00FF, 0 0 50px #FF00FF; transform: scale(1.1); }
+      0% { box-shadow: 0 0 10px var(--color-neon-pink); transform: scale(1); }
+      100% { box-shadow: 0 0 35px var(--color-neon-pink), 0 0 50px var(--color-neon-pink); transform: scale(1.1); }
     }
 
     .bomb-count {
       position: absolute;
       top: -4px;
       right: -4px;
-      background: #FF00FF;
-      color: #fff;
+      background: var(--color-neon-pink);
+      color: var(--color-white);
       font-size: 0.75rem;
       font-weight: 700;
       width: 20px;
@@ -1431,16 +1480,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 5px #FF00FF;
+      box-shadow: 0 0 5px var(--color-neon-pink);
     }
 
     /* Cabinet Screen */
     .arcade-cabinet {
-      background: #0f0b18;
-      border: 4px solid rgba(245, 242, 237, 0.1);
+      background: var(--color-arcade-cabinet-bg);
+      border: 4px solid var(--color-glass-border);
       border-radius: 12px;
       padding: 1.25rem;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 30px rgba(138, 43, 226, 0.15);
+      box-shadow: 0 20px 50px var(--color-section-shadow), inset 0 0 30px rgba(138, 43, 226, 0.15);
       position: relative;
     }
 
@@ -1459,7 +1508,7 @@
     .arcade-cabinet-screen {
       position: relative;
       width: 100%;
-      background: #14101f;
+      background: var(--color-arcade-screen-bg);
       border: 2px solid rgba(138, 43, 226, 0.3);
       border-radius: 6px;
       overflow: hidden;
@@ -1484,7 +1533,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(14, 10, 22, 0.9);
+      background: rgba(14, 10, 22, 0.9); /* Keep dark for game contrast */
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       display: flex;
@@ -1515,11 +1564,11 @@
     }
 
     .neon-text-pink {
-      color: #FF00FF;
+      color: var(--color-neon-pink);
       text-shadow: 0 0 15px rgba(255,0,255,0.6);
     }
     .neon-text-cyan {
-      color: #00FFFF;
+      color: var(--color-neon-cyan);
       text-shadow: 0 0 15px rgba(0,255,255,0.6);
     }
 
@@ -1536,26 +1585,26 @@
     }
 
     .neon-btn-pink {
-      color: #FF00FF;
-      border-color: #FF00FF;
+      color: var(--color-neon-pink);
+      border-color: var(--color-neon-pink);
       background: rgba(255, 0, 255, 0.05);
       box-shadow: 0 0 10px rgba(255, 0, 255, 0.2);
     }
     .neon-btn-pink:hover {
-      color: #fff;
-      background: #FF00FF;
+      color: var(--color-white);
+      background: var(--color-neon-pink);
       box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
     }
 
     .neon-btn-cyan {
-      color: #00FFFF;
-      border-color: #00FFFF;
+      color: var(--color-neon-cyan);
+      border-color: var(--color-neon-cyan);
       background: rgba(0, 255, 255, 0.05);
       box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
     }
     .neon-btn-cyan:hover {
-      color: #fff;
-      background: #00FFFF;
+      color: var(--color-white);
+      background: var(--color-neon-cyan);
       box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
     }
 
@@ -1589,7 +1638,7 @@
     .utility-toggle {
       flex: 1;
       height: 48px;
-      border: 1px solid rgba(245, 242, 237, 0.1);
+      border: 1px solid var(--color-glass-border);
       color: var(--color-text-muted);
       display: flex;
       align-items: center;
@@ -1604,9 +1653,9 @@
     }
 
     .utility-toggle:hover {
-      color: #fff;
-      border-color: rgba(245, 242, 237, 0.3);
-      background: rgba(245, 242, 237, 0.03);
+      color: var(--color-text);
+      border-color: var(--color-interactive-hover-border);
+      background: var(--color-interactive-hover-bg);
     }
 
     .utility-toggle--active {
@@ -1634,7 +1683,7 @@
 
     .reward-coupon-card-inner {
       background: linear-gradient(135deg, rgba(20, 15, 30, 0.95) 0%, rgba(10, 8, 15, 0.95) 100%);
-      border: 1px solid #FF00FF;
+      border: 1px solid var(--color-neon-pink);
       box-shadow: 0 0 30px rgba(255, 0, 255, 0.25);
       position: relative;
       padding: 2.5rem;
@@ -1710,7 +1759,7 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 1.5rem;
       font-weight: 700;
-      color: #FF00FF;
+      color: var(--color-neon-pink);
       letter-spacing: 0.1em;
     }
 
@@ -1909,7 +1958,7 @@
       display: flex;
       align-items: center;
       border: 1px solid var(--color-glass-border);
-      background-color: rgba(255, 255, 255, 0.02);
+      background-color: var(--color-input-bg);
       height: 56px;
     }
 
@@ -1960,7 +2009,7 @@
     .promo-input-container {
       display: flex;
       border: 1px solid var(--color-glass-border);
-      background-color: rgba(255, 255, 255, 0.01);
+      background-color: var(--color-input-bg);
       margin-bottom: 1rem;
       max-width: 320px;
     }
@@ -1979,7 +2028,7 @@
     }
 
     .promo-input::placeholder {
-      color: rgba(245, 242, 237, 0.25);
+      color: var(--color-text-placeholder);
       text-transform: none;
     }
 
@@ -1995,8 +2044,8 @@
     }
 
     .btn-promo-apply:hover {
-      background-color: rgba(212, 175, 55, 0.05);
-      color: #fff;
+      background-color: var(--color-interactive-hover-bg);
+      color: var(--color-text);
     }
 
     .promo-status {
@@ -2123,7 +2172,9 @@
     }
 
     .toast-card {
-      background: rgba(13, 13, 13, 0.95);
+      background: var(--color-glass-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
       border: 1px solid var(--color-accent);
       color: var(--color-text);
       padding: 1rem 1.75rem;
@@ -2133,7 +2184,7 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      box-shadow: 0 20px 40px var(--color-card-shadow);
       opacity: 0;
       transform: translateY(20px) scale(0.95);
       transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -2174,7 +2225,7 @@
 
     .button-luxury:hover, .btn-add-to-bag:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(184, 75, 62, 0.2);
+      box-shadow: 0 10px 25px rgba(184, 75, 62, 0.2); /* Terracotta glow */
     }
 
     .button-arcade:hover, .button-arcade-ctrl:hover {
@@ -2182,7 +2233,7 @@
     }
 
     .btn-quantity:hover {
-      background-color: rgba(245, 242, 237, 0.08);
+      background-color: var(--color-interactive-hover-bg);
       color: var(--color-gold);
     }
 
@@ -2211,7 +2262,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: var(--color-overlay-bg);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       z-index: 9990;
@@ -2232,12 +2283,12 @@
       width: 480px;
       max-width: 100%;
       height: 100vh;
-      background-color: #0a0a0a;
+      background-color: var(--color-drawer-bg);
       border-left: 1px solid var(--color-glass-border);
       z-index: 9991;
       transform: translateX(100%);
       transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-      box-shadow: -20px 0 50px rgba(0,0,0,0.6);
+      box-shadow: -20px 0 50px var(--color-section-shadow);
       display: flex;
       flex-direction: column;
     }
@@ -2252,7 +2303,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #0e0e0e;
+      background-color: var(--color-drawer-header-bg);
     }
 
     .cart-drawer__title {
@@ -2275,7 +2326,7 @@
     }
 
     .cart-drawer__close:hover {
-      color: #fff;
+      color: var(--color-text);
       transform: rotate(90deg);
     }
 
@@ -2298,7 +2349,7 @@
     }
 
     .cart-empty-state__icon {
-      color: rgba(245, 242, 237, 0.1);
+      color: var(--color-border-muted);
       margin-bottom: 1.5rem;
     }
 
@@ -2331,7 +2382,7 @@
       display: flex;
       gap: 1.5rem;
       padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(245, 242, 237, 0.05);
+      border-bottom: 1px solid var(--color-border-muted);
     }
 
     .cart-item-image-wrapper {
@@ -2339,7 +2390,7 @@
       height: 100px;
       flex-shrink: 0;
       border: 1px solid var(--color-glass-border);
-      background-color: rgba(255, 255, 255, 0.02);
+      background-color: var(--color-input-bg);
       padding: 0.5rem;
     }
 
@@ -2388,7 +2439,7 @@
       display: flex;
       align-items: center;
       border: 1px solid var(--color-glass-border);
-      background-color: rgba(255, 255, 255, 0.01);
+      background-color: var(--color-input-bg);
       height: 32px;
     }
 
@@ -2406,8 +2457,8 @@
     }
 
     .cart-item-qty-btn:hover {
-      background-color: rgba(245, 242, 237, 0.05);
-      color: #fff;
+      background-color: var(--color-interactive-hover-bg);
+      color: var(--color-text);
     }
 
     .cart-item-qty-val {
@@ -2435,7 +2486,7 @@
     /* Summary block sticking to bottom */
     .cart-summary-section {
       padding: 2rem;
-      background-color: #0c0c0c;
+      background-color: var(--color-drawer-header-bg);
       border-top: 1px solid var(--color-glass-border);
       margin-top: auto;
     }
@@ -2454,9 +2505,9 @@
       justify-content: space-between;
       font-family: var(--font-serif);
       font-size: 1.4rem;
-      color: #fff;
+      color: var(--color-text);
       font-weight: 300;
-      border-top: 1px solid rgba(245, 242, 237, 0.08);
+      border-top: 1px solid var(--color-glass-border);
       padding-top: 1.25rem;
       margin-top: 1rem;
     }
@@ -2485,7 +2536,7 @@
         position: fixed;
         width: 8px;
         height: 8px;
-        background-color: var(--color-gold);
+        background-color: var(--color-cursor-dot);
         border-radius: 50%;
         pointer-events: none;
         z-index: 10005;
@@ -2500,7 +2551,7 @@
         position: fixed;
         width: 32px;
         height: 32px;
-        border: 1px solid rgba(212, 175, 55, 0.4);
+        border: 1px solid var(--color-cursor-ring);
         border-radius: 50%;
         pointer-events: none;
         z-index: 10004;
@@ -2532,7 +2583,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: #050505;
+      background-color: var(--color-preloader-bg);
       z-index: 100000;
       display: flex;
       flex-direction: column;
@@ -2551,7 +2602,7 @@
       font-size: 2.25rem;
       font-weight: 300;
       letter-spacing: 0.25em;
-      color: #fff;
+      color: var(--color-text);
       margin-bottom: 1.5rem;
       text-transform: uppercase;
       opacity: 0;
@@ -2562,7 +2613,7 @@
     .preloader__line-container {
       width: 180px;
       height: 1px;
-      background-color: rgba(245, 242, 237, 0.05);
+      background-color: var(--color-border-muted);
       position: relative;
       overflow: hidden;
     }
@@ -2607,7 +2658,7 @@
 
     /* --- EXPANDED LUXURY FOOTER --- */
     .footer-expanded {
-      background-color: #080808;
+      background-color: var(--color-bg-footer);
       border-top: 1px solid var(--color-glass-border);
       padding: 6rem var(--container-padding) 4rem;
       position: relative;
@@ -2700,7 +2751,7 @@
     .newsletter-form {
       display: flex;
       border: 1px solid var(--color-glass-border);
-      background-color: rgba(255, 255, 255, 0.01);
+      background-color: var(--color-input-bg);
       margin-top: 1rem;
     }
 
@@ -2733,8 +2784,8 @@
     }
 
     .btn-newsletter-submit:hover {
-      background-color: rgba(212, 175, 55, 0.05);
-      color: #fff;
+      background-color: var(--color-interactive-hover-bg);
+      color: var(--color-text);
     }
 
     .sub-footer {
@@ -2821,8 +2872,8 @@
     }
 
     .navbar__hamburger:hover {
-      border-color: rgba(245, 242, 237, 0.3);
-      background-color: rgba(245, 242, 237, 0.05);
+      border-color: var(--color-interactive-hover-border);
+      background-color: var(--color-interactive-hover-bg);
     }
 
     .hamburger-line {
@@ -2868,7 +2919,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(9, 9, 9, 0.98);
+      background-color: var(--color-overlay-bg);
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
     }
@@ -2925,7 +2976,7 @@
     .mobile-menu__footer {
       font-size: 10px;
       letter-spacing: 0.2em;
-      color: rgba(245, 242, 237, 0.3);
+      color: var(--color-text-placeholder);
       text-transform: uppercase;
     }
 
@@ -3078,6 +3129,24 @@
     </div>
     
     <div class="navbar__actions">
+      <button id="theme-toggle" aria-label="Toggle Theme">
+        <div class="navbar__cart-icon-wrapper">
+          <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display: none;">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg id="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </div>
+      </button>
       <button class="navbar__cart" aria-label="Open Cart">
         <div class="navbar__cart-icon-wrapper">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -3387,6 +3456,17 @@
               <span class="arcade-card-help">Earn 1000 pts for 1 BOMB</span>
             </div>
 
+            <!-- Difficulty Selector -->
+            <div class="arcade-card neon-card-cyan" style="padding: 1rem;">
+              <span class="arcade-card-label">DIFFICULTY</span>
+              <div style="display: flex; gap: 0.5rem; width: 100%; margin-top: 0.5rem;">
+                <button id="difficulty-easy" class="button-arcade-ctrl difficulty-btn utility-toggle utility-toggle--active" style="padding: 0.5rem; font-size: 0.6rem;">EASY</button>
+                <button id="difficulty-medium" class="button-arcade-ctrl difficulty-btn utility-toggle" style="padding: 0.5rem; font-size: 0.6rem;">MED</button>
+                <button id="difficulty-hard" class="button-arcade-ctrl difficulty-btn utility-toggle" style="padding: 0.5rem; font-size: 0.6rem;">HARD</button>
+              </div>
+              <div class="arcade-card-label" style="margin-top: 0.75rem; font-size: 0.55rem;">Multiplier: <span id="difficulty-multiplier">1x</span></div>
+            </div>
+
             <!-- Controls panel -->
             <div class="arcade-controls">
               <button id="btn-play-pause" class="button-arcade-ctrl neon-btn-cyan">PAUSE</button>
@@ -3655,6 +3735,13 @@
 
         <!-- Summary & Checkout Section -->
         <div class="cart-summary-section">
+          <!-- Order Confirmation Email Field -->
+          <div style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--color-border-muted); padding-bottom: 1.5rem;">
+            <label class="form-label" for="checkout-email" style="font-size: 0.6rem; margin-bottom: 0.75rem;">Delivery & Confirmation Email</label>
+            <input type="email" id="checkout-email" class="form-input" placeholder="collector@heritage.com" required style="font-size: 0.8rem; background: var(--color-input-bg);">
+            <div id="checkout-email-error" style="color: var(--color-error); font-size: 0.65rem; margin-top: 0.4rem; display: none; font-family: 'JetBrains Mono', monospace;">Please enter a valid acquisition email.</div>
+          </div>
+
           <div class="cart-summary-row">
             <span>Subtotal</span>
             <span id="cart-subtotal">$1,200</span>
@@ -3800,7 +3887,7 @@
         }
 
         if (currentScrollY > 100) {
-          navbar.style.backgroundColor = 'rgba(13, 13, 13, 0.85)';
+          navbar.style.backgroundColor = 'var(--color-glass-bg)';
           if (currentScrollY > lastScrollY) {
             navbar.classList.add('navbar--hidden');
           } else {
@@ -4386,6 +4473,16 @@
         let bombsCount = 0;
         let bombArmed = false;
         let activeColorsCount = 4; // Pink, blue, green, yellow for Level 1
+
+        // Difficulty settings
+        const DIFFICULTIES = {
+          easy: { interval: 1000, multiplier: 1 },
+          medium: { interval: 500, multiplier: 1.5 },
+          hard: { interval: 250, multiplier: 2 }
+        };
+        let currentDifficulty = localStorage.getItem('brick_pop_difficulty') || 'easy';
+        let activeInterval = 1000; // The interval currently being used by the falling brick
+
         let nextColorIndex = Math.floor(Math.random() * 4); // Preview of next brick
         let isGameStarted = false; // Player must click PLAY NOW
         let animationFrameId = null;
@@ -4816,7 +4913,8 @@
 
           const basePoints = group.length * 20;
           const comboBonus = comboChain > 1 ? comboChain * 50 : 0;
-          const earned = (basePoints + comboBonus) * level;
+          const difficultyMult = DIFFICULTIES[currentDifficulty].multiplier;
+          const earned = Math.floor((basePoints + comboBonus) * level * difficultyMult);
           
           score += earned;
           
@@ -4964,7 +5062,8 @@
           spawnFloatingText("BOOM!", targetX, targetY, '#FF00FF', true);
 
           // Add scores
-          const earned = poppedList.length * 20 * level;
+          const difficultyMult = DIFFICULTIES[currentDifficulty].multiplier;
+          const earned = Math.floor(poppedList.length * 20 * level * difficultyMult);
           score += earned;
 
           if (score >= 3000) {
@@ -5056,6 +5155,9 @@
         }
 
         function spawnNextBrick() {
+          // Apply current difficulty to the new brick
+          activeInterval = DIFFICULTIES[currentDifficulty].interval;
+
           const spawnCol = Math.floor(GRID_COLUMNS / 2);
           if (grid[spawnCol][0] !== null) {
             isGameOver = true;
@@ -5238,6 +5340,44 @@
           if (typeof triggerHaptic === 'function') triggerHaptic([10]);
         });
 
+        // Difficulty Selector Logic
+        const difficultyBtns = document.querySelectorAll('.difficulty-btn');
+        const difficultyMultEl = document.getElementById('difficulty-multiplier');
+
+        function setDifficulty(diff) {
+          currentDifficulty = diff;
+          localStorage.setItem('brick_pop_difficulty', diff);
+
+          difficultyBtns.forEach(btn => {
+            if (btn.id === `difficulty-${diff}`) {
+              btn.classList.add('utility-toggle--active');
+            } else {
+              btn.classList.remove('utility-toggle--active');
+            }
+          });
+
+          difficultyMultEl.textContent = DIFFICULTIES[diff].multiplier + 'x';
+
+          if (typeof triggerHaptic === 'function') triggerHaptic([15]);
+        }
+
+        difficultyBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const diff = btn.id.replace('difficulty-', '');
+            setDifficulty(diff);
+
+            // If changed MID-GAME, we apply on the next spawned brick naturally
+            // since fallingBrick logic uses currentDifficulty.
+            // But if we want to be explicit, we can show a small toast.
+            if (isGameStarted && !isGameOver) {
+              showToast(`DIFFICULTY: ${diff.toUpperCase()} (Applied to next brick)`);
+            }
+          });
+        });
+
+        // Initialize difficulty UI
+        setDifficulty(currentDifficulty);
+
         // Vibe toggle config (BGM style)
         const btnVibe = document.getElementById('btn-vibe');
         btnVibe.addEventListener('click', () => {
@@ -5314,10 +5454,15 @@
               screenShakeAmount *= 0.9;
             }
 
-            // 0. Update active falling brick drop timer (1 grid by 1 second!)
+            // 0. Update active falling brick drop timer
             if (gameState === 'idle' && fallingBrick) {
               const now = timestamp;
-              if (now - lastDropTime >= 1000) {
+              // Difficulty sets the BASE fall speed; any level ramp adjusts from that base.
+              // LEVEL 1: base speed. LEVEL 10: up to 2x faster (halved interval)
+              const levelSpeedRamp = Math.max(0.5, 1 - (level - 1) * 0.05);
+              const currentInterval = Math.max(100, activeInterval * levelSpeedRamp); // clamp at 100ms
+
+              if (now - lastDropTime >= currentInterval) {
                 if (fallingBrick.row + 1 < GRID_ROWS && grid[fallingBrick.col][fallingBrick.row + 1] === null) {
                   fallingBrick.row++;
                 } else {
@@ -5668,11 +5813,65 @@
         if (typeof triggerHaptic === 'function') triggerHaptic([40, 20]);
       });
 
+      // EmailJS Integration
+      /*
+        SUGGESTED EMAILJS TEMPLATE (Paste this into your EmailJS dashboard template body):
+
+        Hello {{customer_name}},
+
+        Your acquisition of {{product}} has been successfully registered.
+        As a valued collector of TERRA MAISON, you have secured a piece of
+        enduring physical heritage.
+
+        ORDER DETAILS:
+        Order Reference: {{order_id}}
+        Quantity: {{quantity}}
+        Unit Price: {{unit_price}}
+        Promo Applied: {{discount_code}}
+
+        ESTIMATED PORTFOLIO VALUE: {{total}}
+
+        Our white-glove concierge is currently preparing your delivery route.
+        You will receive a follow-up once the kiln-fired certificate is sealed
+        and the courier is dispatched.
+
+        In a digital world, thank you for choosing substance.
+
+        Sincerely,
+        The Atelier at TERRA MAISON
+      */
+
+      // REPLACE THESE WITH YOUR OWN KEYS FROM EMAILJS DASHBOARD
+      const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY"; // e.g. "user_XXXXXXXXXXXX"
+      const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID"; // e.g. "service_XXXXXXX"
+      const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID"; // e.g. "template_XXXXXXX"
+
+      if (typeof emailjs !== 'undefined') {
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+      }
+
       // Secure Checkout Process
       let isCheckingOut = false;
       if (checkoutBtn) {
         checkoutBtn.addEventListener('click', () => {
           if (isCheckingOut) return;
+
+          const emailInput = document.getElementById('checkout-email');
+          const emailError = document.getElementById('checkout-email-error');
+          const emailValue = emailInput.value.trim();
+
+          // Simple email validation regex
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(emailValue)) {
+            emailError.style.display = 'block';
+            emailInput.style.borderColor = '#FF3366';
+            if (typeof triggerHaptic === 'function') triggerHaptic([15, 10]);
+            return;
+          } else {
+            emailError.style.display = 'none';
+            emailInput.style.borderColor = '';
+          }
+
           isCheckingOut = true;
           checkoutBtn.classList.add('btn-checkout-loading');
 
@@ -5692,6 +5891,36 @@
               setTimeout(nextCheckoutStep, 900);
               if (typeof triggerHaptic === 'function') triggerHaptic([15]);
             } else {
+              const orderId = "TM-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
+              const subtotal = cartCount * basePrice;
+              const discount = isDiscountApplied ? Math.round(subtotal * 0.05) : 0;
+              const total = subtotal - discount;
+
+              const templateParams = {
+                to_email: emailValue,
+                customer_name: "Valued Collector",
+                product: "THE BRICK™ by TERRA MAISON",
+                quantity: cartCount,
+                unit_price: "$1,200",
+                discount_code: isDiscountApplied ? "POP5 (5% Off)" : "None",
+                total: `$${total.toLocaleString()}`,
+                order_id: orderId
+              };
+
+              // Send email via EmailJS
+              if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY") {
+                emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+                  .then(() => {
+                    console.log("Confirmation email sent successfully.");
+                  })
+                  .catch((err) => {
+                    console.error("EmailJS error:", err);
+                    showToast("Order confirmed, but we had trouble sending your receipt email.");
+                  });
+              } else {
+                console.warn("EmailJS not initialized or keys not set. Skipping email send.");
+              }
+
               isCheckingOut = false;
               checkoutBtn.classList.remove('btn-checkout-loading');
               checkoutBtn.innerHTML = originalContent;
@@ -5699,12 +5928,13 @@
               const certNum = Math.floor(Math.random() * 400) + 101;
               closeCart();
 
-              // Clear cart on complete
+              // Clear cart and email on complete
               cartCount = 0;
+              emailInput.value = "";
               updateCartUI();
 
               // Display the premium receipt modal
-              showSuccessModal(certNum);
+              showSuccessModal(certNum, emailValue, orderId);
             }
           }
           nextCheckoutStep();
@@ -5712,33 +5942,27 @@
       }
 
       // Custom Success Receipt Modal Builder
-      function showSuccessModal(certNum) {
+      function showSuccessModal(certNum, email, orderId) {
         const modal = document.createElement('div');
-        modal.style.position = 'fixed';
-        modal.style.top = '0';
-        modal.style.left = '0';
-        modal.style.width = '100vw';
-        modal.style.height = '100vh';
-        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-        modal.style.backdropFilter = 'blur(20px)';
-        modal.style.webkitBackdropFilter = 'blur(20px)';
+        modal.className = 'modal-overlay active'; // Reuse modal styles
         modal.style.zIndex = '10000';
-        modal.style.display = 'flex';
-        modal.style.alignItems = 'center';
-        modal.style.justifyContent = 'center';
         modal.style.opacity = '0';
-        modal.style.transition = 'opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1)';
         
         modal.innerHTML = `
-          <div style="background: #0f0f0f; border: 1px solid var(--color-gold); padding: 4rem 3rem; max-width: 500px; width: 90%; text-align: center; box-shadow: 0 40px 80px rgba(0,0,0,0.8); position: relative;">
+          <div class="modal-container" style="text-align: center;">
             <div style="font-family: var(--font-serif); font-size: 0.75rem; color: var(--color-gold); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 1rem;">Acquisition Confirmed</div>
-            <h3 style="font-family: var(--font-serif); font-size: 2.25rem; font-weight: 300; color: #fff; margin-bottom: 1.5rem; letter-spacing: 0.05em;">THE BRICK™</h3>
-            <p style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.7; margin-bottom: 2.5rem; letter-spacing: 0.02em;">
+            <h3 style="font-family: var(--font-serif); font-size: 2.25rem; font-weight: 300; color: var(--color-text); margin-bottom: 1.5rem; letter-spacing: 0.05em;">THE BRICK™</h3>
+            <p style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.7; margin-bottom: 1.5rem; letter-spacing: 0.02em;">
               Your order has been registered securely. You have been assigned limited edition provenance certificate <strong style="color: var(--color-gold); font-family: monospace;">№ ${certNum} / 500</strong>.
             </p>
-            <div style="border-top: 1px solid rgba(245, 242, 237, 0.05); border-bottom: 1px solid rgba(245, 242, 237, 0.05); padding: 1.5rem 0; margin-bottom: 2.5rem;">
+            <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 2rem; font-family: monospace;">
+              Order Ref: ${orderId}<br>
+              A confirmation has been sent to:<br>
+              <span style="color: var(--color-text);">${email}</span>
+            </p>
+            <div style="border-top: 1px solid var(--color-border-muted); border-bottom: 1px solid var(--color-border-muted); padding: 1.5rem 0; margin-bottom: 2.5rem;">
               <div style="font-size: 0.7rem; color: var(--color-text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;">White-Glove Status</div>
-              <div style="font-size: 0.85rem; color: #00FF66; letter-spacing: 0.05em; font-family: monospace;">CONCIERGE COURIER PREPARING ROUTE</div>
+              <div style="font-size: 0.85rem; color: var(--color-success); letter-spacing: 0.05em; font-family: monospace;">CONCIERGE COURIER PREPARING ROUTE</div>
             </div>
             <button class="button-luxury" id="btn-success-modal-close" style="width: 100%; font-size: 0.8rem; letter-spacing: 0.2em; height: 50px;">
               Return to Gallery
@@ -5921,6 +6145,35 @@
           }
         });
       }
+
+      // Theme Toggle Logic
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeIconSun = document.getElementById('theme-icon-sun');
+      const themeIconMoon = document.getElementById('theme-icon-moon');
+
+      function updateThemeUI(theme) {
+        if (theme === 'light') {
+          themeIconSun.style.display = 'block';
+          themeIconMoon.style.display = 'none';
+        } else {
+          themeIconSun.style.display = 'none';
+          themeIconMoon.style.display = 'block';
+        }
+      }
+
+      // Initial UI update
+      updateThemeUI(document.documentElement.getAttribute('data-theme'));
+
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('tm_theme', newTheme);
+        updateThemeUI(newTheme);
+
+        if (typeof triggerHaptic === 'function') triggerHaptic([10]);
+      });
 
       // 5. Mobile Menu Overlay Toggle Logic
       const hamburger = document.getElementById('navbar-hamburger');
