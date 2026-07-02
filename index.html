@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TERRA MAISON — THE BRICK™</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230D0D0D'/%3E%3Ctext x='16' y='21' font-family='serif' font-size='18' fill='%23D4AF37' text-anchor='middle' font-weight='bold'%3ETM%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230D0D0D'/%3E%3Ctext x='16' y='21' font-family='serif' font-size='18' fill='%23D4AF37' text-anchor='middle' font-weight='bold'%3ETM%3C/text%3E%3C/svg%3E">
   
   <!-- Google Fonts: Playfair Display for Luxury Serif, Inter for Precision Sans-Serif -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -578,6 +580,125 @@
       background-color: transparent;
       color: var(--color-accent);
       border-color: var(--color-accent);
+    }
+
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.25rem 2.75rem;
+      border: 1px solid var(--color-text-muted);
+      border-radius: 0;
+      background-color: transparent;
+      color: var(--color-text-muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      z-index: 1;
+    }
+
+    .button-secondary:hover {
+      border-color: var(--color-text);
+      color: var(--color-text);
+      background-color: var(--color-interactive-hover-bg);
+      transform: translateY(-2px);
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      z-index: 10005;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-container {
+      background-color: var(--color-bg-secondary);
+      border: 1px solid var(--color-glass-border);
+      width: 500px;
+      max-width: 90%;
+      padding: 3rem;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+    }
+
+    .modal-overlay.active .modal-container {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 2rem;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.3s ease;
+    }
+
+    .modal-close:hover {
+      color: var(--color-text);
+    }
+
+    .modal-title {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      font-weight: 300;
+      margin-bottom: 2rem;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--color-glass-border);
+      padding: 1rem;
+      color: var(--color-text);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-input:focus {
+      border-color: var(--color-gold);
     }
 
     /* Right Side 3D interactive Box */
@@ -2902,7 +3023,7 @@
 
   <!-- Branded Preloader -->
   <div class="preloader" id="preloader">
-    <div class="preloader__brand">Terra Maison</div>
+    <div class="preloader__brand">TERRA MAISON</div>
     <div class="preloader__line-container">
       <div class="preloader__line"></div>
     </div>
@@ -2986,7 +3107,7 @@
         <div class="hero__meta" id="hero-meta">
           <div class="vertical-label">COLLECTION № 001</div>
           <div class="hero__meta-line"></div>
-          <div class="vertical-label">ESTABLISHED MCMLXXXII</div>
+          <div class="vertical-label">ESTABLISHED MMXXV</div>
         </div>
 
         <!-- Central & Right Content -->
@@ -3020,9 +3141,9 @@
             
             <div class="hero__cta-wrapper" id="hero-cta" style="display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap;">
               <button class="button-luxury">
-                <span>Reserve Yours &nbsp; — &nbsp; $10,000</span>
+                <span>Reserve Yours &nbsp; — &nbsp; $1,200</span>
               </button>
-              <span class="serif-italic" style="font-size: 1.1rem; opacity: 0.6; color: var(--color-text);">Inquire for Custom Engraving</span>
+              <button class="button-secondary" id="btn-engraving-open">Inquire for Custom Engraving</button>
             </div>
           </div>
 
@@ -3039,7 +3160,7 @@
 
             <!-- Product Specs Box inside the frame -->
             <div class="hero__specs-box">
-              <div class="hero__spec-mass">2.27 kg</div>
+              <div class="hero__spec-mass">2.3 kg</div>
               <div class="hero__spec-label">Pure Clay Earth Mass</div>
             </div>
           </div>
@@ -3068,7 +3189,7 @@
       <div class="showcase__labels-container">
         <div class="spec-label" id="label-1">
           <span class="spec-label__num">SPEC 01</span>
-          <h3 class="spec-label__title">2.27 kg Pure Presence</h3>
+          <h3 class="spec-label__title">2.3 kg Pure Presence</h3>
           <p class="spec-label__desc">Perfect density designed to ground any interior. An absolute gravitational weight.</p>
         </div>
 
@@ -3148,12 +3269,12 @@
               <div class="stats-grid">
                 <div class="stat-item">
                   <span class="stat-item__num" data-target="1">0</span>
-                  <span class="stat-item__label">Physical Brick</span>
+                  <span class="stat-item__label">THE BRICK™</span>
                 </div>
                 <div class="stat-item">
                   <div>
                     <span class="stat-item__num" data-target="4.9" data-decimals="1">0</span>
-                    <span class="stat-item__suffix">&#9733;</span>
+                    <span class="stat-item__suffix">★</span>
                   </div>
                   <span class="stat-item__label">Rating</span>
                 </div>
@@ -3172,8 +3293,6 @@
         </div>
       </div>
     </section>
-
-    <!-- --- THE ARCADE MINI-GAME SECTION --- -->
     <section id="arcade" class="arcade-section reveal-on-scroll">
       <div class="synthwave-grid"></div>
       
@@ -3181,7 +3300,7 @@
         <div class="arcade-header">
           <span class="arcade-kicker">Easter Egg Archive</span>
           <h2 class="arcade-title">BRICK POP</h2>
-          <p class="arcade-instructions">Match 4+ same-color bricks to POP them. Chain combos for a high score. Play while you wait for your BRICK to ship.</p>
+          <p class="arcade-instructions">Match 4+ same-color bricks to POP them. Chain combos for a high score. Play while you wait for THE BRICK™ to ship.</p>
         </div>
 
         <div class="arcade-grid-layout">
@@ -3336,7 +3455,7 @@
             
             <div class="rating-stars">
               <span>★★★★★</span>
-              <span class="rating-text">4.9 / 5.0 (148 Reviews)</span>
+              <span class="rating-text">4.9★ (148 Reviews)</span>
             </div>
 
             <div class="price-block">
@@ -3344,11 +3463,11 @@
                 <span class="original-price-amount" id="original-price-display" style="display: none; margin-right: 1rem;">$1,200</span>
                 <span id="price-display">$1,200</span>
               </div>
-              <div class="price-installment" id="installment-display">or 4 interest-free payments of $300 with TerraPay</div>
+              <div class="price-installment" id="installment-display">or 4 interest-free payments of $300 with TERRAPAY</div>
             </div>
 
             <p class="product-description">
-              An immutable masterpiece of hand-fired clay, sourced from ancestral geological quarries in Tuscany, Italy. Built to endure generations, completely immune to modern digital obsolescence. Every brick is individually numbered and accompanied by a custom sealed Certificate of Authenticity.
+              An immutable masterpiece of hand-fired clay, sourced from ancestral geological quarries in Tuscany, Italy. Built to endure generations, completely immune to modern digital obsolescence. Every unit of THE BRICK™ is individually numbered and accompanied by a custom sealed Certificate of Authenticity.
             </p>
 
             <!-- Features checklist -->
@@ -3447,7 +3566,7 @@
 
           <div class="review-card">
             <div class="review-stars">★★★★★</div>
-            <p class="review-quote">"My friends asked why I bought a $1,200 brick. I told them they wouldn't understand raw physicality. They still don't."</p>
+            <p class="review-quote">"My friends asked why I bought THE BRICK™ for $1,200. I told them they wouldn't understand raw physicality. They still don't."</p>
             <div class="review-author">
               <span class="review-badge-verified"></span>
               <span>Julian K. &mdash; Minimalist Enthusiast</span>
@@ -3459,6 +3578,29 @@
     </section>
 
   </main>
+
+  <!-- Engraving Inquiry Modal -->
+  <div class="modal-overlay" id="engraving-modal">
+    <div class="modal-container">
+      <button class="modal-close" id="btn-engraving-close" aria-label="Close Modal">&times;</button>
+      <h3 class="modal-title">Custom Engraving Inquiry</h3>
+      <form id="engraving-form">
+        <div class="form-group">
+          <label class="form-label" for="engraving-name">Name</label>
+          <input type="text" id="engraving-name" class="form-input" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="engraving-email">Email</label>
+          <input type="email" id="engraving-email" class="form-input" placeholder="Your email address" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="engraving-text">Engraving Text (Max 20 characters)</label>
+          <input type="text" id="engraving-text" class="form-input" placeholder="e.g. Memento Mori" maxlength="20" required>
+        </div>
+        <button type="submit" class="button-luxury" style="width: 100%; margin-top: 1rem;">Submit Inquiry</button>
+      </form>
+    </div>
+  </div>
 
   <!-- Toast notification container -->
   <div class="toast-container" id="toast-container"></div>
@@ -3588,7 +3730,7 @@
         <a href="#" class="footer-link" style="font-size: 0.7rem;">Privacy Charter</a>
       </div>
       <div>
-        © 2026 Terra Maison International
+        © 2026 TERRA MAISON
       </div>
     </div>
   </footer>
@@ -5401,9 +5543,9 @@
           const discountedPrice = Math.round(basePrice * 0.95);
           const discountedInstallment = Math.round((basePrice * 0.95) / 4);
 
-          priceDisplay.textContent = `$${discountedPrice}`;
+          priceDisplay.textContent = `$${discountedPrice.toLocaleString()}`;
           originalPriceDisplay.style.display = 'inline';
-          installmentDisplay.textContent = `or 4 interest-free payments of $${discountedInstallment} with TerraPay`;
+          installmentDisplay.textContent = `or 4 interest-free payments of $${discountedInstallment.toLocaleString()} with TERRAPAY`;
 
           promoStatusMsg.textContent = "Promo code 'POP5' applied successfully! (5% off)";
           promoStatusMsg.className = "promo-status success";
@@ -5692,7 +5834,7 @@
             if (newsletterSuccess) {
               newsletterSuccess.style.display = 'block';
             }
-            showToast("Welcome to the Terra Maison Foundation.");
+            showToast("Welcome to the TERRA MAISON Foundation.");
             if (typeof triggerHaptic === 'function') triggerHaptic([30, 10]);
           }
         });
@@ -5702,6 +5844,55 @@
       const hamburger = document.getElementById('navbar-hamburger');
       const mobileMenu = document.getElementById('mobile-menu');
       const mobileMenuLinks = document.querySelectorAll('.mobile-menu__link');
+
+      // --- ENGRAVING MODAL LOGIC ---
+      const engravingOpenBtn = document.getElementById('btn-engraving-open');
+      const engravingCloseBtn = document.getElementById('btn-engraving-close');
+      const engravingModal = document.getElementById('engraving-modal');
+      const engravingForm = document.getElementById('engraving-form');
+
+      function openEngravingModal() {
+        engravingModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (window.lenis) window.lenis.stop();
+      }
+
+      function closeEngravingModal() {
+        engravingModal.classList.remove('active');
+        document.body.style.overflow = '';
+        if (window.lenis) window.lenis.start();
+      }
+
+      if (engravingOpenBtn) engravingOpenBtn.addEventListener('click', openEngravingModal);
+      if (engravingCloseBtn) engravingCloseBtn.addEventListener('click', closeEngravingModal);
+
+      if (engravingModal) {
+        engravingModal.addEventListener('click', (e) => {
+          if (e.target === engravingModal) closeEngravingModal();
+        });
+      }
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && engravingModal.classList.contains('active')) {
+          closeEngravingModal();
+        }
+      });
+
+      if (engravingForm) {
+        engravingForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('engraving-name').value;
+          const email = document.getElementById('engraving-email').value;
+          const text = document.getElementById('engraving-text').value;
+
+          if (name && email && text) {
+            closeEngravingModal();
+            showToast("Thank you — our atelier will be in touch about your engraving.");
+            engravingForm.reset();
+            if (typeof triggerHaptic === 'function') triggerHaptic([30, 10]);
+          }
+        });
+      }
 
       function toggleMobileMenu() {
         const isActive = hamburger.classList.toggle('navbar__hamburger--active');
