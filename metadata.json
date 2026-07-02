@@ -1,0 +1,6 @@
+{
+  "name": "TERRA MAISON - THE BRICK",
+  "description": "An ultra-premium luxury satirical presentation of a brick, designed with meticulous precision and craftsmanship.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,5747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TERRA MAISON — THE BRICK™</title>
+  
+  <!-- Google Fonts: Playfair Display for Luxury Serif, Inter for Precision Sans-Serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Elite CSS Reset & Design System -->
+  <style>
+    /* --- CSS RESET --- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      width: 100%;
+      background-color: var(--color-bg);
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    button {
+      background: none;
+      border: none;
+      font: inherit;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    img, canvas {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* --- LUXURY DESIGN SYSTEM --- */
+    :root, html[data-theme="dark"] {
+      /* Colors */
+      --color-bg: #0D0D0D;             /* Absolute Charcoal Black */
+      --color-bg-secondary: #080808;   /* Deepest black for sections */
+      --color-bg-tertiary: #0D0D0D;    /* Main black/charcoal */
+      --color-bg-reviews: #090909;     /* Deep card/review background */
+      --color-card-bg: rgba(255, 255, 255, 0.02); /* Translucent overlay */
+      --color-text: #F5F2ED;           /* Pearl Ivory / Cream */
+      --color-text-muted: rgba(245, 242, 237, 0.6); /* Soft Warm Gray */
+      --color-text-placeholder: rgba(245, 242, 237, 0.25);
+      --color-accent: #B84B3E;         /* Rich Terracotta Brick Red */
+      --color-accent-hover: #A13E32;   /* Slightly darker crimson */
+      --color-gold: #D4AF37;           /* Pale Champagne Gold */
+      --color-gold-muted: #BFA16F;     /* Burnished Brass */
+      --color-glass-bg: rgba(13, 13, 13, 0.7);
+      --color-glass-border: rgba(245, 242, 237, 0.1);
+      --color-slide-bg: radial-gradient(circle at center, #1b1212 0%, #0d0d0d 100%);
+      --color-slide-overlay: linear-gradient(90deg, rgba(13,13,13,0.95) 20%, rgba(13,13,13,0.7) 60%, rgba(13,13,13,0.95) 100%);
+      --color-card-grad: linear-gradient(145deg, #121212, #080808);
+      --color-drawer-bg: #0A0A0A;
+      --color-drawer-header-bg: #0E0E0E;
+      --color-preloader-bg: #050505;
+      --color-cursor-ring: rgba(212, 175, 55, 0.4);
+      --color-card-shadow: rgba(0, 0, 0, 0.4);
+      --color-section-shadow: rgba(0, 0, 0, 0.6);
+      --color-interactive-hover-border: rgba(245, 242, 237, 0.3);
+      --color-interactive-hover-bg: rgba(245, 242, 237, 0.05);
+      
+      --color-arcade-section-bg: #0b0714;
+      --color-arcade-section-grad: radial-gradient(circle at 50% 40%, #1e1135 0%, #06040a 100%);
+      --color-arcade-section-grid: rgba(138, 43, 226, 0.08);
+
+      /* Typography */
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+      /* Layout */
+      --nav-height: 80px;
+      --container-padding: 6vw;
+    }
+
+    html[data-theme="light"] {
+      --color-bg: #FAFBFE;
+      --color-bg-secondary: #F5F7FB;
+      --color-bg-tertiary: #FFFFFF;
+      --color-bg-reviews: #F0F3F8;
+      --color-card-bg: #FFFFFF;
+      --color-text: #1B2431;
+      --color-text-muted: rgba(27, 36, 49, 0.6);
+      --color-text-placeholder: rgba(27, 36, 49, 0.25);
+      --color-accent: #C34437;
+      --color-accent-hover: #A93529;
+      --color-gold: #AA841C;
+      --color-gold-muted: #8B6D1E;
+      --color-glass-bg: rgba(255, 255, 255, 0.75);
+      --color-glass-border: #EAEEF6;
+      --color-slide-bg: radial-gradient(circle at center, #FFFFFF 0%, #F5F7FB 100%);
+      --color-slide-overlay: linear-gradient(90deg, rgba(250,251,254,0.95) 20%, rgba(250,251,254,0.7) 60%, rgba(250,251,254,0.95) 100%);
+      --color-card-grad: linear-gradient(145deg, #FFFFFF, #FAFBFD);
+      --color-drawer-bg: #FFFFFF;
+      --color-drawer-header-bg: #F5F7FB;
+      --color-preloader-bg: #FAFBFE;
+      --color-cursor-ring: rgba(170, 132, 28, 0.4);
+      --color-card-shadow: rgba(27, 36, 49, 0.06);
+      --color-section-shadow: rgba(27, 36, 49, 0.03);
+      --color-interactive-hover-border: rgba(27, 36, 49, 0.3);
+      --color-interactive-hover-bg: rgba(27, 36, 49, 0.05);
+      
+      --color-arcade-section-bg: #F5F7FB;
+      --color-arcade-section-grad: radial-gradient(circle at 50% 40%, #EAEEF6 0%, #F5F7FB 100%);
+      --color-arcade-section-grid: rgba(138, 43, 226, 0.03);
+    }
+
+    /* Theme transitions */
+    body:not(.no-transition),
+    body:not(.no-transition) .navbar,
+    body:not(.no-transition) .showcase,
+    body:not(.no-transition) .storytelling,
+    body:not(.no-transition) .bespoke-section,
+    body:not(.no-transition) .reviews-section,
+    body:not(.no-transition) .footer-expanded,
+    body:not(.no-transition) .product-gallery,
+    body:not(.no-transition) .cart-drawer,
+    body:not(.no-transition) .cart-drawer__header,
+    body:not(.no-transition) .preloader,
+    body:not(.no-transition) .custom-cursor,
+    body:not(.no-transition) .custom-cursor-ring,
+    body:not(.no-transition) p,
+    body:not(.no-transition) h1,
+    body:not(.no-transition) h2,
+    body:not(.no-transition) h3,
+    body:not(.no-transition) h4,
+    body:not(.no-transition) a,
+    body:not(.no-transition) button,
+    body:not(.no-transition) span {
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, fill 0.3s ease, stroke 0.3s ease;
+    }
+
+    /* --- LENIS SMOOTH SCROLL OVERRIDES --- */
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+
+    .lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+
+    .lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+
+    .lenis-stopped {
+      overflow: hidden;
+    }
+
+    .lenis-scrolling iframe {
+      pointer-events: none;
+    }
+
+    /* --- GLOBAL COMPONENT STYLES --- */
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--container-padding);
+    }
+
+    /* Elegant Serif Accent */
+    .serif-italic {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    /* --- LUXURY NAVIGATION BAR --- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--container-padding);
+      z-index: 1000;
+      background-color: var(--color-glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--color-glass-border);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s ease;
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    /* Navigation Hidden on Scroll Down, Revealed on Scroll Up */
+    .navbar--hidden {
+      transform: translateY(-100%);
+    }
+
+    /* Logo Brandmark */
+    .navbar__logo {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .navbar__logo-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--color-accent);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* Navigational Links */
+    .navbar__links {
+      display: flex;
+      align-items: center;
+      gap: 3.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .navbar__links {
+        display: none;
+      }
+    }
+
+    .navbar__link-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .navbar__link {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      display: block;
+      padding: 0.5rem 0;
+    }
+
+    .navbar__link:hover {
+      color: var(--color-text);
+    }
+
+    /* Premium Underline Animation */
+    .navbar__link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--color-accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .navbar__link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Action Panel (Cart & Utilities) */
+    .navbar__actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .navbar__cart {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-text);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .navbar__cart-icon-wrapper {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--color-glass-border);
+      border-radius: 50%;
+      transition: border-color 0.4s ease, background-color 0.4s ease;
+    }
+
+    .navbar__cart:hover .navbar__cart-icon-wrapper {
+      border-color: rgba(245, 242, 237, 0.3);
+      background-color: rgba(245, 242, 237, 0.05);
+    }
+
+    .navbar__cart-badge {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      background-color: var(--color-accent);
+      color: var(--color-text);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: -4px;
+      right: -6px;
+    }
+
+    /* --- NOISE & GRADIENT SYSTEM --- */
+    .noise-overlay {
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      right: -50%;
+      bottom: -50%;
+      width: 200%;
+      height: 200%;
+      background: url('https://www.transparenttextures.com/patterns/concrete-wall.png');
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 999;
+      animation: noiseJitter 0.5s steps(3) infinite;
+    }
+
+    @keyframes noiseJitter {
+      0% { transform: translate(0, 0); }
+      10% { transform: translate(-1%, -1%); }
+      20% { transform: translate(-2%, 1%); }
+      30% { transform: translate(1%, -2%); }
+      40% { transform: translate(-1%, 3%); }
+      50% { transform: translate(-1%, 1%); }
+      60% { transform: translate(-3%, -1%); }
+      70% { transform: translate(2%, 1%); }
+      80% { transform: translate(1%, -2%); }
+      90% { transform: translate(-1%, 3%); }
+      100% { transform: translate(0, 0); }
+    }
+
+    .hero__bg-gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 30%, #171515 0%, #0D0D0D 80%);
+      z-index: 0;
+      pointer-events: none;
+      animation: gradientShift 18s ease infinite alternate;
+    }
+
+    @keyframes gradientShift {
+      0% { background: radial-gradient(circle at 30% 30%, #171515 0%, #0D0D0D 80%); }
+      50% { background: radial-gradient(circle at 70% 60%, #1f1413 0%, #0D0D0D 85%); }
+      100% { background: radial-gradient(circle at 40% 80%, #151515 0%, #0D0D0D 80%); }
+    }
+
+    /* --- HERO SECTION WITH LEFT METADATA PANEL --- */
+    .hero {
+      min-height: calc(100vh - var(--nav-height));
+      position: relative;
+      display: flex;
+      align-items: stretch;
+      overflow: hidden;
+    }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      width: 100%;
+      z-index: 1;
+    }
+
+    @media (max-width: 1024px) {
+      .hero__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Side Meta Column */
+    .hero__meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-right: 1px solid var(--color-glass-border);
+      padding: 3rem 0;
+      background-color: rgba(13, 13, 13, 0.3);
+      opacity: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .hero__meta {
+        display: none;
+      }
+    }
+
+    .vertical-label {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      opacity: 0.7;
+    }
+
+    .hero__meta-line {
+      height: 96px;
+      width: 1px;
+      background-color: var(--color-glass-border);
+      margin: 2.5rem 0;
+    }
+
+    /* Right Display Content Panel */
+    .hero__display {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      padding: 4rem var(--container-padding);
+      gap: 5rem;
+      width: 100%;
+    }
+
+    @media (max-width: 1024px) {
+      .hero__display {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3.5rem;
+        padding: 6rem 2rem;
+      }
+    }
+
+    /* Content Area styling */
+    .hero__content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 1024px) {
+      .hero__content {
+        align-items: center;
+      }
+    }
+
+    /* Collection / Series Accent Tag */
+    .hero__tagline {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .hero__tagline-line {
+      width: 40px;
+      height: 1px;
+      background-color: var(--color-accent);
+    }
+
+    /* Grand Typography for Product Title */
+    .hero__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 5.5vw, 6.5rem);
+      line-height: 1.0;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    /* For smooth line-by-line reveal using GSAP */
+    .hero__title-line {
+      display: block;
+      overflow: hidden;
+    }
+
+    .hero__title-word {
+      display: inline-block;
+      transform: translateY(105%);
+      will-change: transform;
+    }
+
+    /* Gold Elegant Animated Divider Line */
+    .gold-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-gold) 50%, transparent);
+      opacity: 0.4;
+      transform: scaleX(0);
+      transform-origin: center;
+      margin: 1.5rem 0 2rem 0;
+    }
+
+    .hero__subtitle {
+      font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+      font-weight: 300;
+      color: rgba(245, 242, 237, 0.7);
+      max-width: 520px;
+      margin-bottom: 3.5rem;
+      line-height: 1.8;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Actions and CTA */
+    .hero__cta-wrapper {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .button-luxury {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.25rem 2.75rem;
+      border: 1px solid var(--color-accent);
+      border-radius: 0;
+      background-color: var(--color-accent);
+      color: var(--color-text);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      z-index: 1;
+    }
+
+    .button-luxury:hover {
+      background-color: transparent;
+      color: var(--color-accent);
+      border-color: var(--color-accent);
+    }
+
+    /* Right Side 3D interactive Box */
+    .hero__visual {
+      position: relative;
+      width: 100%;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    @media (max-width: 1024px) {
+      .hero__visual {
+        height: 45vh;
+      }
+    }
+
+    .hero__canvas-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+
+    /* Golden-Brass Outline Framing of 3D container */
+    .hero__frame {
+      position: absolute;
+      width: 90%;
+      height: 90%;
+      border: 1px solid rgba(245, 242, 237, 0.05);
+      border-radius: 4px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero__frame-corner {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border: 1px solid var(--color-gold-muted);
+    }
+
+    .hero__frame-corner--tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+    .hero__frame-corner--tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+    .hero__frame-corner--bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+    .hero__frame-corner--br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+    /* Exquisite Specs display inside the frame area */
+    .hero__specs-box {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      text-align: right;
+      z-index: 5;
+    }
+
+    .hero__spec-mass {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 2.5vw, 2.25rem);
+      font-weight: 300;
+      color: var(--color-text);
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero__spec-label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    /* Floating Scroll Indicator */
+    .hero__scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      z-index: 10;
+      cursor: pointer;
+    }
+
+    .hero__scroll-text {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+
+    .hero__scroll-line {
+      width: 1px;
+      height: 40px;
+      background-color: rgba(245, 242, 237, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__scroll-line::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      background-color: var(--color-accent);
+      animation: scrollPulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    /* --- SHOWCASE SECTION (SCROLL TRIGGER PINNED CANVAS) --- */
+    .showcase {
+      position: relative;
+      background-color: var(--color-bg-secondary);
+      overflow: hidden;
+      min-height: 100vh;
+      border-top: 1px solid var(--color-glass-border);
+    }
+
+    .showcase__header {
+      padding-top: 6rem;
+      text-align: center;
+      z-index: 10;
+      position: relative;
+    }
+
+    .showcase__tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .showcase__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--color-text);
+    }
+
+    .showcase__canvas-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 1;
+    }
+
+    .showcase__instructions {
+      position: absolute;
+      bottom: 6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      z-index: 10;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: opacity 0.5s ease;
+    }
+
+    .showcase__drag-icon {
+      width: 16px;
+      height: 16px;
+      stroke-width: 1.5;
+      animation: dragShake 2s ease infinite;
+    }
+
+    @keyframes dragShake {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(6px); }
+    }
+
+    /* Floating Spec Labels around Interactive Brick */
+    .spec-label {
+      position: absolute;
+      z-index: 10;
+      background: rgba(13, 13, 13, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(245, 242, 237, 0.1);
+      padding: 1.5rem 2rem;
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0.9) translateY(20px);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .spec-label--active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    .spec-label__num {
+      font-family: var(--font-serif);
+      font-size: 0.75rem;
+      color: var(--color-gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    .spec-label__title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .spec-label__desc {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+      max-width: 220px;
+    }
+
+    /* Position the labels beautifully on desktop */
+    #label-1 { top: 30%; left: 15%; }
+    #label-2 { top: 25%; right: 15%; }
+    #label-3 { bottom: 30%; left: 15%; }
+    #label-4 { bottom: 25%; right: 15%; }
+
+    @media (max-width: 1024px) {
+      .spec-label {
+        position: static;
+        margin: 1.5rem auto;
+        pointer-events: auto;
+        max-width: 90%;
+      }
+      .showcase__labels-container {
+        position: relative;
+        z-index: 10;
+        padding: 2rem var(--container-padding) 6rem var(--container-padding);
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    /* --- STORYTELLING SECTION (HORIZONTAL GALLERY) --- */
+    .storytelling {
+      position: relative;
+      background-color: var(--color-bg-tertiary);
+      width: 100%;
+      overflow: hidden;
+      border-top: 1px solid var(--color-glass-border);
+    }
+
+    .storytelling__pin {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .storytelling__slides {
+      display: flex;
+      height: 100%;
+      width: 400vw; /* 4 slides * 100vw */
+      will-change: transform;
+    }
+
+    .story-slide {
+      width: 100vw;
+      height: 100vh;
+      flex-shrink: 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 var(--container-padding);
+      overflow: hidden;
+    }
+
+    /* slide background with parallax effect */
+    .story-slide__bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 130%; /* extra width for parallax */
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+      will-change: transform;
+      transform: translateX(0);
+    }
+
+    .story-slide__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-slide-overlay);
+      z-index: 1;
+    }
+
+    .story-slide__bg-grad {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-slide-bg);
+      z-index: 0;
+    }
+
+    .story-slide__content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transform: translateY(30px);
+      opacity: 0;
+      will-change: transform, opacity;
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .story-slide__content--stats {
+      max-width: 1000px;
+      width: 100%;
+      align-items: center;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* slide classes triggered on scroll view */
+    .story-slide--active .story-slide__content {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .story-slide__kicker {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .story-slide__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4.5vw, 4.5rem);
+      line-height: 1.1;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      color: var(--color-text);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .story-slide__desc {
+      font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+      font-weight: 300;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+      max-width: 540px;
+    }
+
+    /* Stats design */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4rem;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stat-item__num {
+      font-family: var(--font-serif);
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1;
+      color: var(--color-accent);
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+    
+    .stat-item__suffix {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      color: var(--color-gold);
+      font-family: var(--font-sans);
+      margin-left: 0.25rem;
+    }
+
+    .stat-item__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+
+    /* --- LUXURY FOOTER --- */
+    .footer {
+      height: 64px;
+      border-top: 1px solid var(--color-glass-border);
+      background-color: var(--color-bg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--container-padding);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      position: relative;
+      z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+      .footer {
+        flex-direction: column;
+        height: auto;
+        padding: 2rem var(--container-padding);
+        gap: 1.5rem;
+        text-align: center;
+      }
+    }
+
+    .footer__status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer__dot {
+      width: 8px;
+      height: 8px;
+      background-color: #10B981; /* pulsing emerald green */
+      border-radius: 50%;
+    }
+
+    /* --- ARCADE GAME SECTION STYLING --- */
+    .arcade-section {
+      position: relative;
+      background-color: var(--color-arcade-section-bg);
+      background-image: var(--color-arcade-section-grad);
+      width: 100%;
+      padding: 6rem 0;
+      border-top: 1px solid var(--color-glass-border);
+      border-bottom: 1px solid var(--color-glass-border);
+      overflow: hidden;
+    }
+
+    .arcade-section::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 250px;
+      background: linear-gradient(to top, rgba(138, 43, 226, 0.12), transparent);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .synthwave-grid {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 220px;
+      background-size: 50px 50px;
+      background-image: 
+        linear-gradient(to right, var(--color-arcade-section-grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--color-arcade-section-grid) 1px, transparent 1px);
+      transform: perspective(120px) rotateX(60deg);
+      transform-origin: top;
+      opacity: 0.65;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .arcade-container {
+      position: relative;
+      z-index: 10;
+    }
+
+    .arcade-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .arcade-kicker {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+
+    .arcade-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 300;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.6), 0 0 30px rgba(255, 0, 255, 0.3);
+      margin-bottom: 1.5rem;
+      animation: neonFlicker 3s infinite alternate;
+    }
+
+    @keyframes neonFlicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 0 0 10px rgba(255, 0, 255, 0.6), 0 0 20px rgba(255, 0, 255, 0.3), 0 0 40px rgba(255, 0, 255, 0.1);
+      }
+      20%, 24%, 55% {
+        text-shadow: none;
+      }
+    }
+
+    .arcade-instructions {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Grid Layout */
+    .arcade-grid-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr 240px;
+      gap: 3rem;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 1024px) {
+      .arcade-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        max-width: 500px;
+      }
+    }
+
+    /* Sidebars */
+    .arcade-sidebar-left, .arcade-sidebar-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 1024px) {
+      .arcade-sidebar-left, .arcade-sidebar-right {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .arcade-sidebar-left .arcade-card, .arcade-sidebar-right .arcade-card {
+        flex: 1;
+        min-width: 120px;
+      }
+    }
+
+    .arcade-card {
+      background: rgba(13, 13, 13, 0.8);
+      border: 1px solid rgba(245, 242, 237, 0.08);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .arcade-card-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--color-text-muted);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .arcade-card-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.25rem;
+      font-weight: 600;
+      line-height: 1;
+      color: #fff;
+    }
+
+    /* Neon Borders */
+    .neon-card-cyan {
+      box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.05);
+      border-color: rgba(0, 255, 255, 0.2);
+    }
+    .neon-card-cyan .arcade-card-value {
+      color: #00FFFF;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    }
+
+    .neon-card-purple {
+      box-shadow: inset 0 0 10px rgba(138, 43, 226, 0.05);
+      border-color: rgba(138, 43, 226, 0.2);
+    }
+    .neon-card-purple .arcade-card-value {
+      color: #BFA16F;
+    }
+
+    .neon-card-pink {
+      box-shadow: inset 0 0 10px rgba(255, 0, 255, 0.05);
+      border-color: rgba(255, 0, 255, 0.2);
+    }
+    .neon-card-pink .arcade-card-value {
+      color: #FF00FF;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+    }
+
+    .neon-card-gray {
+      border-color: rgba(245, 242, 237, 0.15);
+    }
+
+    .arcade-card-help {
+      font-size: 0.65rem;
+      color: var(--color-text-muted);
+      margin-top: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Power up button */
+    .arcade-bomb-btn {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 0, 255, 0.2);
+      background: rgba(255, 0, 255, 0.03);
+      color: rgba(255, 0, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .arcade-bomb-btn svg {
+      width: 28px;
+      height: 28px;
+      transition: transform 0.3s ease;
+    }
+
+    .arcade-bomb-btn:not(:disabled) {
+      color: #FF00FF;
+      border-color: #FF00FF;
+      background: rgba(255, 0, 255, 0.1);
+      box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+    }
+
+    .arcade-bomb-btn:not(:disabled):hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(255, 0, 255, 0.5);
+    }
+
+    .arcade-bomb-btn:not(:disabled):active {
+      transform: scale(0.95);
+    }
+
+    .arcade-bomb-btn--armed {
+      animation: bombPulse 0.8s infinite alternate !important;
+      color: #fff !important;
+      background: #FF00FF !important;
+      box-shadow: 0 0 30px #FF00FF !important;
+    }
+
+    @keyframes bombPulse {
+      0% { box-shadow: 0 0 10px #FF00FF; transform: scale(1); }
+      100% { box-shadow: 0 0 35px #FF00FF, 0 0 50px #FF00FF; transform: scale(1.1); }
+    }
+
+    .bomb-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #FF00FF;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 5px #FF00FF;
+    }
+
+    /* Cabinet Screen */
+    .arcade-cabinet {
+      background: #0f0b18;
+      border: 4px solid rgba(245, 242, 237, 0.1);
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 30px rgba(138, 43, 226, 0.15);
+      position: relative;
+    }
+
+    .arcade-cabinet::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 100%);
+      pointer-events: none;
+      border-radius: 8px;
+    }
+
+    .arcade-cabinet-screen {
+      position: relative;
+      width: 100%;
+      background: #14101f;
+      border: 2px solid rgba(138, 43, 226, 0.3);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #brick-pop-canvas {
+      display: block;
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 400 / 550;
+      background: #0e0a16;
+      cursor: crosshair;
+    }
+
+    /* Overlays */
+    .screen-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(14, 10, 22, 0.9);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .screen-overlay-content {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .screen-overlay h3 {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .screen-overlay p {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin: 0 auto 2rem auto;
+      max-width: 280px;
+    }
+
+    .neon-text-pink {
+      color: #FF00FF;
+      text-shadow: 0 0 15px rgba(255,0,255,0.6);
+    }
+    .neon-text-cyan {
+      color: #00FFFF;
+      text-shadow: 0 0 15px rgba(0,255,255,0.6);
+    }
+
+    /* Buttons */
+    .button-arcade {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .neon-btn-pink {
+      color: #FF00FF;
+      border-color: #FF00FF;
+      background: rgba(255, 0, 255, 0.05);
+      box-shadow: 0 0 10px rgba(255, 0, 255, 0.2);
+    }
+    .neon-btn-pink:hover {
+      color: #fff;
+      background: #FF00FF;
+      box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+    }
+
+    .neon-btn-cyan {
+      color: #00FFFF;
+      border-color: #00FFFF;
+      background: rgba(0, 255, 255, 0.05);
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    }
+    .neon-btn-cyan:hover {
+      color: #fff;
+      background: #00FFFF;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+
+    /* Right Sidebar Controls */
+    .arcade-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .button-arcade-ctrl {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 1rem;
+      width: 100%;
+      border: 1px solid transparent;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .utility-row {
+      display: flex;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .utility-toggle {
+      flex: 1;
+      height: 48px;
+      border: 1px solid rgba(245, 242, 237, 0.1);
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .utility-toggle svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .utility-toggle:hover {
+      color: #fff;
+      border-color: rgba(245, 242, 237, 0.3);
+      background: rgba(245, 242, 237, 0.03);
+    }
+
+    .utility-toggle--active {
+      color: #00FFFF !important;
+      border-color: #00FFFF !important;
+      background: rgba(0, 255, 255, 0.05) !important;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    }
+
+    /* Locked Reward Card styling */
+    .reward-coupon-wrapper {
+      max-width: 500px;
+      margin: 4rem auto 0 auto;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      display: none; /* revealed on unlocking */
+    }
+
+    .reward-coupon-wrapper--unlocked {
+      display: block !important;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reward-coupon-card-inner {
+      background: linear-gradient(135deg, rgba(20, 15, 30, 0.95) 0%, rgba(10, 8, 15, 0.95) 100%);
+      border: 1px solid #FF00FF;
+      box-shadow: 0 0 30px rgba(255, 0, 255, 0.25);
+      position: relative;
+      padding: 2.5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .reward-coupon-glow {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(255, 0, 255, 0.1) 0%, transparent 60%);
+      pointer-events: none;
+      animation: rotateGlow 15s linear infinite;
+    }
+
+    @keyframes rotateGlow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .reward-coupon-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .reward-badge {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--color-gold);
+      border: 1px solid var(--color-gold);
+      padding: 0.25rem 0.75rem;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .reward-title {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      font-weight: 300;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .reward-desc {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .coupon-code-box {
+      border: 1px dashed rgba(255, 0, 255, 0.4);
+      background: rgba(255, 0, 255, 0.03);
+      padding: 1.25rem;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      min-width: 200px;
+    }
+
+    .coupon-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      color: var(--color-text-muted);
+    }
+
+    .coupon-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #FF00FF;
+      letter-spacing: 0.1em;
+    }
+
+    /* --- BESPOKE PRODUCT SECTION --- */
+    .bespoke-section {
+      padding: 10rem var(--container-padding);
+      background-color: var(--color-bg-tertiary);
+      border-top: 1px solid var(--color-glass-border);
+      position: relative;
+    }
+
+    .bespoke-container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .bespoke-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 968px) {
+      .bespoke-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    /* Product Image Frame with Luxury Border */
+    .product-gallery {
+      position: relative;
+      background: var(--color-card-grad);
+      border: 1px solid var(--color-glass-border);
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 30px 60px var(--color-card-shadow);
+    }
+
+    .product-gallery::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid var(--color-glass-border);
+      pointer-events: none;
+    }
+
+    .product-image-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      border: 1px solid var(--color-glass-border);
+      position: relative;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Product Details Column */
+    .product-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--color-gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .product-title {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      color: var(--color-text);
+    }
+
+    .product-subtitle {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .rating-stars {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      color: var(--color-gold);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .rating-text {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-left: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    .price-block {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--color-glass-border);
+    }
+
+    .price-amount {
+      font-family: var(--font-serif);
+      font-size: 2.75rem;
+      color: var(--color-text);
+      font-weight: 300;
+      line-height: 1;
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+    }
+
+    .original-price-amount {
+      text-decoration: line-through;
+      color: var(--color-text-muted);
+      font-size: 1.75rem;
+      font-weight: 300;
+      display: none; /* Shown only when coupon applied */
+    }
+
+    .price-installment {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      margin-top: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .product-description {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    /* Elegant feature items checklist */
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--color-text);
+    }
+
+    .feature-icon {
+      color: var(--color-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Actions: Quantity Selector & Add to Bag button */
+    .product-actions {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      align-items: center;
+    }
+
+    @media (max-width: 480px) {
+      .product-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--color-glass-border);
+      background-color: rgba(255, 255, 255, 0.02);
+      height: 56px;
+    }
+
+    .btn-quantity {
+      width: 50px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      color: var(--color-text-muted);
+    }
+
+    .quantity-value {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 500;
+      width: 40px;
+      text-align: center;
+      user-select: none;
+    }
+
+    .btn-add-to-bag {
+      flex: 1;
+      height: 56px;
+      background-color: var(--color-accent);
+      color: var(--color-text);
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      border: 1px solid var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .btn-add-to-bag:hover {
+      background-color: transparent;
+      color: var(--color-accent);
+      border-color: var(--color-accent);
+    }
+
+    /* Promo input container */
+    .promo-input-container {
+      display: flex;
+      border: 1px solid var(--color-glass-border);
+      background-color: rgba(255, 255, 255, 0.01);
+      margin-bottom: 1rem;
+      max-width: 320px;
+    }
+
+    .promo-input {
+      flex: 1;
+      background: none;
+      border: none;
+      padding: 0.75rem 1rem;
+      color: var(--color-text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      outline: none;
+      text-transform: uppercase;
+    }
+
+    .promo-input::placeholder {
+      color: rgba(245, 242, 237, 0.25);
+      text-transform: none;
+    }
+
+    .btn-promo-apply {
+      padding: 0 1.25rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--color-gold);
+      border-left: 1px solid var(--color-glass-border);
+      transition: all 0.3s ease;
+    }
+
+    .btn-promo-apply:hover {
+      background-color: rgba(212, 175, 55, 0.05);
+      color: #fff;
+    }
+
+    .promo-status {
+      font-size: 0.75rem;
+      margin-top: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      display: none;
+    }
+
+    .promo-status.success {
+      color: #00FF66;
+    }
+
+    .promo-status.error {
+      color: #FF3366;
+    }
+
+    /* --- FAKE REVIEWS STRIP --- */
+    .reviews-section {
+      border-top: 1px solid var(--color-glass-border);
+      padding: 6rem var(--container-padding);
+      background-color: var(--color-bg-reviews);
+      position: relative;
+    }
+
+    .reviews-title-wrapper {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .reviews-kicker {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--color-gold);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .reviews-title {
+      font-family: var(--font-serif);
+      font-size: 2.25rem;
+      font-weight: 300;
+      color: var(--color-text);
+      letter-spacing: -0.01em;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    .review-card {
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-glass-border);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .review-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-interactive-hover-border);
+      background-color: var(--color-interactive-hover-bg);
+    }
+
+    .review-stars {
+      color: var(--color-gold);
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.15rem;
+    }
+
+    .review-quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--color-text);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .review-author {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .review-badge-verified {
+      width: 6px;
+      height: 6px;
+      background-color: #00FF66;
+      border-radius: 50%;
+    }
+
+    /* --- TOAST NOTIFICATION SYSTEM --- */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      pointer-events: none;
+    }
+
+    .toast-card {
+      background: rgba(13, 13, 13, 0.95);
+      border: 1px solid var(--color-accent);
+      color: var(--color-text);
+      padding: 1rem 1.75rem;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: auto;
+      max-width: 380px;
+    }
+
+    .toast-card.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .toast-accent-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--color-accent);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--color-accent);
+    }
+
+    .toast-close {
+      font-size: 1.1rem;
+      color: var(--color-text-muted);
+      margin-left: auto;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.3s ease;
+    }
+
+    .toast-close:hover {
+      color: #fff;
+    }
+
+    /* --- POLISHED MICRO-INTERACTIONS SITE-WIDE --- */
+    .button-luxury, .navbar__cart, .utility-toggle, .btn-quantity, .btn-add-to-bag, .button-arcade, .button-arcade-ctrl {
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease, border-color 0.4s ease, background-color 0.4s ease, color 0.4s ease !important;
+    }
+
+    .button-luxury:hover, .btn-add-to-bag:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(184, 75, 62, 0.2);
+    }
+
+    .button-arcade:hover, .button-arcade-ctrl:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-quantity:hover {
+      background-color: rgba(245, 242, 237, 0.08);
+      color: var(--color-gold);
+    }
+
+    .navbar__cart:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Image zoom on hover */
+    .hover-zoom-container {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hover-zoom-img {
+      transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .hover-zoom-container:hover .hover-zoom-img {
+      transform: scale(1.06);
+    }
+
+    /* --- LUXURY CART DRAWER SYSTEM --- */
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 9990;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .cart-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 480px;
+      max-width: 100%;
+      height: 100vh;
+      background-color: #0a0a0a;
+      border-left: 1px solid var(--color-glass-border);
+      z-index: 9991;
+      transform: translateX(100%);
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      box-shadow: -20px 0 50px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-drawer.active {
+      transform: translateX(0);
+    }
+
+    .cart-drawer__header {
+      padding: 2rem;
+      border-bottom: 1px solid var(--color-glass-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #0e0e0e;
+    }
+
+    .cart-drawer__title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: #fff;
+      letter-spacing: 0.05em;
+    }
+
+    .cart-drawer__close {
+      font-size: 2rem;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.3s ease, transform 0.3s ease;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .cart-drawer__close:hover {
+      color: #fff;
+      transform: rotate(90deg);
+    }
+
+    .cart-drawer__content {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Empty state styling */
+    .cart-empty-state {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      text-align: center;
+    }
+
+    .cart-empty-state__icon {
+      color: rgba(245, 242, 237, 0.1);
+      margin-bottom: 1.5rem;
+    }
+
+    .cart-empty-state__text {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--color-text-muted);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    /* Active cart items list styling */
+    .cart-active-state {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+    }
+
+    .cart-items-list {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      overflow-y: auto;
+    }
+
+    .cart-item-card {
+      display: flex;
+      gap: 1.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(245, 242, 237, 0.05);
+    }
+
+    .cart-item-image-wrapper {
+      width: 100px;
+      height: 100px;
+      flex-shrink: 0;
+      border: 1px solid var(--color-glass-border);
+      background-color: rgba(255, 255, 255, 0.02);
+      padding: 0.5rem;
+    }
+
+    .cart-item-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cart-item-details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cart-item-meta {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--color-gold);
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .cart-item-name {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: #fff;
+      font-weight: 300;
+      margin: 0.25rem 0;
+    }
+
+    .cart-item-price-each {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .cart-item-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-item-qty-selector {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--color-glass-border);
+      background-color: rgba(255, 255, 255, 0.01);
+      height: 32px;
+    }
+
+    .cart-item-qty-btn {
+      width: 28px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      transition: all 0.3s ease;
+      background: none;
+      border: none;
+    }
+
+    .cart-item-qty-btn:hover {
+      background-color: rgba(245, 242, 237, 0.05);
+      color: #fff;
+    }
+
+    .cart-item-qty-val {
+      font-size: 0.8rem;
+      font-weight: 500;
+      width: 26px;
+      text-align: center;
+    }
+
+    .cart-item-remove-btn {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255, 80, 80, 0.7);
+      transition: color 0.3s ease;
+      background: none;
+      border: none;
+    }
+
+    .cart-item-remove-btn:hover {
+      color: rgba(255, 80, 80, 1);
+      text-decoration: underline;
+    }
+
+    /* Summary block sticking to bottom */
+    .cart-summary-section {
+      padding: 2rem;
+      background-color: #0c0c0c;
+      border-top: 1px solid var(--color-glass-border);
+      margin-top: auto;
+    }
+
+    .cart-summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+
+    .cart-summary-total-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: #fff;
+      font-weight: 300;
+      border-top: 1px solid rgba(245, 242, 237, 0.08);
+      padding-top: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .btn-checkout-loading {
+      pointer-events: none;
+      opacity: 0.8;
+      background-color: transparent !important;
+      border-color: var(--color-gold) !important;
+      color: var(--color-gold) !important;
+    }
+
+    /* Disable body scroll when drawer is open */
+    body.cart-open {
+      overflow: hidden;
+    }
+
+    /* --- CUSTOM CURSOR --- */
+    .custom-cursor {
+      display: none;
+    }
+
+    @media (pointer: fine) {
+      .custom-cursor {
+        display: block;
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background-color: var(--color-gold);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10005;
+        transform: translate(-50%, -50%);
+        transition: width 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                    height 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                    background-color 0.3s ease, 
+                    border 0.3s ease;
+      }
+      .custom-cursor-ring {
+        display: block;
+        position: fixed;
+        width: 32px;
+        height: 32px;
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10004;
+        transform: translate(-50%, -50%);
+        transition: width 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                    height 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                    border-color 0.3s ease,
+                    background-color 0.3s ease;
+      }
+      
+      /* Hover states */
+      body.cursor-hover .custom-cursor {
+        width: 4px;
+        height: 4px;
+        background-color: var(--color-accent);
+      }
+      body.cursor-hover .custom-cursor-ring {
+        width: 48px;
+        height: 48px;
+        border-color: var(--color-accent);
+        background-color: rgba(184, 75, 62, 0.05);
+      }
+    }
+
+    /* --- BRANDED PRELOADER --- */
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #050505;
+      z-index: 100000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s cubic-bezier(0.77, 0, 0.175, 1), visibility 0.8s ease;
+    }
+
+    .preloader.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .preloader__brand {
+      font-family: var(--font-serif);
+      font-size: 2.25rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(15px);
+      animation: preloaderTextIn 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards 0.2s;
+    }
+
+    .preloader__line-container {
+      width: 180px;
+      height: 1px;
+      background-color: rgba(245, 242, 237, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .preloader__line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: var(--color-gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: preloaderLineFill 1.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    }
+
+    @keyframes preloaderTextIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes preloaderLineFill {
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    /* Top persistent progress bar */
+    .top-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--color-gold), var(--color-accent));
+      z-index: 10001;
+      pointer-events: none;
+      transition: width 0.2s ease;
+    }
+
+    /* --- EXPANDED LUXURY FOOTER --- */
+    .footer-expanded {
+      background-color: #080808;
+      border-top: 1px solid var(--color-glass-border);
+      padding: 6rem var(--container-padding) 4rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-expanded__grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1.2fr;
+      gap: 4rem;
+      max-width: 1300px;
+      margin: 0 auto 5rem;
+    }
+
+    @media (max-width: 968px) {
+      .footer-expanded__grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    .footer-brand-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .footer-brand-title {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: #fff;
+    }
+
+    .footer-brand-desc {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      max-width: 320px;
+    }
+
+    .footer-links-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .footer-column-heading {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-link {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease, padding-left 0.3s ease;
+      display: inline-block;
+      width: fit-content;
+      position: relative;
+    }
+
+    .footer-link::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: var(--color-gold);
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+
+    .footer-link:hover {
+      color: #fff;
+    }
+
+    .footer-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    .newsletter-form {
+      display: flex;
+      border: 1px solid var(--color-glass-border);
+      background-color: rgba(255, 255, 255, 0.01);
+      margin-top: 1rem;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      background: none;
+      border: none;
+      padding: 0.85rem 1.25rem;
+      color: var(--color-text);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      outline: none;
+    }
+
+    .newsletter-input::placeholder {
+      color: rgba(245, 242, 237, 0.25);
+    }
+
+    .btn-newsletter-submit {
+      padding: 0 1.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--color-gold);
+      border-left: 1px solid var(--color-glass-border);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      background: none;
+    }
+
+    .btn-newsletter-submit:hover {
+      background-color: rgba(212, 175, 55, 0.05);
+      color: #fff;
+    }
+
+    .sub-footer {
+      border-top: 1px solid var(--color-glass-border);
+      padding-top: 2.5rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .sub-footer {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+    }
+
+    /* --- SCROLL-TRIGGERED REVEAL ANIMATIONS --- */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .reveal-on-scroll.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .preloader {
+        display: none !important;
+      }
+      .custom-cursor, .custom-cursor-ring {
+        display: none !important;
+      }
+    }
+
+    /* --- WEBGL FALLBACK STYLES --- */
+    .webgl-fallback {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      opacity: 0.9;
+      animation: fadeInFallback 1.5s ease forwards;
+    }
+    
+    @keyframes fadeInFallback {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 0.9; transform: scale(1); }
+    }
+
+    /* --- MOBILE RESPONSIVE OVERRIDES --- */
+
+    /* Custom Mobile Hamburger Button */
+    .navbar__hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--color-glass-border);
+      background: none;
+      border-radius: 50%;
+      cursor: pointer;
+      align-items: center;
+      padding: 0;
+      transition: border-color 0.4s ease, background-color 0.4s ease;
+      z-index: 1001;
+    }
+
+    .navbar__hamburger:hover {
+      border-color: rgba(245, 242, 237, 0.3);
+      background-color: rgba(245, 242, 237, 0.05);
+    }
+
+    .hamburger-line {
+      display: block;
+      width: 18px;
+      height: 1px;
+      background-color: var(--color-text);
+      transition: transform 0.4s ease, background-color 0.4s ease;
+    }
+
+    /* Active State Rotations */
+    .navbar__hamburger--active .hamburger-line--1 {
+      transform: translateY(3.5px) rotate(45deg);
+    }
+
+    .navbar__hamburger--active .hamburger-line--2 {
+      transform: translateY(-3.5px) rotate(-45deg);
+    }
+
+    /* Full-Screen Mobile Menu Overlay */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 999;
+      display: none;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .mobile-menu--active {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-menu__backdrop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(9, 9, 9, 0.98);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+    }
+
+    .mobile-menu__content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      padding: 8rem var(--container-padding) 4rem var(--container-padding);
+    }
+
+    .mobile-menu__nav {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .mobile-menu__link {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      width: fit-content;
+    }
+
+    .mobile-menu--active .mobile-menu__link {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-menu__link:nth-child(1) { transition-delay: 0.05s; transition-duration: 0.6s; }
+    .mobile-menu__link:nth-child(2) { transition-delay: 0.1s; transition-duration: 0.6s; }
+    .mobile-menu__link:nth-child(3) { transition-delay: 0.15s; transition-duration: 0.6s; }
+    .mobile-menu__link:nth-child(4) { transition-delay: 0.2s; transition-duration: 0.6s; }
+    .mobile-menu__link:nth-child(5) { transition-delay: 0.25s; transition-duration: 0.6s; }
+
+    .mobile-menu__link--sub {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      letter-spacing: 0.25em;
+      margin-top: 2rem;
+    }
+
+    .mobile-menu__footer {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: rgba(245, 242, 237, 0.3);
+      text-transform: uppercase;
+    }
+
+    /* Hero responsiveness */
+    @media (max-width: 1024px) {
+      .navbar__hamburger {
+        display: flex;
+      }
+      .navbar__actions span.navbar__link {
+        display: none; /* Hide account word link to save space */
+      }
+      .hero__cta-wrapper {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero__title {
+        font-size: clamp(2rem, 10vw, 3rem) !important;
+      }
+      .hero__subtitle {
+        margin-bottom: 2rem;
+      }
+    }
+
+    /* Force showcase labels to stack gracefully on mobile & tablet */
+    @media (max-width: 1024px) {
+      .spec-label {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    /* Game Mobile Controls Layout */
+    .game-mobile-controls {
+      display: none;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin-top: 1rem;
+      width: 100%;
+    }
+
+    @media (max-width: 1024px) {
+      .game-mobile-controls {
+        display: grid;
+      }
+    }
+
+    .mobile-ctrl-btn {
+      padding: 0.75rem 0.25rem !important;
+      font-size: 0.7rem !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 44px;
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* Expanded Footer centering on mobile */
+    @media (max-width: 768px) {
+      .footer-expanded__grid {
+        text-align: center;
+      }
+      .footer-brand-column, .footer-links-column {
+        align-items: center;
+      }
+      .footer-brand-desc {
+        max-width: 100%;
+      }
+      .footer-link {
+        margin: 0 auto;
+      }
+      .newsletter-form {
+        flex-direction: column;
+        border: none;
+      }
+      .newsletter-input {
+        border: 1px solid var(--color-glass-border);
+        margin-bottom: 1rem;
+        width: 100%;
+      }
+      .btn-newsletter-submit {
+        border: 1px solid var(--color-gold);
+        height: 48px;
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Branded Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__brand">Terra Maison</div>
+    <div class="preloader__line-container">
+      <div class="preloader__line"></div>
+    </div>
+  </div>
+
+  <!-- Custom Cursor Elements -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+  <div class="custom-cursor-ring" id="custom-cursor-ring"></div>
+
+  <!-- Top Progress Bar -->
+  <div class="top-progress-bar" id="top-progress-bar"></div>
+
+  <!-- Grainy Noise Overlay for luxury depth -->
+  <div class="noise-overlay"></div>
+
+  <!-- Elegant Full-screen Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu__backdrop"></div>
+    <div class="mobile-menu__content">
+      <div class="mobile-menu__nav">
+        <a href="#collection" class="mobile-menu__link">The Collection</a>
+        <a href="#provenance" class="mobile-menu__link">Provenance</a>
+        <a href="#arcade" class="mobile-menu__link">Contemplation Arcade</a>
+        <a href="#bespoke" class="mobile-menu__link">Bespoke Acquisition</a>
+      </div>
+      <div class="mobile-menu__footer">
+        <span>© 2026 TERRA MAISON</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Elegant Luxury Navigation Bar -->
+  <nav id="navbar" class="navbar">
+    <div class="navbar__logo">
+      <span>TERRA MAISON</span>
+      <span class="navbar__logo-dot"></span>
+    </div>
+    
+    <div class="navbar__links">
+      <div class="navbar__link-wrapper">
+        <a href="#collection" class="navbar__link">The Collection</a>
+      </div>
+      <div class="navbar__link-wrapper">
+        <a href="#provenance" class="navbar__link">Provenance</a>
+      </div>
+      <div class="navbar__link-wrapper">
+        <a href="#arcade" class="navbar__link">Arcade</a>
+      </div>
+      <div class="navbar__link-wrapper">
+        <a href="#bespoke" class="navbar__link">Bespoke</a>
+      </div>
+    </div>
+    
+    <div class="navbar__actions">
+      <button class="navbar__cart" aria-label="Open Cart">
+        <div class="navbar__cart-icon-wrapper">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/>
+            <path d="M3 6h18"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+        </div>
+        <span class="navbar__cart-badge" id="navbar-cart-badge">0</span>
+      </button>
+      <button class="navbar__hamburger" id="navbar-hamburger" aria-label="Toggle Menu">
+        <span class="hamburger-line hamburger-line--1"></span>
+        <span class="hamburger-line hamburger-line--2"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Luxury Hero Section -->
+  <main style="padding-top: var(--nav-height);">
+    <section class="hero">
+      <!-- Animated smooth shifting warm gradient background -->
+      <div class="hero__bg-gradient"></div>
+
+      <div class="hero__grid">
+        
+        <!-- Left Meta Information Panel -->
+        <div class="hero__meta" id="hero-meta">
+          <div class="vertical-label">COLLECTION № 001</div>
+          <div class="hero__meta-line"></div>
+          <div class="vertical-label">ESTABLISHED MCMLXXXII</div>
+        </div>
+
+        <!-- Central & Right Content -->
+        <div class="hero__display">
+          
+          <!-- Hero Content (Left side of display area) -->
+          <div class="hero__content">
+            <div class="hero__tagline" id="hero-tagline">
+              <span class="hero__tagline-line"></span>
+              <span>Est. 2025 &middot; Single Origin Clay</span>
+            </div>
+            
+            <h1 class="hero__title" id="hero-title">
+              <span class="hero__title-line">
+                <span class="hero__title-word">Redefining</span>
+              </span>
+              <span class="hero__title-line">
+                <span class="hero__title-word">The</span>
+              </span>
+              <span class="hero__title-line">
+                <span class="hero__title-word" style="color: var(--color-accent); font-style: italic; font-weight: 300; font-family: var(--font-serif);">Foundation.</span>
+              </span>
+            </h1>
+
+            <!-- Elegant Gold Line divider animated on scroll / load -->
+            <div class="gold-divider" id="gold-divider"></div>
+            
+            <p class="hero__subtitle" id="hero-subtitle">
+              Meticulously fired at 2000°F. A geometric masterpiece of weight and permanence. For those who demand substance in an ephemeral world.
+            </p>
+            
+            <div class="hero__cta-wrapper" id="hero-cta" style="display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap;">
+              <button class="button-luxury">
+                <span>Reserve Yours &nbsp; — &nbsp; $10,000</span>
+              </button>
+              <span class="serif-italic" style="font-size: 1.1rem; opacity: 0.6; color: var(--color-text);">Inquire for Custom Engraving</span>
+            </div>
+          </div>
+
+          <!-- Interactive 3D Visual Box (Right side of display area) -->
+          <div class="hero__visual" id="hero-visual">
+            <div class="hero__frame">
+              <span class="hero__frame-corner hero__frame-corner--tl"></span>
+              <span class="hero__frame-corner hero__frame-corner--tr"></span>
+              <span class="hero__frame-corner hero__frame-corner--bl"></span>
+              <span class="hero__frame-corner hero__frame-corner--br"></span>
+            </div>
+            <!-- Canvas for Interactive Three.js 3D Brick -->
+            <div class="hero__canvas-container" id="brick-canvas-container"></div>
+
+            <!-- Product Specs Box inside the frame -->
+            <div class="hero__specs-box">
+              <div class="hero__spec-mass">2.27 kg</div>
+              <div class="hero__spec-label">Pure Clay Earth Mass</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Scroll Indicator at absolute center bottom of Hero -->
+      <div class="hero__scroll" id="hero-scroll">
+        <span class="hero__scroll-text">Scroll</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- --- THE INTERACTIVE SHOWCASE SECTION --- -->
+    <section id="collection" class="showcase reveal-on-scroll">
+      <div class="showcase__header">
+        <span class="showcase__tag">Physical Masterpiece</span>
+        <h2 class="showcase__title">The Geometry of Substance</h2>
+      </div>
+
+      <!-- 3D Pinned Canvas -->
+      <div class="showcase__canvas-container" id="showcase-canvas-container"></div>
+
+      <!-- Floating Luxury Spec Labels -->
+      <div class="showcase__labels-container">
+        <div class="spec-label" id="label-1">
+          <span class="spec-label__num">SPEC 01</span>
+          <h3 class="spec-label__title">2.27 kg Pure Presence</h3>
+          <p class="spec-label__desc">Perfect density designed to ground any interior. An absolute gravitational weight.</p>
+        </div>
+
+        <div class="spec-label" id="label-2">
+          <span class="spec-label__num">SPEC 02</span>
+          <h3 class="spec-label__title">2000°F Ancestral Clay</h3>
+          <p class="spec-label__desc">Fired inside classical kiln structures using natural local sands from Italy.</p>
+        </div>
+
+        <div class="spec-label" id="label-3">
+          <span class="spec-label__num">SPEC 03</span>
+          <h3 class="spec-label__title">0% Digital Heritage</h3>
+          <p class="spec-label__desc">Completely immune to software updates, network delays, or screen fatigue.</p>
+        </div>
+
+        <div class="spec-label" id="label-4">
+          <span class="spec-label__num">SPEC 04</span>
+          <h3 class="spec-label__title">The Golden Ratio</h3>
+          <p class="spec-label__desc">Standard scale configured specifically to echo classical proportions of monument architecture.</p>
+        </div>
+      </div>
+
+      <!-- User Interaction Instructions -->
+      <div class="showcase__instructions" id="showcase-instructions">
+        <svg xmlns="http://www.w3.org/2000/svg" class="showcase__drag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+        </svg>
+        <span>Drag to Inspect Physicality</span>
+      </div>
+    </section>
+
+    <!-- --- THE INTERACTIVE STORYTELLING SECTION --- -->
+    <section id="provenance" class="storytelling">
+      <div class="storytelling__pin">
+        <div class="storytelling__slides">
+          
+          <!-- Slide 1 -->
+          <div class="story-slide" id="story-slide-1">
+            <div class="story-slide__bg" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="story-slide__overlay"></div>
+            <div class="story-slide__content">
+              <span class="story-slide__kicker">Origin &middot; Tuscany, Italy</span>
+              <h2 class="story-slide__title">Sourced from a<br><span class="serif-italic" style="color: var(--color-gold);">single quarry</span>.</h2>
+              <p class="story-slide__desc">Unearthed from a pristine, deep-earth geological deposit in Italy. Formed over 15 million years of tectonic compression and naturally selected for its incomparable minerals.</p>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="story-slide" id="story-slide-2">
+            <div class="story-slide__bg" style="background-image: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="story-slide__overlay"></div>
+            <div class="story-slide__content">
+              <span class="story-slide__kicker">Craft</span>
+              <h2 class="story-slide__title">Weighed by hand.<br>Judged by <span class="serif-italic" style="color: var(--color-gold);">no one</span>.</h2>
+              <p class="story-slide__desc">Each individual clay masterpiece is checked and balanced on precision scales by master artisans. It answers to no clock, no rapid assembly lines, and absolutely zero compromise.</p>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="story-slide" id="story-slide-3">
+            <div class="story-slide__bg" style="background-image: url('https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="story-slide__overlay"></div>
+            <div class="story-slide__content">
+              <span class="story-slide__kicker">Purpose</span>
+              <h2 class="story-slide__title">It does nothing.<br><span class="serif-italic" style="color: var(--color-accent);">Beautifully</span>.</h2>
+              <p class="story-slide__desc">Completely free from microchips, antennas, and intrusive notifications. Its sole exquisite function is to exist. A true monument of silence and permanence in an ephemeral age.</p>
+            </div>
+          </div>
+
+          <!-- Slide 4 (Stats Slide) -->
+          <div class="story-slide" id="story-slide-4">
+            <div class="story-slide__bg-grad"></div>
+            <div class="story-slide__content story-slide__content--stats">
+              <span class="story-slide__kicker">Possibility</span>
+              <h2 class="story-slide__title" style="margin-bottom: 2.5rem; text-align: center;">The Horizon of Permanence</h2>
+              
+              <div class="stats-grid">
+                <div class="stat-item">
+                  <span class="stat-item__num" data-target="1">0</span>
+                  <span class="stat-item__label">Physical Brick</span>
+                </div>
+                <div class="stat-item">
+                  <div>
+                    <span class="stat-item__num" data-target="4.9" data-decimals="1">0</span>
+                    <span class="stat-item__suffix">&#9733;</span>
+                  </div>
+                  <span class="stat-item__label">Rating</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-item__num" data-target="999" data-infinite="true">&infin;</span>
+                  <span class="stat-item__label">Possibilities</span>
+                </div>
+              </div>
+
+              <p class="story-slide__desc" style="max-width: 600px; margin-top: 3.5rem; text-align: center; color: var(--color-text-muted);">
+                Fifty generations from now, the digital clouds and networks of today will have vanished into server-dust. This solid clay foundation will still remain exactly as it is.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- --- THE ARCADE MINI-GAME SECTION --- -->
+    <section id="arcade" class="arcade-section reveal-on-scroll">
+      <div class="synthwave-grid"></div>
+      
+      <div class="container arcade-container">
+        <div class="arcade-header">
+          <span class="arcade-kicker">Easter Egg Archive</span>
+          <h2 class="arcade-title">BRICK POP</h2>
+          <p class="arcade-instructions">Match 4+ same-color bricks to POP them. Chain combos for a high score. Play while you wait for your BRICK to ship.</p>
+        </div>
+
+        <div class="arcade-grid-layout">
+          
+          <!-- Game Left Sidebar: Scores & Info -->
+          <div class="arcade-sidebar-left">
+            <div class="arcade-card neon-card-cyan">
+              <span class="arcade-card-label">SCORE</span>
+              <span id="game-score" class="arcade-card-value">0000</span>
+            </div>
+            
+            <div class="arcade-card neon-card-purple">
+              <span class="arcade-card-label">LEVEL</span>
+              <span id="game-level" class="arcade-card-value">1</span>
+            </div>
+
+            <div class="arcade-card neon-card-gray">
+              <span class="arcade-card-label">HIGH SCORE</span>
+              <span id="game-high-score" class="arcade-card-value">0000</span>
+            </div>
+
+            <div class="arcade-card neon-card-pink" id="next-brick-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; min-height: 100px;">
+              <span class="arcade-card-label">NEXT BRICK</span>
+              <canvas id="next-brick-canvas" width="48" height="48" style="background: transparent; display: block;"></canvas>
+            </div>
+          </div>
+
+          <!-- Main Interactive Canvas Cabinet -->
+          <div class="arcade-cabinet">
+            <div class="arcade-cabinet-screen">
+              <canvas id="brick-pop-canvas"></canvas>
+              
+              <!-- Game Start / Play Overlay -->
+              <div id="game-start-screen" class="screen-overlay">
+                <div class="screen-overlay-content">
+                  <h3 class="neon-text-cyan">CONTEMPLATION</h3>
+                  <p>Harmonize colors to clear falling bricks and secure your digital clearance discount.</p>
+                  <button id="btn-start-game" class="button-arcade neon-btn-cyan" style="margin-top: 1rem;">PLAY NOW</button>
+                </div>
+              </div>
+              
+              <!-- Game Over Overlay -->
+              <div id="game-over-screen" class="screen-overlay" style="display: none;">
+                <div class="screen-overlay-content">
+                  <h3 class="neon-text-pink">GAME OVER</h3>
+                  <p>Grid has locked up. Your legacy remains solid.</p>
+                  <button id="btn-restart-overlay" class="button-arcade neon-btn-pink">REPLAY MATCH</button>
+                </div>
+              </div>
+
+              <!-- Pause Overlay -->
+              <div id="game-paused-screen" class="screen-overlay" style="display: none;">
+                <div class="screen-overlay-content">
+                  <h3 class="neon-text-cyan">GAME PAUSED</h3>
+                  <button id="btn-resume-overlay" class="button-arcade neon-btn-cyan">RESUME GAME</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Touch controls for mobile/tablet devices -->
+            <div class="game-mobile-controls" id="game-mobile-controls">
+              <button id="btn-mobile-left" class="button-arcade-ctrl mobile-ctrl-btn neon-btn-cyan" aria-label="Move Left">◀ LEFT</button>
+              <button id="btn-mobile-cycle" class="button-arcade-ctrl mobile-ctrl-btn neon-btn-pink" aria-label="Cycle Color">⟳ CYCLE</button>
+              <button id="btn-mobile-drop" class="button-arcade-ctrl mobile-ctrl-btn neon-btn-pink" aria-label="Drop Block">▼ DROP</button>
+              <button id="btn-mobile-right" class="button-arcade-ctrl mobile-ctrl-btn neon-btn-cyan" aria-label="Move Right">RIGHT ▶</button>
+            </div>
+          </div>
+
+          <!-- Game Right Sidebar: Power-Ups & Controls -->
+          <div class="arcade-sidebar-right">
+            <!-- Next powerup box -->
+            <div class="arcade-card neon-card-pink" id="powerup-bomb-container">
+              <span class="arcade-card-label">POWER-UP</span>
+              <button id="btn-bomb" class="arcade-bomb-btn" disabled>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="13" r="7" />
+                  <path d="M16 8l4-4" />
+                  <path d="M19 3l1 1-1 1-1-1z" />
+                  <path d="M11 6a7 7 0 010 14 7 7 0 010-14z" />
+                  <path d="M11 9a4 4 0 010 8 4 4 0 010-8z" />
+                </svg>
+                <span class="bomb-count" id="bomb-count-badge">0</span>
+              </button>
+              <span class="arcade-card-help">Earn 1000 pts for 1 BOMB</span>
+            </div>
+
+            <!-- Controls panel -->
+            <div class="arcade-controls">
+              <button id="btn-play-pause" class="button-arcade-ctrl neon-btn-cyan">PAUSE</button>
+              <button id="btn-restart" class="button-arcade-ctrl neon-btn-pink">RESTART</button>
+              
+              <div class="utility-row">
+                <button id="btn-mute" class="utility-toggle" aria-label="Toggle sound">
+                  <svg id="sound-icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14"/>
+                  </svg>
+                  <svg id="sound-icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display: none;">
+                    <path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6"/>
+                  </svg>
+                </button>
+
+                <button id="btn-vibe" class="utility-toggle" aria-label="Toggle haptic feedback">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="5" y="2" width="14" height="20" rx="2" />
+                    <line x1="12" y1="18" x2="12" y2="18.01" />
+                    <path d="M1 9c1-1 3-1 4 0M1 15c1-1 3-1 4 0M19 9c1-1 3-1 4 0M19 15c1-1 3-1 4 0" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Reward Coupon Unlock Notification -->
+        <div id="reward-coupon-card" class="reward-coupon-wrapper">
+          <div class="reward-coupon-card-inner">
+            <div class="reward-coupon-glow"></div>
+            <div class="reward-coupon-content">
+              <span class="reward-badge">VIP REWARD</span>
+              <h3 class="reward-title">BRICK POP CHAMPION</h3>
+              <p class="reward-desc">You have proven your connection with clay structure. Take 5% off your reservation of THE BRICK™.</p>
+              <div class="coupon-code-box">
+                <span class="coupon-label">COUPON CODE</span>
+                <span class="coupon-code">POP5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- --- THE BESPOKE ACQUISITION SECTION --- -->
+    <section id="bespoke" class="bespoke-section reveal-on-scroll">
+      <div class="container bespoke-container">
+        
+        <div class="bespoke-grid">
+          
+          <!-- Left Column: Premium Product Gallery -->
+          <div class="product-gallery">
+            <div class="product-image-wrapper hover-zoom-container">
+              <img src="/src/assets/images/luxury_clay_brick_1782901650652.jpg" alt="THE BRICK™ Art Object" class="product-image hover-zoom-img" loading="lazy">
+            </div>
+          </div>
+
+          <!-- Right Column: Premium Product Details -->
+          <div class="product-details">
+            <span class="product-tag">Bespoke Acquisition</span>
+            <h2 class="product-title">THE BRICK™</h2>
+            <div class="product-subtitle">Collection № 001 &middot; Limited Edition of 500</div>
+            
+            <div class="rating-stars">
+              <span>★★★★★</span>
+              <span class="rating-text">4.9 / 5.0 (148 Reviews)</span>
+            </div>
+
+            <div class="price-block">
+              <div class="price-amount">
+                <span class="original-price-amount" id="original-price-display" style="display: none; margin-right: 1rem;">$1,200</span>
+                <span id="price-display">$1,200</span>
+              </div>
+              <div class="price-installment" id="installment-display">or 4 interest-free payments of $300 with TerraPay</div>
+            </div>
+
+            <p class="product-description">
+              An immutable masterpiece of hand-fired clay, sourced from ancestral geological quarries in Tuscany, Italy. Built to endure generations, completely immune to modern digital obsolescence. Every brick is individually numbered and accompanied by a custom sealed Certificate of Authenticity.
+            </p>
+
+            <!-- Features checklist -->
+            <div class="features-list">
+              <div class="feature-item">
+                <span class="feature-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </span>
+                <span>Single-origin Tuscan clay (Hand-selected)</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </span>
+                <span>Numbered edition of 500 (Engraved brass label)</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </span>
+                <span>Sealed Certificate of Authenticity & Provenance</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </span>
+                <span>Complimentary white-glove courier delivery</span>
+              </div>
+            </div>
+
+            <!-- Quantity & CTA Actions -->
+            <div class="product-actions">
+              <div class="quantity-selector">
+                <button class="btn-quantity" id="btn-qty-minus" aria-label="Decrease quantity">&minus;</button>
+                <span class="quantity-value" id="qty-value">1</span>
+                <button class="btn-quantity" id="btn-qty-plus" aria-label="Increase quantity">&plus;</button>
+              </div>
+              <button class="btn-add-to-bag" id="btn-add-to-bag">
+                <span>Add to Bag</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Promo Code Input -->
+            <div class="promo-input-container">
+              <input type="text" class="promo-input" id="promo-code-field" placeholder="Enter coupon code" autocomplete="off">
+              <button class="btn-promo-apply" id="btn-apply-promo">Apply</button>
+            </div>
+            <div class="promo-status" id="promo-status-msg"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- --- THE TESTIMONIALS STRIP SECTION --- -->
+    <section class="reviews-section reveal-on-scroll">
+      <div class="container">
+        <div class="reviews-title-wrapper">
+          <span class="reviews-kicker">Enduring Impressions</span>
+          <h2 class="reviews-title">Contemplations of Owners</h2>
+        </div>
+
+        <div class="reviews-grid">
+          
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"It sat on my shelf and changed my life. I look at it instead of my phone. The weight of it is highly comforting."</p>
+            <div class="review-author">
+              <span class="review-badge-verified"></span>
+              <span>Marcus V. &mdash; Verified Owner</span>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"An absolute masterpiece of heavy contemplation. Completely silent, doesn't beep or require updates. Beautiful terracotta hue."</p>
+            <div class="review-author">
+              <span class="review-badge-verified"></span>
+              <span>Alethea G. &mdash; Art Critic</span>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"My friends asked why I bought a $1,200 brick. I told them they wouldn't understand raw physicality. They still don't."</p>
+            <div class="review-author">
+              <span class="review-badge-verified"></span>
+              <span>Julian K. &mdash; Minimalist Enthusiast</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast notification container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- --- THE LUXURY CART DRAWER --- -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer__header">
+      <h3 class="cart-drawer__title">Your Curated Portfolio</h3>
+      <button class="cart-drawer__close" id="btn-cart-close" aria-label="Close Cart">&times;</button>
+    </div>
+    
+    <div class="cart-drawer__content">
+      <!-- Empty State -->
+      <div class="cart-empty-state" id="cart-empty-state">
+        <div class="cart-empty-state__icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="opacity: 0.45;">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/>
+            <path d="M3 6h18"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+        </div>
+        <p class="cart-empty-state__text">Your collection portfolio is empty.</p>
+        <button class="button-luxury" id="btn-cart-continue" style="font-size: 0.75rem; letter-spacing: 0.15em; padding: 0.75rem 1.5rem;">Begin Contemplation</button>
+      </div>
+
+      <!-- Active State -->
+      <div class="cart-active-state" id="cart-active-state" style="display: none;">
+        <div class="cart-items-list">
+          <!-- Item Card -->
+          <div class="cart-item-card">
+            <div class="cart-item-image-wrapper">
+              <img src="/src/assets/images/luxury_clay_brick_1782901650652.jpg" alt="THE BRICK™" class="cart-item-image" loading="lazy">
+            </div>
+            <div class="cart-item-details">
+              <div>
+                <div class="cart-item-meta">Limited Edition № 001</div>
+                <h4 class="cart-item-name">THE BRICK™</h4>
+                <div class="cart-item-price-each" id="cart-item-unit-price">$1,200 each</div>
+              </div>
+              <div class="cart-item-actions">
+                <div class="cart-item-qty-selector">
+                  <button class="cart-item-qty-btn" id="btn-cart-item-minus" aria-label="Decrease quantity">&minus;</button>
+                  <span class="cart-item-qty-val" id="cart-item-qty-val">1</span>
+                  <button class="cart-item-qty-btn" id="btn-cart-item-plus" aria-label="Increase quantity">&plus;</button>
+                </div>
+                <button class="cart-item-remove-btn" id="btn-cart-item-remove">Remove</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary & Checkout Section -->
+        <div class="cart-summary-section">
+          <div class="cart-summary-row">
+            <span>Subtotal</span>
+            <span id="cart-subtotal">$1,200</span>
+          </div>
+          <div class="cart-summary-row" id="cart-discount-row" style="display: none; color: #00FF66;">
+            <span>Promo Discount (5%)</span>
+            <span id="cart-discount">-$60</span>
+          </div>
+          <div class="cart-summary-row">
+            <span>Delivery courier</span>
+            <span style="color: var(--color-gold); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Complimentary White-Glove</span>
+          </div>
+          <div class="cart-summary-total-row">
+            <span>Estimated Portfolio Value</span>
+            <span id="cart-total">$1,200</span>
+          </div>
+
+          <button class="btn-add-to-bag" id="btn-cart-checkout" style="width: 100%; margin-top: 1.5rem; height: 50px;">
+            <span>Complete Order</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upgraded Elegant Footer Details -->
+  <footer class="footer-expanded reveal-on-scroll">
+    <div class="footer-expanded__grid">
+      <!-- Brand column -->
+      <div class="footer-brand-column">
+        <h3 class="footer-brand-title">TERRA MAISON</h3>
+        <p class="footer-brand-desc">
+          Devoted to raw physical presence, spatial resonance, and the timeless art of heavy contemplation. Completely offline-by-design.
+        </p>
+        <div class="footer__status" style="margin-top: 1rem;">
+          <div class="footer__dot" style="animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;"></div>
+          <span style="font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-text-muted); opacity: 0.8;">Concierge Online</span>
+        </div>
+      </div>
+
+      <!-- Links column 1 -->
+      <div class="footer-links-column">
+        <h4 class="footer-column-heading">Navigation</h4>
+        <a href="#collection" class="footer-link">The Collection</a>
+        <a href="#provenance" class="footer-link">Provenance & Clay</a>
+        <a href="#arcade" class="footer-link">Contemplation Arcade</a>
+        <a href="#bespoke" class="footer-link">Bespoke Acquisition</a>
+      </div>
+
+      <!-- Links column 2: Newsletter Signup -->
+      <div class="footer-links-column">
+        <h4 class="footer-column-heading">Foundation Newsletter</h4>
+        <p style="font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.5;">
+          Join the Foundation for priority allocations of future terracotta releases.
+        </p>
+        <form class="newsletter-form" id="newsletter-form">
+          <input type="email" class="newsletter-input" id="newsletter-email" placeholder="Your primary email" required autocomplete="off">
+          <button type="submit" class="btn-newsletter-submit">Join</button>
+        </form>
+        <div id="newsletter-success" style="font-size: 0.75rem; color: #00FF66; font-family: 'JetBrains Mono', monospace; display: none; margin-top: 0.5rem;">
+          Welcome to the Foundation.
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom sub-footer -->
+    <div class="sub-footer">
+      <div>
+        Limited Release: 500 Units Globally
+      </div>
+      <div style="display: flex; gap: 2rem;">
+        <a href="#" class="footer-link" style="font-size: 0.7rem;">Terms of Provenance</a>
+        <a href="#" class="footer-link" style="font-size: 0.7rem;">Privacy Charter</a>
+      </div>
+      <div>
+        © 2026 Terra Maison International
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(1.1); }
+    }
+  </style>
+
+  <!-- --- SCRIPTS & LIBRARIES (CDN) --- -->
+  
+  <!-- Lenis for smooth momentum scrolling -->
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  
+  <!-- GSAP (GreenSock Animation Platform) and ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- Three.js for Interactive 3D Object Rendering -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- OrbitControls CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <!-- Custom Core Animations & 3D Initialization -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Register GSAP plugins
+      gsap.registerPlugin(ScrollTrigger);
+
+      // --- LENIS SMOOTH SCROLL INITIALIZATION ---
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+        infinite: false,
+      });
+
+      // Synchronize Lenis with GSAP ScrollTrigger
+      lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(0);
+
+
+      // --- NAVBAR BEHAVIOR ---
+      let lastScrollY = 0;
+      const navbar = document.getElementById('navbar');
+
+      lenis.on('scroll', (e) => {
+        const currentScrollY = e.scroll;
+        
+        // Update top persistent scroll progress bar width
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progressEl = document.getElementById('top-progress-bar');
+        if (scrollHeight > 0 && progressEl) {
+          const scrollPct = (currentScrollY / scrollHeight) * 100;
+          progressEl.style.width = `${scrollPct}%`;
+        }
+
+        if (currentScrollY > 100) {
+          navbar.style.backgroundColor = 'rgba(13, 13, 13, 0.85)';
+          if (currentScrollY > lastScrollY) {
+            navbar.classList.add('navbar--hidden');
+          } else {
+            navbar.classList.remove('navbar--hidden');
+          }
+        } else {
+          navbar.style.backgroundColor = 'var(--color-glass-bg)';
+          navbar.classList.remove('navbar--hidden');
+        }
+        
+        lastScrollY = currentScrollY;
+      });
+
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // --- INTRO ENTRANCE ANIMATIONS (GSAP TIMELINE) ---
+      const introTl = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } });
+
+      // Build cinematic timeline
+      introTl
+        .to('.hero__title-word', {
+          y: '0%',
+          duration: 1.4,
+          stagger: 0.12,
+        })
+        .to('#hero-tagline', {
+          opacity: 1,
+          y: 0,
+          duration: 1.0,
+        }, '-=1.0')
+        .to('#gold-divider', {
+          scaleX: 1,
+          duration: 1.5,
+          ease: 'power3.inOut'
+        }, '-=0.8')
+        .to('#hero-subtitle', {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+        }, '-=1.0')
+        .to('#hero-cta', {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+        }, '-=1.0')
+        .to('#hero-visual', {
+          opacity: 1,
+          scale: 1,
+          duration: 1.6,
+          ease: 'power3.out'
+        }, '-=1.2')
+        .to('#navbar', {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power3.out'
+        }, '-=1.4')
+        .to('#hero-meta', {
+          opacity: 1,
+          duration: 1.2,
+        }, '-=1.0')
+        .to('#hero-scroll', {
+          opacity: 1,
+          duration: 1.0,
+        }, '-=0.8');
+
+      // Click to scroll on Hero Scroll Indicator
+      document.getElementById('hero-scroll').addEventListener('click', () => {
+        lenis.scrollTo('#collection');
+      });
+
+
+      // --- WEBGL GRACEFUL DEGRADATION DETECTOR ---
+      function hasWebGL() {
+        try {
+          const canvas = document.createElement('canvas');
+          return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+        } catch (e) {
+          return false;
+        }
+      }
+
+      const isWebGLAvailable = hasWebGL();
+
+      if (!isWebGLAvailable) {
+        // Degrade gracefully with high-end fallback images styled as luxury cards
+        const heroContainer = document.getElementById('brick-canvas-container');
+        if (heroContainer) {
+          heroContainer.innerHTML = `
+            <img src="/src/assets/images/luxury_clay_brick_1782901650652.jpg" 
+                 class="webgl-fallback" 
+                 alt="THE BRICK™ Art Object (Static Fallback)" 
+                 style="object-fit: contain; max-height: 80%; margin: auto;">
+          `;
+        }
+        const showcaseContainer = document.getElementById('showcase-canvas-container');
+        if (showcaseContainer) {
+          showcaseContainer.innerHTML = `
+            <img src="/src/assets/images/luxury_clay_brick_1782901650652.jpg" 
+                 class="webgl-fallback" 
+                 alt="THE BRICK™ Art Object (Static Fallback)" 
+                 style="object-fit: contain; max-height: 70%; margin: auto; padding: 2rem;">
+          `;
+          const showcaseInstruct = document.getElementById('showcase-instructions');
+          if (showcaseInstruct) {
+            showcaseInstruct.innerHTML = 'Showing fine art preview (WebGL unavailable)';
+          }
+        }
+      } else {
+        // WebGL is supported! Wrap initializations in safe blocks.
+
+        // --- INTERACTIVE THREE.JS 3D BRICK (HERO VISUAL) ---
+        try {
+          const heroContainer = document.getElementById('brick-canvas-container');
+          if (heroContainer) {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(45, heroContainer.clientWidth / heroContainer.clientHeight, 0.1, 100);
+            camera.position.z = 6;
+
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(heroContainer.clientWidth, heroContainer.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.0;
+            
+            // Critical touch-action setting to prevent mobile scrolling trap!
+            renderer.domElement.style.touchAction = 'pan-y';
+            heroContainer.appendChild(renderer.domElement);
+
+            // Rounded bevel brick extrusion settings
+            const roundedRectShape = new THREE.Shape();
+            const x = -1.2, y = -0.55, width = 2.4, height = 1.1, radius = 0.08;
+            roundedRectShape.moveTo(x, y + radius);
+            roundedRectShape.lineTo(x, y + height - radius);
+            roundedRectShape.quadraticCurveTo(x, y + height, x + radius, y + height);
+            roundedRectShape.lineTo(x + width - radius, y + height);
+            roundedRectShape.quadraticCurveTo(x + width, y + height, x + width, y + height - radius);
+            roundedRectShape.lineTo(x + width, y + radius);
+            roundedRectShape.quadraticCurveTo(x + width, y, x + width - radius, y);
+            roundedRectShape.lineTo(x + radius, y);
+            roundedRectShape.quadraticCurveTo(x, y, x, y + radius);
+
+            const extrudeSettings = {
+              steps: 1,
+              depth: 1.1,
+              bevelEnabled: true,
+              bevelThickness: 0.06,
+              bevelSize: 0.04,
+              bevelSegments: 5
+            };
+
+            const geometry = new THREE.ExtrudeGeometry(roundedRectShape, extrudeSettings);
+            geometry.center();
+
+            const material = new THREE.MeshStandardMaterial({
+              color: 0xB84B3E,
+              roughness: 0.85,
+              metalness: 0.05,
+            });
+
+            const brick = new THREE.Mesh(geometry, material);
+            brick.castShadow = true;
+            brick.receiveShadow = true;
+            scene.add(brick);
+
+            brick.rotation.x = 0.4;
+            brick.rotation.y = -0.6;
+            brick.rotation.z = 0.1;
+
+            // Lights
+            const ambientLight = new THREE.AmbientLight(0xfff6e0, 0.4);
+            scene.add(ambientLight);
+
+            const spotLight = new THREE.SpotLight(0xffe3b3, 6);
+            spotLight.position.set(4, 5, 4);
+            spotLight.castShadow = true;
+            scene.add(spotLight);
+
+            const rimLight = new THREE.PointLight(0xb5d6ff, 3, 10);
+            rimLight.position.set(-4, -2, -3);
+            scene.add(rimLight);
+
+            // Interaction
+            let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+            
+            // Throttle mouse movement logic
+            let lastMouseUpdate = 0;
+            window.addEventListener('mousemove', (event) => {
+              const now = performance.now();
+              if (now - lastMouseUpdate < 16) return; // limit to ~60fps checking
+              lastMouseUpdate = now;
+              targetX = (event.clientX / window.innerWidth) * 2 - 1;
+              targetY = -(event.clientY / window.innerHeight) * 2 + 1;
+            });
+
+            // Pause offscreen rendering for Hero
+            let isHeroVisible = true;
+            ScrollTrigger.create({
+              trigger: '.hero',
+              start: 'top bottom',
+              end: 'bottom top',
+              onToggle: (self) => {
+                isHeroVisible = self.isActive;
+              }
+            });
+
+            const clock = new THREE.Clock();
+            function animateHero() {
+              requestAnimationFrame(animateHero);
+              if (isHeroVisible) {
+                const elapsedTime = clock.getElapsedTime();
+                brick.position.y = Math.sin(elapsedTime * 1.2) * 0.12;
+                currentX += (targetX - currentX) * 0.06;
+                currentY += (targetY - currentY) * 0.06;
+                brick.rotation.y = -0.6 + (currentX * 0.6) + (elapsedTime * 0.15);
+                brick.rotation.x = 0.4 + (currentY * 0.4);
+                renderer.render(scene, camera);
+              }
+            }
+            animateHero();
+
+            window.addEventListener('resize', () => {
+              camera.aspect = heroContainer.clientWidth / heroContainer.clientHeight;
+              camera.updateProjectionMatrix();
+              renderer.setSize(heroContainer.clientWidth, heroContainer.clientHeight);
+            });
+          }
+        } catch (e) {
+          console.warn("Hero canvas initialization failed: ", e);
+          const heroContainer = document.getElementById('brick-canvas-container');
+          if (heroContainer) {
+            heroContainer.innerHTML = `
+              <img src="/src/assets/images/luxury_clay_brick_1782901650652.jpg" 
+                   class="webgl-fallback" 
+                   alt="THE BRICK™ Art Object" 
+                   style="object-fit: contain; max-height: 80%; margin: auto;">
+            `;
+          }
+        }
+
+        // --- HIGH-END MAIN SHOWCASE INTERACTIVE 3D BRICK WITH ORBIT CONTROLS & SCROLL TRIGGER ---
+        try {
+          const showcaseContainer = document.getElementById('showcase-canvas-container');
+          if (showcaseContainer) {
+            const scene = new THREE.Scene();
+
+            const camera = new THREE.PerspectiveCamera(
+              45,
+              showcaseContainer.clientWidth / showcaseContainer.clientHeight,
+              0.1,
+              100
+            );
+            camera.position.z = 5.5;
+
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(showcaseContainer.clientWidth, showcaseContainer.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.1;
+            
+            // Critical touch-action setting to prevent mobile scrolling trap!
+            renderer.domElement.style.touchAction = 'pan-y';
+            showcaseContainer.appendChild(renderer.domElement);
+
+            // Rounded bevel brick geometry
+            const roundedRectShape = new THREE.Shape();
+            const x = -1.2, y = -0.55, width = 2.4, height = 1.1, radius = 0.08;
+            roundedRectShape.moveTo(x, y + radius);
+            roundedRectShape.lineTo(x, y + height - radius);
+            roundedRectShape.quadraticCurveTo(x, y + height, x + radius, y + height);
+            roundedRectShape.lineTo(x + width - radius, y + height);
+            roundedRectShape.quadraticCurveTo(x + width, y + height, x + width, y + height - radius);
+            roundedRectShape.lineTo(x + width, y + radius);
+            roundedRectShape.quadraticCurveTo(x + width, y, x + width - radius, y);
+            roundedRectShape.lineTo(x + radius, y);
+            roundedRectShape.quadraticCurveTo(x, y, x, y + radius);
+
+            const extrudeSettings = {
+              steps: 1,
+              depth: 1.1,
+              bevelEnabled: true,
+              bevelThickness: 0.06,
+              bevelSize: 0.04,
+              bevelSegments: 5
+            };
+
+            const geometry = new THREE.ExtrudeGeometry(roundedRectShape, extrudeSettings);
+            geometry.center();
+
+            const material = new THREE.MeshStandardMaterial({
+              color: 0xB84B3E,
+              roughness: 0.8,
+              metalness: 0.05,
+            });
+
+            const brick = new THREE.Mesh(geometry, material);
+            brick.castShadow = true;
+            brick.receiveShadow = true;
+            scene.add(brick);
+
+            // Lights
+            const ambientLight = new THREE.AmbientLight(0xfff6e0, 0.4);
+            scene.add(ambientLight);
+
+            const spotLight = new THREE.SpotLight(0xfff3e0, 8);
+            spotLight.position.set(5, 6, 5);
+            spotLight.castShadow = true;
+            scene.add(spotLight);
+
+            const rimLight = new THREE.PointLight(0xb5d6ff, 4, 10);
+            rimLight.position.set(-5, -3, -4);
+            scene.add(rimLight);
+
+            const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
+            fillLight.position.set(-3, 4, 2);
+            scene.add(fillLight);
+
+            // OrbitControls (locked zoom & pan)
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableZoom = false;
+            controls.enablePan = false;
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.rotateSpeed = 0.8;
+
+            // Custom Idle floating animation variables
+            let isUserInteracting = false;
+            let interactionTimeout;
+
+            controls.addEventListener('start', () => {
+              isUserInteracting = true;
+              clearTimeout(interactionTimeout);
+              const instructionsEl = document.getElementById('showcase-instructions');
+              if (instructionsEl) instructionsEl.style.opacity = '0';
+            });
+
+            controls.addEventListener('end', () => {
+              interactionTimeout = setTimeout(() => {
+                isUserInteracting = false;
+                const instructionsEl = document.getElementById('showcase-instructions');
+                if (instructionsEl) instructionsEl.style.opacity = '1';
+              }, 4000);
+            });
+
+            // Track off-screen state to save CPU
+            let isShowcaseVisible = false;
+
+            // --- GSAP SCROLLTRIGGER FOR AUTO ROTATION & FLOATING LABELS ---
+            const showcaseTrigger = ScrollTrigger.create({
+              trigger: '#collection',
+              start: 'top bottom',
+              end: 'bottom top',
+              onToggle: (self) => {
+                isShowcaseVisible = self.isActive;
+              }
+            });
+
+            // Set up scrolling values
+            let scrollYRotation = 0;
+            let scrollXRotation = 0;
+            let scrollScale = 1;
+
+            gsap.to({}, {
+              scrollTrigger: {
+                trigger: '#collection',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: true,
+                onUpdate: (self) => {
+                  // Smoothly map scroll progress to rotation & scale
+                  scrollYRotation = self.progress * Math.PI * 2;
+                  scrollXRotation = Math.sin(self.progress * Math.PI) * 0.4;
+                  scrollScale = 1 + Math.sin(self.progress * Math.PI) * 0.2;
+
+                  // Progressively trigger floating labels
+                  const labels = [
+                    { id: 'label-1', start: 0.1, end: 0.35 },
+                    { id: 'label-2', start: 0.35, end: 0.6 },
+                    { id: 'label-3', start: 0.6, end: 0.8 },
+                    { id: 'label-4', start: 0.8, end: 0.98 }
+                  ];
+
+                  labels.forEach(label => {
+                    const el = document.getElementById(label.id);
+                    if (el) {
+                      if (self.progress >= label.start && self.progress < label.end) {
+                        el.classList.add('spec-label--active');
+                      } else {
+                        el.classList.remove('spec-label--active');
+                      }
+                    }
+                  });
+                }
+              }
+            });
+
+            // --- RENDER & ANIMATION LOOP ---
+            const clock = new THREE.Clock();
+
+            function animateShowcase() {
+              requestAnimationFrame(animateShowcase);
+
+              if (isShowcaseVisible) {
+                const elapsedTime = clock.getElapsedTime();
+
+                if (!isUserInteracting) {
+                  // Apply Scroll-driven rotations & scales
+                  brick.rotation.y = scrollYRotation;
+                  brick.rotation.x = 0.4 + scrollXRotation;
+                  brick.scale.set(scrollScale, scrollScale, scrollScale);
+
+                  // Smoothly float the camera for premium parallax depth
+                  camera.position.y = Math.sin(elapsedTime * 1.5) * 0.15;
+                  camera.position.x = Math.cos(elapsedTime * 1.2) * 0.15;
+                  camera.lookAt(scene.position);
+                } else {
+                  // OrbitControls does the heavy lifting, reset scale gracefully
+                  brick.scale.set(1, 1, 1);
+                }
+
+                controls.update();
+                renderer.render(scene, camera);
+              }
+            }
+
+            animateShowcase();
+
+            window.addEventListener('resize', () => {
+              camera.aspect = showcaseContainer.clientWidth / showcaseContainer.clientHeight;
+              camera.updateProjectionMatrix();
+              renderer.setSize(showcaseContainer.clientWidth, showcaseContainer.clientHeight);
+            });
+          }
+        } catch (e) {
+          console.warn("Showcase canvas initialization failed: ", e);
+          const showcaseContainer = document.getElementById('showcase-canvas-container');
+          if (showcaseContainer) {
+            showcaseContainer.innerHTML = `
+              <img src="/src/assets/images/luxury_clay_brick_1782901650652.jpg" 
+                   class="webgl-fallback" 
+                   alt="THE BRICK™ Art Object" 
+                   style="object-fit: contain; max-height: 70%; margin: auto; padding: 2rem;">
+            `;
+            const instructionsEl = document.getElementById('showcase-instructions');
+            if (instructionsEl) {
+              instructionsEl.innerHTML = 'Showing fine art preview (WebGL fallback)';
+            }
+          }
+        }
+      }
+
+      // --- INTERACTIVE STORYTELLING HORIZONTAL GALLERY ---
+      const slidesContainer = document.querySelector('.storytelling__slides');
+      const slides = gsap.utils.toArray('.story-slide');
+      
+      if (slidesContainer && slides.length > 0) {
+        // Horizontal scroll animation with Pinning
+        const scrollTween = gsap.to(slidesContainer, {
+          x: () => -(slidesContainer.scrollWidth - window.innerWidth),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.storytelling',
+            pin: true,
+            scrub: 0.8, // subtle easing delay for buttery smooth movement
+            start: 'top top',
+            end: () => `+=${slidesContainer.scrollWidth - window.innerWidth}`,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              if (prefersReducedMotion) return; // avoid intense background motion
+              // Parallax movement on background images
+              slides.forEach((slide, idx) => {
+                const bg = slide.querySelector('.story-slide__bg');
+                if (bg) {
+                  const progressOffset = self.progress * (slides.length - 1) - idx;
+                  gsap.set(bg, { x: progressOffset * 100 });
+                }
+              });
+            }
+          }
+        });
+
+        // Track active state of each slide for revealing headers and text
+        slides.forEach((slide) => {
+          ScrollTrigger.create({
+            trigger: slide,
+            containerAnimation: scrollTween, // bind to our horizontal movement
+            start: 'left center',
+            end: 'right center',
+            onToggle: (self) => {
+              if (self.isActive) {
+                slide.classList.add('story-slide--active');
+                if (slide.id === 'story-slide-4') {
+                  triggerStatsCounter();
+                }
+              } else {
+                slide.classList.remove('story-slide--active');
+              }
+            }
+          });
+        });
+      }
+
+      // Animated Stats Counter
+      let statsCounted = false;
+      function triggerStatsCounter() {
+        if (statsCounted) return;
+        statsCounted = true;
+
+        const statNums = document.querySelectorAll('.stat-item__num');
+        statNums.forEach(num => {
+          const target = parseFloat(num.getAttribute('data-target'));
+          const decimals = parseInt(num.getAttribute('data-decimals') || '0');
+          const isInfinite = num.getAttribute('data-infinite') === 'true';
+
+          if (prefersReducedMotion) {
+            // Instantly resolve count to final target
+            num.textContent = isInfinite ? '∞' : target.toFixed(decimals);
+            num.style.opacity = '1';
+            num.style.transform = 'none';
+            return;
+          }
+
+          if (isInfinite) {
+            num.style.opacity = '0';
+            num.style.transform = 'scale(0.8)';
+            gsap.to(num, {
+              opacity: 1,
+              scale: 1,
+              duration: 1.5,
+              ease: 'power3.out',
+              delay: 0.5
+            });
+            return;
+          }
+
+          const obj = { val: 0 };
+          gsap.to(obj, {
+            val: target,
+            duration: 2.2,
+            ease: 'power4.out',
+            delay: 0.2,
+            onUpdate: () => {
+              num.textContent = obj.val.toFixed(decimals);
+            }
+          });
+        });
+      }
+
+      // --- BRICK POP INTERACTIVE GAME ENGINE ---
+      // This website sells a single, premium, red clay brick as a limited-edition luxury art object under the luxury design house TERRA MAISON.
+      const canvas = document.getElementById('brick-pop-canvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        
+        // Logical layout
+        const LOGICAL_WIDTH = 400;
+        const LOGICAL_HEIGHT = 550;
+        const GRID_COLUMNS = 8;
+        const GRID_ROWS = 11;
+        const CELL_WIDTH = 46;
+        const CELL_HEIGHT = 42;
+        const START_X = (LOGICAL_WIDTH - (GRID_COLUMNS * CELL_WIDTH)) / 2;
+        const START_Y = (LOGICAL_HEIGHT - (GRID_ROWS * CELL_HEIGHT)) / 2;
+
+        const BRICK_COLORS = [
+          '#FF00FF', // Neon Pink
+          '#00FFFF', // Electric Blue
+          '#00FF00', // Bright Green
+          '#FFFF00', // Radiant Yellow
+          '#8A2BE2'  // Deep Purple
+        ];
+
+        // Game state variables
+        let grid = [];
+        let score = 0;
+        let highScore = parseInt(localStorage.getItem('brick_pop_high_score') || '0');
+        let level = 1;
+        let bombsCount = 0;
+        let bombArmed = false;
+        let activeColorsCount = 4; // Pink, blue, green, yellow for Level 1
+        let nextColorIndex = Math.floor(Math.random() * 4); // Preview of next brick
+        let isGameStarted = false; // Player must click PLAY NOW
+        let animationFrameId = null;
+        let isGamePaused = false;
+        let isGameOver = false;
+        let isGameVisible = false; // set by IntersectionObserver
+        let particles = [];
+        let comboChain = 1;
+        let vibrationEnabled = true;
+        let screenShakeAmount = 0;
+        let activeFloatingTexts = [];
+        let gameState = 'idle'; // 'idle', 'falling', 'chainchecking'
+        
+        // Falling brick state
+        let fallingBrick = null;
+        let lastDropTime = 0;
+
+        // Display High Score immediately
+        document.getElementById('game-high-score').textContent = String(highScore).padStart(4, '0');
+
+        // Web Audio API Synth Engine (No external sound files required)
+        const AudioEngine = {
+          ctx: null,
+          muted: false,
+          init() {
+            if (!this.ctx) {
+              this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+          },
+          playPop(pitchFactor = 1) {
+            if (this.muted) return;
+            this.init();
+            const context = this.ctx;
+            if (context.state === 'suspended') context.resume();
+
+            const osc = context.createOscillator();
+            const gain = context.createGain();
+
+            osc.type = 'sine';
+            const baseFreq = 220 * pitchFactor;
+            osc.frequency.setValueAtTime(baseFreq, context.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(baseFreq * 2.2, context.currentTime + 0.12);
+
+            gain.gain.setValueAtTime(0.12, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 0.15);
+
+            osc.connect(gain);
+            gain.connect(context.destination);
+
+            osc.start();
+            osc.stop(context.currentTime + 0.15);
+          },
+          playMovementPitch() {
+            if (this.muted) return;
+            this.init();
+            const context = this.ctx;
+            if (context.state === 'suspended') context.resume();
+
+            const osc = context.createOscillator();
+            const gain = context.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(330, context.currentTime);
+            gain.gain.setValueAtTime(0.04, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 0.05);
+
+            osc.connect(gain);
+            gain.connect(context.destination);
+            osc.start();
+            osc.stop(context.currentTime + 0.05);
+          },
+          playLandSound() {
+            if (this.muted) return;
+            this.init();
+            const context = this.ctx;
+            if (context.state === 'suspended') context.resume();
+
+            const osc = context.createOscillator();
+            const gain = context.createGain();
+
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(150, context.currentTime);
+            gain.gain.setValueAtTime(0.08, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 0.1);
+
+            osc.connect(gain);
+            gain.connect(context.destination);
+            osc.start();
+            osc.stop(context.currentTime + 0.1);
+          },
+          playBomb() {
+            if (this.muted) return;
+            this.init();
+            const context = this.ctx;
+            if (context.state === 'suspended') context.resume();
+
+            const osc = context.createOscillator();
+            const gain = context.createGain();
+
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(120, context.currentTime);
+            osc.frequency.linearRampToValueAtTime(25, context.currentTime + 0.45);
+
+            gain.gain.setValueAtTime(0.25, context.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 0.5);
+
+            osc.connect(gain);
+            gain.connect(context.destination);
+
+            osc.start();
+            osc.stop(context.currentTime + 0.5);
+          },
+          playLevelUp() {
+            if (this.muted) return;
+            this.init();
+            const context = this.ctx;
+            if (context.state === 'suspended') context.resume();
+
+            const notes = [261.63, 329.63, 392.00, 523.25, 659.25]; // Retro warm arpeggio
+            notes.forEach((freq, idx) => {
+              const osc = context.createOscillator();
+              const gain = context.createGain();
+
+              osc.type = 'triangle';
+              osc.frequency.setValueAtTime(freq, context.currentTime + idx * 0.08);
+
+              gain.gain.setValueAtTime(0.1, context.currentTime + idx * 0.08);
+              gain.gain.exponentialRampToValueAtTime(0.001, context.currentTime + idx * 0.08 + 0.25);
+
+              osc.connect(gain);
+              gain.connect(context.destination);
+
+              osc.start(context.currentTime + idx * 0.08);
+              osc.stop(context.currentTime + idx * 0.08 + 0.25);
+            });
+          }
+        };
+
+        // Vibrate mobile device if supported
+        function triggerHaptic(pattern) {
+          if (vibrationEnabled && navigator.vibrate) {
+            try {
+              navigator.vibrate(pattern);
+            } catch (e) {
+              // Ignore haptic blocks
+            }
+          }
+        }
+
+        // Handle high DPI Retina Display canvas resizing
+        function resizeCanvas() {
+          const rect = canvas.getBoundingClientRect();
+          const dpr = window.devicePixelRatio || 1;
+          canvas.width = rect.width * dpr;
+          canvas.height = rect.height * dpr;
+          ctx.scale(dpr * (rect.width / LOGICAL_WIDTH), dpr * (rect.height / LOGICAL_HEIGHT));
+        }
+        
+        // Wait for layout calculation to finish, then hook event
+        setTimeout(resizeCanvas, 100);
+        window.addEventListener('resize', resizeCanvas);
+
+        // Grid initialization - initially blank frame!
+        function initGrid() {
+          grid = [];
+          for (let col = 0; col < GRID_COLUMNS; col++) {
+            grid[col] = [];
+            for (let row = 0; row < GRID_ROWS; row++) {
+              grid[col][row] = null;
+            }
+          }
+        }
+
+        // Graph BFS to isolate same colored blocks
+        function getConnectedGroup(startCol, startRow, visitedMatrix = null) {
+          const cell = grid[startCol][startRow];
+          if (!cell) return [];
+          const targetColor = cell.colorIndex;
+
+          const visited = visitedMatrix || Array(GRID_COLUMNS).fill(null).map(() => Array(GRID_ROWS).fill(false));
+          const queue = [[startCol, startRow]];
+          const group = [];
+
+          visited[startCol][startRow] = true;
+
+          while (queue.length > 0) {
+            const [c, r] = queue.shift();
+            group.push([c, r]);
+
+            const neighbors = [
+              [c + 1, r],
+              [c - 1, r],
+              [c, r + 1],
+              [c, r - 1]
+            ];
+
+            for (const [nc, nr] of neighbors) {
+              if (nc >= 0 && nc < GRID_COLUMNS && nr >= 0 && nr < GRID_ROWS) {
+                if (!visited[nc][nr] && grid[nc][nr] !== null && grid[nc][nr].colorIndex === targetColor) {
+                  visited[nc][nr] = true;
+                  queue.push([nc, nr]);
+                }
+              }
+            }
+          }
+
+          return group;
+        }
+
+        // Find all matched clusters of size 3 or larger
+        function findMatches() {
+          const visited = Array(GRID_COLUMNS).fill(null).map(() => Array(GRID_ROWS).fill(false));
+          const allPopped = [];
+
+          for (let c = 0; c < GRID_COLUMNS; c++) {
+            for (let r = 0; r < GRID_ROWS; r++) {
+              if (grid[c][r] !== null && !visited[c][r]) {
+                const group = getConnectedGroup(c, r, visited);
+                if (group.length >= 3) { // 3 matching color brick pop!
+                  group.forEach(cell => {
+                    const alreadyAdded = allPopped.some(p => p[0] === cell[0] && p[1] === cell[1]);
+                    if (!alreadyAdded) {
+                      allPopped.push(cell);
+                    }
+                  });
+                }
+              }
+            }
+          }
+          return allPopped;
+        }
+
+        // Draw Rounded shapes in standard Canvas 2D
+        function drawRoundRect(cCtx, x, y, width, height, radius) {
+          cCtx.beginPath();
+          cCtx.moveTo(x + radius, y);
+          cCtx.lineTo(x + width - radius, y);
+          cCtx.quadraticCurveTo(x + width, y, x + width, y + radius);
+          cCtx.lineTo(x + width, y + height - radius);
+          cCtx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+          cCtx.lineTo(x + radius, y + height);
+          cCtx.quadraticCurveTo(x, y + height, x, y + height - radius);
+          cCtx.lineTo(x, y + radius);
+          cCtx.quadraticCurveTo(x, y, x + radius, y);
+          cCtx.closePath();
+        }
+
+        // Luxury-styled Glossy Metallic Brick Vector render
+        function drawBrick(cCtx, x, y, width, height, colorIndex, popScale = 1) {
+          const color = BRICK_COLORS[colorIndex];
+          
+          cCtx.save();
+          if (popScale !== 1) {
+            cCtx.translate(x + width / 2, y + height / 2);
+            cCtx.scale(popScale, popScale);
+            cCtx.translate(-(x + width / 2), -(y + height / 2));
+          }
+
+          // Cyber Neon Outer Glow Outline
+          cCtx.shadowColor = color;
+          cCtx.shadowBlur = 10;
+          cCtx.strokeStyle = color;
+          cCtx.lineWidth = 2.5;
+          drawRoundRect(cCtx, x + 2, y + 2, width - 4, height - 4, 6);
+          cCtx.stroke();
+
+          // Reset shadows immediately to protect framerates
+          cCtx.shadowBlur = 0;
+
+          // Textured Interior Bevel
+          const grad = cCtx.createLinearGradient(x, y, x + width, y + height);
+          grad.addColorStop(0, color + 'DF');
+          grad.addColorStop(0.35, color + 'AA');
+          grad.addColorStop(1, '#08050e');
+          cCtx.fillStyle = grad;
+          drawRoundRect(cCtx, x + 3, y + 3, width - 6, height - 6, 5);
+          cCtx.fill();
+
+          // Sleek Bezel Glass Highlight line
+          cCtx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+          cCtx.lineWidth = 1.5;
+          cCtx.beginPath();
+          cCtx.moveTo(x + 5, y + height - 8);
+          cCtx.lineTo(x + width - 8, y + 5);
+          cCtx.stroke();
+
+          // Subtle clay mineral grain texture (static deterministic speckles)
+          cCtx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+          const speckleOffsets = [
+            [width * 0.22, height * 0.35],
+            [width * 0.78, height * 0.28],
+            [width * 0.45, height * 0.65],
+            [width * 0.15, height * 0.75],
+            [width * 0.82, height * 0.68]
+          ];
+          for (const [sx, sy] of speckleOffsets) {
+            cCtx.fillRect(x + sx, y + sy, 1.5, 1.5);
+          }
+
+          cCtx.restore();
+        }
+
+        // Particle explosion emitter
+        function spawnPopParticles(cx, cy, colorIndex) {
+          const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          const count = isReduced ? 5 : 12;
+          const color = BRICK_COLORS[colorIndex];
+
+          for (let i = 0; i < count; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = 1.2 + Math.random() * 4.2;
+            particles.push({
+              x: cx,
+              y: cy,
+              vx: Math.cos(angle) * speed,
+              vy: Math.sin(angle) * speed - 0.8, // subtle floating upwards drift
+              size: 2 + Math.random() * 3.5,
+              color: color,
+              alpha: 1.0,
+              decay: 0.02 + Math.random() * 0.025
+            });
+          }
+        }
+
+        // HUD Floating scores
+        function spawnFloatingText(text, x, y, color = '#FFFFFF', isBig = false) {
+          activeFloatingTexts.push({
+            text,
+            x,
+            y,
+            vy: -1.0,
+            alpha: 1.0,
+            color,
+            fontSize: isBig ? '1.45rem' : '0.85rem',
+            fontStyle: isBig ? 'bold' : 'normal'
+          });
+        }
+
+        // Draw / Update Next Brick in sidebar bento queue
+        function updateNextBrickPreview() {
+          const canvasNext = document.getElementById('next-brick-canvas');
+          if (!canvasNext) return;
+          const ctxNext = canvasNext.getContext('2d');
+          ctxNext.clearRect(0, 0, canvasNext.width, canvasNext.height);
+          
+          if (isGameStarted && !isGameOver) {
+            // Draw a brick centered in the canvas
+            drawBrick(ctxNext, 4, 4, canvasNext.width - 8, canvasNext.height - 8, nextColorIndex, 1);
+          } else {
+            // Draw a subtle placeholder outline
+            ctxNext.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+            ctxNext.lineWidth = 1.5;
+            drawRoundRect(ctxNext, 6, 6, canvasNext.width - 12, canvasNext.height - 12, 6);
+            ctxNext.stroke();
+          }
+        }
+
+        // Main match pop trigger
+        function popGroup(group, isChain = false) {
+          if (group.length === 0) return;
+
+          const basePoints = group.length * 20;
+          const comboBonus = comboChain > 1 ? comboChain * 50 : 0;
+          const earned = (basePoints + comboBonus) * level;
+          
+          score += earned;
+          
+          // Level up thresholds checking
+          const thresholds = [0, 1000, 2500, 5000, 8000, 12000, 17000, 24000];
+          let targetLevel = 1;
+          for (let i = thresholds.length - 1; i >= 0; i--) {
+            if (score >= thresholds[i]) {
+              targetLevel = i + 1;
+              break;
+            }
+          }
+
+          const hasLeveledUp = targetLevel > level;
+
+          // Sound effects & haptics
+          AudioEngine.playPop(1 + (comboChain * 0.1));
+          triggerHaptic([30 + group.length * 3]);
+
+          // Spark particles
+          let avgX = 0, avgY = 0;
+          group.forEach(([c, r]) => {
+            const brickX = START_X + c * CELL_WIDTH;
+            const brickY = grid[c][r].y;
+            const cx = brickX + CELL_WIDTH / 2;
+            const cy = brickY + CELL_HEIGHT / 2;
+            avgX += cx;
+            avgY += cy;
+            
+            spawnPopParticles(cx, cy, grid[c][r].colorIndex);
+            grid[c][r] = null;
+          });
+
+          avgX /= group.length;
+          avgY /= group.length;
+
+          // Score animations
+          if (comboChain > 1) {
+            spawnFloatingText(`COMBO x${comboChain}! +${earned}`, avgX, avgY - 12, '#00FFFF', true);
+            screenShakeAmount = Math.min(10, comboChain * 2.5);
+          } else {
+            spawnFloatingText(`+${earned}`, avgX, avgY, '#FF00FF');
+          }
+
+          // Bomb item unlocking check (Every 1000 points)
+          const oldBombsCount = Math.floor((score - earned) / 1000);
+          const newBombsCount = Math.floor(score / 1000);
+          if (newBombsCount > oldBombsCount && score >= 1000) {
+            bombsCount++;
+            spawnFloatingText(`+1 BOMB!`, LOGICAL_WIDTH / 2, LOGICAL_HEIGHT / 2, '#FF00FF', true);
+          }
+
+          // Level up handling
+          if (hasLeveledUp) {
+            level = targetLevel;
+            AudioEngine.playLevelUp();
+            triggerHaptic([100, 50, 100]);
+            spawnFloatingText(`LEVEL UP! LVL ${level}`, LOGICAL_WIDTH / 2, LOGICAL_HEIGHT / 2 - 40, '#BFA16F', true);
+
+            // Introduce Deep Purple on level 2
+            if (level >= 2) {
+              activeColorsCount = 5;
+            }
+          }
+
+          // Unlock reward coupon check
+          if (score >= 3000) {
+            const couponCard = document.getElementById('reward-coupon-card');
+            if (couponCard && !couponCard.classList.contains('reward-coupon-wrapper--unlocked')) {
+              couponCard.classList.add('reward-coupon-wrapper--unlocked');
+            }
+          }
+
+          updateUI();
+          applyGravity();
+        }
+
+        // Apply drop gravity to floaters
+        function applyGravity() {
+          let anyMoved = false;
+
+          for (let col = 0; col < GRID_COLUMNS; col++) {
+            const columnCells = [];
+            for (let row = GRID_ROWS - 1; row >= 0; row--) {
+              if (grid[col][row] !== null) {
+                columnCells.push(grid[col][row]);
+              }
+            }
+
+            const newColumn = Array(GRID_ROWS).fill(null);
+            for (let i = 0; i < columnCells.length; i++) {
+              const targetRowIndex = GRID_ROWS - 1 - i;
+              const cell = columnCells[i];
+              const newTargetY = START_Y + targetRowIndex * CELL_HEIGHT;
+
+              if (cell.targetY !== newTargetY) {
+                cell.targetY = newTargetY;
+                cell.isFalling = true;
+                anyMoved = true;
+              }
+              newColumn[targetRowIndex] = cell;
+            }
+
+            grid[col] = newColumn;
+          }
+
+          gameState = 'falling';
+        }
+
+        // Bomb blast execution
+        function detonateBomb(col, row) {
+          if (bombsCount <= 0) return;
+          bombsCount--;
+          bombArmed = false;
+          updateUI();
+
+          AudioEngine.playBomb();
+          triggerHaptic([120, 60, 120]);
+          screenShakeAmount = 12;
+
+          // Pop 3x3 surrounding blocks
+          const poppedList = [];
+          for (let c = col - 1; c <= col + 1; c++) {
+            for (let r = row - 1; r <= row + 1; r++) {
+              if (c >= 0 && c < GRID_COLUMNS && r >= 0 && r < GRID_ROWS) {
+                if (grid[c][r] !== null) {
+                  poppedList.push([c, r]);
+                }
+              }
+            }
+          }
+
+          poppedList.forEach(([c, r]) => {
+            const brickX = START_X + c * CELL_WIDTH;
+            const brickY = grid[c][r].y;
+            const cx = brickX + CELL_WIDTH / 2;
+            const cy = brickY + CELL_HEIGHT / 2;
+            spawnPopParticles(cx, cy, grid[c][r].colorIndex);
+            grid[c][r] = null;
+          });
+
+          // Blast indicators
+          const targetX = START_X + col * CELL_WIDTH + CELL_WIDTH / 2;
+          const targetY = START_Y + row * CELL_HEIGHT + CELL_HEIGHT / 2;
+          spawnFloatingText("BOOM!", targetX, targetY, '#FF00FF', true);
+
+          // Add scores
+          const earned = poppedList.length * 20 * level;
+          score += earned;
+
+          if (score >= 3000) {
+            const couponCard = document.getElementById('reward-coupon-card');
+            if (couponCard) couponCard.classList.add('reward-coupon-wrapper--unlocked');
+          }
+
+          updateUI();
+          applyGravity();
+        }
+
+        // Update scoreboards
+        function updateUI() {
+          document.getElementById('game-score').textContent = String(score).padStart(4, '0');
+          document.getElementById('game-level').textContent = level;
+          
+          const bombBtnEl = document.getElementById('btn-bomb');
+          const bombBadge = document.getElementById('bomb-count-badge');
+          bombBadge.textContent = bombsCount;
+          
+          if (bombsCount > 0) {
+            bombBtnEl.disabled = false;
+          } else {
+            bombBtnEl.disabled = true;
+            bombArmed = false;
+            bombBtnEl.classList.remove('arcade-bomb-btn--armed');
+          }
+
+          if (score > highScore) {
+            highScore = score;
+            localStorage.setItem('brick_pop_high_score', highScore);
+            document.getElementById('game-high-score').textContent = String(highScore).padStart(4, '0');
+          }
+
+          updateNextBrickPreview();
+        }
+
+        // Active falling brick control helpers
+        function moveActiveBrick(dir) {
+          if (!fallingBrick) return;
+          const newCol = fallingBrick.col + dir;
+          if (newCol >= 0 && newCol < GRID_COLUMNS) {
+            if (grid[newCol][fallingBrick.row] === null) {
+              fallingBrick.col = newCol;
+              AudioEngine.playMovementPitch();
+              triggerHaptic([10]);
+            }
+          }
+        }
+
+        function dropActiveBrick() {
+          if (!fallingBrick) return;
+          let lowestRow = fallingBrick.row;
+          while (lowestRow + 1 < GRID_ROWS && grid[fallingBrick.col][lowestRow + 1] === null) {
+            lowestRow++;
+          }
+          fallingBrick.row = lowestRow;
+          landActiveBrick();
+        }
+
+        function cycleActiveBrickColor() {
+          if (!fallingBrick) return;
+          fallingBrick.colorIndex = (fallingBrick.colorIndex + 1) % activeColorsCount;
+          AudioEngine.playMovementPitch();
+          triggerHaptic([15]);
+        }
+
+        function landActiveBrick() {
+          if (!fallingBrick) return;
+          const col = fallingBrick.col;
+          const row = fallingBrick.row;
+
+          const brickY = START_Y + row * CELL_HEIGHT;
+          grid[col][row] = {
+            colorIndex: fallingBrick.colorIndex,
+            y: brickY,
+            targetY: brickY,
+            vy: 0,
+            isFalling: false,
+            popScale: 1
+          };
+
+          fallingBrick = null;
+          AudioEngine.playLandSound();
+          triggerHaptic([20]);
+
+          gameState = 'chainchecking';
+          checkChainReactions();
+        }
+
+        function spawnNextBrick() {
+          const spawnCol = Math.floor(GRID_COLUMNS / 2);
+          if (grid[spawnCol][0] !== null) {
+            isGameOver = true;
+            document.getElementById('game-over-screen').style.display = 'flex';
+            triggerHaptic([150, 100, 150]);
+            return;
+          }
+
+          fallingBrick = {
+            col: spawnCol,
+            row: 0,
+            colorIndex: nextColorIndex,
+            y: START_Y,
+            targetY: START_Y
+          };
+
+          nextColorIndex = Math.floor(Math.random() * activeColorsCount);
+          updateNextBrickPreview();
+
+          lastDropTime = performance.now();
+          gameState = 'idle';
+        }
+
+        // Loop checks for chain reaction cascades
+        function checkChainReactions() {
+          const matches = findMatches();
+
+          if (matches.length > 0) {
+            popGroup(matches);
+          } else {
+            comboChain = 1;
+            spawnNextBrick();
+          }
+        }
+
+        function resetGame() {
+          score = 0;
+          level = 1;
+          bombsCount = 0;
+          bombArmed = false;
+          comboChain = 1;
+          activeColorsCount = 4;
+          isGameOver = false;
+          isGamePaused = false;
+          isGameStarted = true;
+          gameState = 'idle';
+          particles = [];
+          activeFloatingTexts = [];
+          screenShakeAmount = 0;
+          fallingBrick = null;
+
+          nextColorIndex = Math.floor(Math.random() * activeColorsCount);
+
+          document.getElementById('game-start-screen').style.display = 'none';
+          document.getElementById('game-over-screen').style.display = 'none';
+          document.getElementById('game-paused-screen').style.display = 'none';
+
+          const bombBtnEl = document.getElementById('btn-bomb');
+          bombBtnEl.classList.remove('arcade-bomb-btn--armed');
+
+          updateUI();
+          initGrid();
+          spawnNextBrick();
+        }
+
+        function togglePause() {
+          if (!isGameStarted || isGameOver) return;
+          isGamePaused = !isGamePaused;
+          const pauseOverlay = document.getElementById('game-paused-screen');
+          const btnCtrl = document.getElementById('btn-play-pause');
+
+          if (isGamePaused) {
+            pauseOverlay.style.display = 'flex';
+            btnCtrl.textContent = 'RESUME';
+          } else {
+            pauseOverlay.style.display = 'none';
+            btnCtrl.textContent = 'PAUSE';
+          }
+        }
+
+        // Keyboard controls
+        window.addEventListener('keydown', (event) => {
+          if (!isGameVisible || !isGameStarted || isGamePaused || isGameOver || gameState !== 'idle') return;
+
+          if (event.key === 'ArrowLeft' || event.key === 'a' || event.key === 'A') {
+            event.preventDefault();
+            moveActiveBrick(-1);
+          } else if (event.key === 'ArrowRight' || event.key === 'd' || event.key === 'D') {
+            event.preventDefault();
+            moveActiveBrick(1);
+          } else if (event.key === 'ArrowDown' || event.key === 's' || event.key === 'S') {
+            event.preventDefault();
+            dropActiveBrick();
+          } else if (event.key === 'ArrowUp' || event.key === 'w' || event.key === 'W' || event.key === ' ') {
+            event.preventDefault();
+            cycleActiveBrickColor();
+          }
+        });
+
+        // Touch zones and Click controls
+        canvas.addEventListener('click', (event) => {
+          if (!isGameStarted || isGamePaused || isGameOver) return;
+
+          const rect = canvas.getBoundingClientRect();
+          const clickX = ((event.clientX - rect.left) / rect.width) * LOGICAL_WIDTH;
+          const clickY = ((event.clientY - rect.top) / rect.height) * LOGICAL_HEIGHT;
+
+          const col = Math.floor((clickX - START_X) / CELL_WIDTH);
+          const row = Math.floor((clickY - START_Y) / CELL_HEIGHT);
+
+          if (bombArmed && bombsCount > 0) {
+            if (col >= 0 && col < GRID_COLUMNS && row >= 0 && row < GRID_ROWS) {
+              detonateBomb(col, row);
+            }
+            return;
+          }
+
+          if (gameState === 'idle' && fallingBrick) {
+            if (clickY < LOGICAL_HEIGHT * 0.75) {
+              if (clickX < LOGICAL_WIDTH / 2) {
+                moveActiveBrick(-1);
+              } else {
+                moveActiveBrick(1);
+              }
+            } else {
+              dropActiveBrick();
+            }
+          }
+        });
+
+        // Controls interactions listeners
+        document.getElementById('btn-play-pause').addEventListener('click', togglePause);
+        document.getElementById('btn-restart').addEventListener('click', resetGame);
+        document.getElementById('btn-restart-overlay').addEventListener('click', resetGame);
+        document.getElementById('btn-resume-overlay').addEventListener('click', togglePause);
+
+        const btnStartGame = document.getElementById('btn-start-game');
+        if (btnStartGame) {
+          btnStartGame.addEventListener('click', () => {
+            AudioEngine.init();
+            if (AudioEngine.ctx && AudioEngine.ctx.state === 'suspended') {
+              AudioEngine.ctx.resume();
+            }
+            resetGame();
+          });
+        }
+
+        const bombBtnEl = document.getElementById('btn-bomb');
+        bombBtnEl.addEventListener('click', () => {
+          if (bombsCount > 0) {
+            bombArmed = !bombArmed;
+            if (bombArmed) {
+              bombBtnEl.classList.add('arcade-bomb-btn--armed');
+            } else {
+              bombBtnEl.classList.remove('arcade-bomb-btn--armed');
+            }
+          }
+        });
+
+        // Mute toggle config
+        const btnMute = document.getElementById('btn-mute');
+        btnMute.addEventListener('click', () => {
+          AudioEngine.muted = !AudioEngine.muted;
+          if (AudioEngine.muted) {
+            btnMute.classList.add('utility-toggle--active');
+            document.getElementById('sound-icon-on').style.display = 'none';
+            document.getElementById('sound-icon-off').style.display = 'block';
+          } else {
+            btnMute.classList.remove('utility-toggle--active');
+            document.getElementById('sound-icon-on').style.display = 'block';
+            document.getElementById('sound-icon-off').style.display = 'none';
+          }
+        });
+
+        // Vibrate toggle config
+        const btnVibe = document.getElementById('btn-vibe');
+        btnVibe.classList.add('utility-toggle--active');
+        btnVibe.addEventListener('click', () => {
+          vibrationEnabled = !vibrationEnabled;
+          if (vibrationEnabled) {
+            btnVibe.classList.add('utility-toggle--active');
+          } else {
+            btnVibe.classList.remove('utility-toggle--active');
+          }
+        });
+
+        // Mobile touch controls wiring
+        const btnMobileLeft = document.getElementById('btn-mobile-left');
+        const btnMobileRight = document.getElementById('btn-mobile-right');
+        const btnMobileCycle = document.getElementById('btn-mobile-cycle');
+        const btnMobileDrop = document.getElementById('btn-mobile-drop');
+
+        if (btnMobileLeft) {
+          btnMobileLeft.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (!isGamePaused && !isGameOver && gameState === 'idle' && fallingBrick) {
+              moveActiveBrick(-1);
+              triggerHaptic([10]);
+            }
+          });
+        }
+        if (btnMobileRight) {
+          btnMobileRight.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (!isGamePaused && !isGameOver && gameState === 'idle' && fallingBrick) {
+              moveActiveBrick(1);
+              triggerHaptic([10]);
+            }
+          });
+        }
+        if (btnMobileCycle) {
+          btnMobileCycle.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (!isGamePaused && !isGameOver && gameState === 'idle' && fallingBrick) {
+              cycleActiveBrickColor();
+              triggerHaptic([15]);
+            }
+          });
+        }
+        if (btnMobileDrop) {
+          btnMobileDrop.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (!isGamePaused && !isGameOver && gameState === 'idle' && fallingBrick) {
+              dropActiveBrick();
+              triggerHaptic([25]);
+            }
+          });
+        }
+
+        // Main game cycle loop
+        let lastTime = 0;
+        function gameLoop(timestamp) {
+          if (!lastTime) lastTime = timestamp;
+          lastTime = timestamp;
+
+          if (isGameVisible && !isGamePaused) {
+            ctx.clearRect(0, 0, LOGICAL_WIDTH, LOGICAL_HEIGHT);
+
+            ctx.save();
+            // Screen Shake trigger
+            if (screenShakeAmount > 0.1) {
+              const dx = (Math.random() - 0.5) * screenShakeAmount;
+              const dy = (Math.random() - 0.5) * screenShakeAmount;
+              ctx.translate(dx, dy);
+              screenShakeAmount *= 0.9;
+            }
+
+            // 0. Update active falling brick drop timer (1 grid by 1 second!)
+            if (gameState === 'idle' && fallingBrick) {
+              const now = timestamp;
+              if (now - lastDropTime >= 1000) {
+                if (fallingBrick.row + 1 < GRID_ROWS && grid[fallingBrick.col][fallingBrick.row + 1] === null) {
+                  fallingBrick.row++;
+                } else {
+                  landActiveBrick();
+                }
+                lastDropTime = now;
+              }
+            }
+
+            // 1. Render Wireframe Grid Matrix
+            ctx.strokeStyle = 'rgba(138, 43, 226, 0.12)';
+            ctx.lineWidth = 1;
+            for (let c = 0; c < GRID_COLUMNS; c++) {
+              for (let r = 0; r < GRID_ROWS; r++) {
+                const bx = START_X + c * CELL_WIDTH;
+                const by = START_Y + r * CELL_HEIGHT;
+                drawRoundRect(ctx, bx + 2, by + 2, CELL_WIDTH - 4, CELL_HEIGHT - 4, 6);
+                ctx.stroke();
+              }
+            }
+
+            // 2. Animate and Render Bricks
+            let bricksCurrentlyFalling = false;
+            for (let c = 0; c < GRID_COLUMNS; c++) {
+              for (let r = 0; r < GRID_ROWS; r++) {
+                const brick = grid[c][r];
+                if (brick) {
+                  if (brick.y < brick.targetY) {
+                    brick.vy += 0.5; // fall slide speed
+                    brick.y += brick.vy;
+                    brick.isFalling = true;
+                    bricksCurrentlyFalling = true;
+
+                    // Friction collision bounce
+                    if (brick.y >= brick.targetY) {
+                      if (brick.vy > 3) {
+                        brick.y = brick.targetY;
+                        brick.vy = -brick.vy * 0.15;
+                      } else {
+                        brick.y = brick.targetY;
+                        brick.vy = 0;
+                        brick.isFalling = false;
+                      }
+                    }
+                  } else {
+                    brick.isFalling = false;
+                  }
+
+                  drawBrick(ctx, START_X + c * CELL_WIDTH, brick.y, CELL_WIDTH, CELL_HEIGHT, brick.colorIndex, brick.popScale);
+                }
+              }
+            }
+
+            // 2.5 Draw current active falling brick
+            if (fallingBrick) {
+              const targetX = START_X + fallingBrick.col * CELL_WIDTH;
+              const targetY = START_Y + fallingBrick.row * CELL_HEIGHT;
+              
+              if (fallingBrick.y === undefined) {
+                fallingBrick.y = targetY;
+              }
+              // Smooth sliding coordinates vertical catchup
+              if (fallingBrick.y < targetY) {
+                fallingBrick.y += (targetY - fallingBrick.y) * 0.25;
+              } else {
+                fallingBrick.y = targetY;
+              }
+              
+              drawBrick(ctx, targetX, fallingBrick.y, CELL_WIDTH, CELL_HEIGHT, fallingBrick.colorIndex, 1);
+            }
+
+            // Gravity settle check
+            if (gameState === 'falling' && !bricksCurrentlyFalling) {
+              gameState = 'chainchecking';
+              comboChain++;
+              setTimeout(checkChainReactions, 300);
+            }
+
+            // 3. Render neon particles
+            for (let i = particles.length - 1; i >= 0; i--) {
+              const p = particles[i];
+              p.x += p.vx;
+              p.y += p.vy;
+              p.alpha -= p.decay;
+
+              if (p.alpha <= 0) {
+                particles.splice(i, 1);
+                continue;
+              }
+
+              ctx.save();
+              ctx.globalAlpha = p.alpha;
+              ctx.shadowColor = p.color;
+              ctx.shadowBlur = 6;
+              ctx.fillStyle = p.color;
+              ctx.fillRect(p.x - p.size / 2, p.y - p.size / 2, p.size, p.size);
+              ctx.restore();
+            }
+
+            // 4. Render Floating HUD Texts
+            for (let i = activeFloatingTexts.length - 1; i >= 0; i--) {
+              const ft = activeFloatingTexts[i];
+              ft.y += ft.vy;
+              ft.alpha -= 0.015;
+
+              if (ft.alpha <= 0) {
+                activeFloatingTexts.splice(i, 1);
+                continue;
+              }
+
+              ctx.save();
+              ctx.globalAlpha = ft.alpha;
+              ctx.fillStyle = ft.color;
+              ctx.font = `${ft.fontStyle} ${ft.fontSize} 'JetBrains Mono', monospace`;
+              ctx.textAlign = 'center';
+              ctx.shadowColor = ft.color;
+              ctx.shadowBlur = 4;
+              ctx.fillText(ft.text, ft.x, ft.y);
+              ctx.restore();
+            }
+
+            ctx.restore();
+          }
+
+          animationFrameId = requestAnimationFrame(gameLoop);
+        }
+
+        // IntersectionObserver keeps off-screen processes completely dormant
+        const gameObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            isGameVisible = entry.isIntersecting;
+            if (isGameVisible) {
+              if (!animationFrameId) {
+                lastTime = 0;
+                animationFrameId = requestAnimationFrame(gameLoop);
+              }
+            } else {
+              if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+              }
+            }
+          });
+        }, { threshold: 0.1 });
+
+        gameObserver.observe(document.getElementById('arcade'));
+
+        // Setup initial grid state and scoreboard UI before user starts playing
+        initGrid();
+        updateUI();
+      }
+
+      // --- BESPOKE PRODUCT INTERACTIVITY & MICRO-INTERACTIONS ---
+      let cartCount = 0;
+      let selectedQty = 1;
+      let isDiscountApplied = false;
+      const basePrice = 1200;
+
+      const badge = document.getElementById('navbar-cart-badge');
+      const qtyValue = document.getElementById('qty-value');
+      const qtyMinusBtn = document.getElementById('btn-qty-minus');
+      const qtyPlusBtn = document.getElementById('btn-qty-plus');
+      const addToBagBtn = document.getElementById('btn-add-to-bag');
+      const priceDisplay = document.getElementById('price-display');
+      const originalPriceDisplay = document.getElementById('original-price-display');
+      const installmentDisplay = document.getElementById('installment-display');
+      const promoField = document.getElementById('promo-code-field');
+      const promoApplyBtn = document.getElementById('btn-apply-promo');
+      const promoStatusMsg = document.getElementById('promo-status-msg');
+
+      // --- CART DRAWER INTERACTIVE SELECTORS ---
+      const cartOverlay = document.getElementById('cart-overlay');
+      const cartDrawer = document.getElementById('cart-drawer');
+      const cartCloseBtn = document.getElementById('btn-cart-close');
+      const cartBtn = document.querySelector('.navbar__cart');
+      const cartContinueBtn = document.getElementById('btn-cart-continue');
+
+      // Drawer Item adjustment elements
+      const btnCartItemMinus = document.getElementById('btn-cart-item-minus');
+      const btnCartItemPlus = document.getElementById('btn-cart-item-plus');
+      const btnCartItemRemove = document.getElementById('btn-cart-item-remove');
+      const cartItemQtyVal = document.getElementById('cart-item-qty-val');
+      const checkoutBtn = document.getElementById('btn-cart-checkout');
+
+      // Helper to dynamically calculate and update the Cart Drawer UI
+      function updateCartUI() {
+        // Sync Navbar badge
+        badge.textContent = cartCount;
+
+        if (cartCount <= 0) {
+          document.getElementById('cart-empty-state').style.display = 'flex';
+          document.getElementById('cart-active-state').style.display = 'none';
+        } else {
+          document.getElementById('cart-empty-state').style.display = 'none';
+          document.getElementById('cart-active-state').style.display = 'flex';
+
+          // Update product line item quantity
+          cartItemQtyVal.textContent = cartCount;
+
+          // Pricing math
+          const subtotal = cartCount * basePrice;
+          const discount = isDiscountApplied ? Math.round(subtotal * 0.05) : 0;
+          const total = subtotal - discount;
+
+          document.getElementById('cart-subtotal').textContent = `$${subtotal.toLocaleString()}`;
+          
+          if (isDiscountApplied) {
+            document.getElementById('cart-discount-row').style.display = 'flex';
+            document.getElementById('cart-discount').textContent = `-$${discount.toLocaleString()}`;
+          } else {
+            document.getElementById('cart-discount-row').style.display = 'none';
+          }
+
+          document.getElementById('cart-total').textContent = `$${total.toLocaleString()}`;
+        }
+      }
+
+      // Open and Close Cart Functions
+      function openCart() {
+        updateCartUI();
+        cartOverlay.classList.add('active');
+        cartDrawer.classList.add('active');
+        document.body.classList.add('cart-open');
+        if (typeof triggerHaptic === 'function') triggerHaptic([15]);
+      }
+
+      function closeCart() {
+        cartOverlay.classList.remove('active');
+        cartDrawer.classList.remove('active');
+        document.body.classList.remove('cart-open');
+        if (typeof triggerHaptic === 'function') triggerHaptic([10]);
+      }
+
+      // Event listeners for open/close controls
+      if (cartBtn) cartBtn.addEventListener('click', openCart);
+      if (cartCloseBtn) cartCloseBtn.addEventListener('click', closeCart);
+      if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
+      
+      if (cartContinueBtn) {
+        cartContinueBtn.addEventListener('click', () => {
+          closeCart();
+          const target = document.getElementById('bespoke');
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+
+      // Quantity adjustments inside Cart Drawer
+      if (btnCartItemMinus) {
+        btnCartItemMinus.addEventListener('click', () => {
+          if (cartCount > 1) {
+            cartCount--;
+            updateCartUI();
+            if (typeof triggerHaptic === 'function') triggerHaptic([5]);
+          }
+        });
+      }
+
+      if (btnCartItemPlus) {
+        btnCartItemPlus.addEventListener('click', () => {
+          if (cartCount < 50) {
+            cartCount++;
+            updateCartUI();
+            if (typeof triggerHaptic === 'function') triggerHaptic([5]);
+          }
+        });
+      }
+
+      if (btnCartItemRemove) {
+        btnCartItemRemove.addEventListener('click', () => {
+          cartCount = 0;
+          updateCartUI();
+          showToast("Portfolio cleared.");
+          if (typeof triggerHaptic === 'function') triggerHaptic([10]);
+        });
+      }
+
+      // Quantity adjustments in standard product card
+      qtyMinusBtn.addEventListener('click', () => {
+        if (selectedQty > 1) {
+          selectedQty--;
+          qtyValue.textContent = selectedQty;
+          if (typeof triggerHaptic === 'function') triggerHaptic([5]);
+        }
+      });
+
+      qtyPlusBtn.addEventListener('click', () => {
+        if (selectedQty < 10) {
+          selectedQty++;
+          qtyValue.textContent = selectedQty;
+          if (typeof triggerHaptic === 'function') triggerHaptic([5]);
+        }
+      });
+
+      // Promo Code handler
+      promoApplyBtn.addEventListener('click', () => {
+        const code = promoField.value.trim().toUpperCase();
+        if (code === 'POP5') {
+          isDiscountApplied = true;
+          const discountedPrice = Math.round(basePrice * 0.95);
+          const discountedInstallment = Math.round((basePrice * 0.95) / 4);
+
+          priceDisplay.textContent = `$${discountedPrice}`;
+          originalPriceDisplay.style.display = 'inline';
+          installmentDisplay.textContent = `or 4 interest-free payments of $${discountedInstallment} with TerraPay`;
+
+          promoStatusMsg.textContent = "Promo code 'POP5' applied successfully! (5% off)";
+          promoStatusMsg.className = "promo-status success";
+          promoStatusMsg.style.display = 'block';
+
+          showToast("Promo code 'POP5' applied: 5% off!");
+          updateCartUI(); // Dynamically update cart drawer in case it is open or gets opened
+          if (typeof triggerHaptic === 'function') triggerHaptic([30]);
+        } else if (code === '') {
+          promoStatusMsg.style.display = 'none';
+        } else {
+          promoStatusMsg.textContent = "Invalid promo code";
+          promoStatusMsg.className = "promo-status error";
+          promoStatusMsg.style.display = 'block';
+          if (typeof triggerHaptic === 'function') triggerHaptic([15, 10]);
+        }
+      });
+
+      // Add to bag function
+      addToBagBtn.addEventListener('click', () => {
+        cartCount += selectedQty;
+        updateCartUI();
+
+        // Animate nav cart button using GSAP!
+        gsap.fromTo('.navbar__cart',
+          { scale: 1 },
+          { scale: 1.25, duration: 0.15, yoyo: true, repeat: 1, ease: "back.out(2)" }
+        );
+        gsap.fromTo('.navbar__cart-badge',
+          { scale: 1 },
+          { scale: 1.4, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out" }
+        );
+
+        // Toast success notification
+        const itemText = selectedQty === 1 ? "1 BRICK" : `${selectedQty} BRICKS`;
+        showToast(`${itemText} added to your private collection portfolio.`);
+
+        if (typeof triggerHaptic === 'function') triggerHaptic([40, 20]);
+      });
+
+      // Secure Checkout Process
+      let isCheckingOut = false;
+      if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+          if (isCheckingOut) return;
+          isCheckingOut = true;
+          checkoutBtn.classList.add('btn-checkout-loading');
+
+          const originalContent = checkoutBtn.innerHTML;
+          const steps = [
+            "Securing blockchain handshake...",
+            "Verifying clay provenance...",
+            "Generating Certificate...",
+            "Acquisition successful!"
+          ];
+
+          let stepIdx = 0;
+          function nextCheckoutStep() {
+            if (stepIdx < steps.length) {
+              checkoutBtn.innerHTML = `<span style="font-family: monospace; letter-spacing: 0.05em;">${steps[stepIdx]}</span>`;
+              stepIdx++;
+              setTimeout(nextCheckoutStep, 900);
+              if (typeof triggerHaptic === 'function') triggerHaptic([15]);
+            } else {
+              isCheckingOut = false;
+              checkoutBtn.classList.remove('btn-checkout-loading');
+              checkoutBtn.innerHTML = originalContent;
+
+              const certNum = Math.floor(Math.random() * 400) + 101;
+              closeCart();
+
+              // Clear cart on complete
+              cartCount = 0;
+              updateCartUI();
+
+              // Display the premium receipt modal
+              showSuccessModal(certNum);
+            }
+          }
+          nextCheckoutStep();
+        });
+      }
+
+      // Custom Success Receipt Modal Builder
+      function showSuccessModal(certNum) {
+        const modal = document.createElement('div');
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100vw';
+        modal.style.height = '100vh';
+        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+        modal.style.backdropFilter = 'blur(20px)';
+        modal.style.webkitBackdropFilter = 'blur(20px)';
+        modal.style.zIndex = '10000';
+        modal.style.display = 'flex';
+        modal.style.alignItems = 'center';
+        modal.style.justifyContent = 'center';
+        modal.style.opacity = '0';
+        modal.style.transition = 'opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1)';
+        
+        modal.innerHTML = `
+          <div style="background: #0f0f0f; border: 1px solid var(--color-gold); padding: 4rem 3rem; max-width: 500px; width: 90%; text-align: center; box-shadow: 0 40px 80px rgba(0,0,0,0.8); position: relative;">
+            <div style="font-family: var(--font-serif); font-size: 0.75rem; color: var(--color-gold); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 1rem;">Acquisition Confirmed</div>
+            <h3 style="font-family: var(--font-serif); font-size: 2.25rem; font-weight: 300; color: #fff; margin-bottom: 1.5rem; letter-spacing: 0.05em;">THE BRICK™</h3>
+            <p style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.7; margin-bottom: 2.5rem; letter-spacing: 0.02em;">
+              Your order has been registered securely. You have been assigned limited edition provenance certificate <strong style="color: var(--color-gold); font-family: monospace;">№ ${certNum} / 500</strong>.
+            </p>
+            <div style="border-top: 1px solid rgba(245, 242, 237, 0.05); border-bottom: 1px solid rgba(245, 242, 237, 0.05); padding: 1.5rem 0; margin-bottom: 2.5rem;">
+              <div style="font-size: 0.7rem; color: var(--color-text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;">White-Glove Status</div>
+              <div style="font-size: 0.85rem; color: #00FF66; letter-spacing: 0.05em; font-family: monospace;">CONCIERGE COURIER PREPARING ROUTE</div>
+            </div>
+            <button class="button-luxury" id="btn-success-modal-close" style="width: 100%; font-size: 0.8rem; letter-spacing: 0.2em; height: 50px;">
+              Return to Gallery
+            </button>
+          </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Trigger opacity fade-in
+        setTimeout(() => {
+          modal.style.opacity = '1';
+        }, 50);
+        
+        if (typeof triggerHaptic === 'function') {
+          triggerHaptic([60, 40, 60]);
+        }
+
+        modal.querySelector('#btn-success-modal-close').addEventListener('click', () => {
+          modal.style.opacity = '0';
+          setTimeout(() => {
+            modal.remove();
+          }, 800);
+        });
+      }
+
+      // Toast utility
+      function showToast(message) {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = 'toast-card';
+        toast.innerHTML = `
+          <div class="toast-accent-dot"></div>
+          <span style="flex: 1;">${message}</span>
+          <div class="toast-close">&times;</div>
+        `;
+        container.appendChild(toast);
+        
+        // Trigger transition
+        setTimeout(() => toast.classList.add('active'), 50);
+
+        // Close button listener
+        toast.querySelector('.toast-close').addEventListener('click', () => {
+          toast.classList.remove('active');
+          setTimeout(() => toast.remove(), 500);
+        });
+
+        // Auto close timeout
+        setTimeout(() => {
+          if (toast.parentNode) {
+            toast.classList.remove('active');
+            setTimeout(() => toast.remove(), 500);
+          }
+        }, 4500);
+      }
+
+      // --- FINAL POLISH LOGIC ---
+
+      // 1. Branded Preloader fade out + trigger entrance animations
+      setTimeout(() => {
+        const loader = document.getElementById('preloader');
+        if (loader) {
+          loader.classList.add('fade-out');
+          
+          if (prefersReducedMotion) {
+            // Instantly resolve final typographic states
+            gsap.set('.hero__title-word', { y: '0%' });
+            gsap.set('#hero-tagline', { opacity: 1, y: 0 });
+            gsap.set('#gold-divider', { scaleX: 1 });
+            gsap.set('#hero-subtitle', { opacity: 1, y: 0 });
+            gsap.set('#hero-cta', { opacity: 1, y: 0 });
+            gsap.set('#hero-visual', { opacity: 1, scale: 1 });
+            gsap.set('#navbar', { opacity: 1, y: 0 });
+            gsap.set('#hero-meta', { opacity: 1 });
+            gsap.set('#hero-scroll', { opacity: 1 });
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('revealed'));
+          } else {
+            // Play cinematic typographic reveals
+            introTl.play();
+          }
+
+          setTimeout(() => {
+            loader.remove();
+          }, 800);
+        }
+      }, 1600);
+
+      // 2. Custom cursor tracking and interactive hover states
+      const cursor = document.getElementById('custom-cursor');
+      const cursorRing = document.getElementById('custom-cursor-ring');
+      
+      if (cursor && cursorRing && !prefersReducedMotion && !('ontouchstart' in window)) {
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let ringX = 0, ringY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          cursor.style.display = 'block';
+          cursorRing.style.display = 'block';
+        });
+
+        const tickCursor = () => {
+          const easeRing = 0.15;
+          const easeDot = 0.45;
+          
+          cursorX += (mouseX - cursorX) * easeDot;
+          cursorY += (mouseY - cursorY) * easeDot;
+          
+          ringX += (mouseX - ringX) * easeRing;
+          ringY += (mouseY - ringY) * easeRing;
+          
+          cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
+          cursorRing.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+          
+          requestAnimationFrame(tickCursor);
+        };
+        tickCursor();
+
+        // Mouse hover interaction binding
+        const interactiveSelectors = 'a, button, .btn-quantity, .utility-toggle, [role="button"], input, select, textarea, .story-slide';
+        const applyHoverListeners = () => {
+          document.querySelectorAll(interactiveSelectors).forEach(el => {
+            if (el.dataset.cursorBound) return;
+            el.dataset.cursorBound = 'true';
+
+            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+          });
+        };
+        applyHoverListeners();
+
+        // Observe dynamic updates to bind new items
+        const observer = new MutationObserver(applyHoverListeners);
+        observer.observe(document.body, { childList: true, subtree: true });
+      }
+
+      // 3. Smooth Viewport Scroll reveals
+      if (!prefersReducedMotion) {
+        const revealElements = document.querySelectorAll('.reveal-on-scroll');
+        
+        if ('IntersectionObserver' in window) {
+          const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+              }
+            });
+          }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+          });
+
+          revealElements.forEach(el => revealObserver.observe(el));
+        } else {
+          revealElements.forEach(el => el.classList.add('revealed'));
+        }
+      } else {
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('revealed'));
+      }
+
+      // 4. Newsletter Signup logic
+      const newsletterForm = document.getElementById('newsletter-form');
+      const newsletterEmail = document.getElementById('newsletter-email');
+      const newsletterSuccess = document.getElementById('newsletter-success');
+
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const email = newsletterEmail.value.trim();
+          if (email) {
+            newsletterForm.style.display = 'none';
+            if (newsletterSuccess) {
+              newsletterSuccess.style.display = 'block';
+            }
+            showToast("Welcome to the Terra Maison Foundation.");
+            if (typeof triggerHaptic === 'function') triggerHaptic([30, 10]);
+          }
+        });
+      }
+
+      // 5. Mobile Menu Overlay Toggle Logic
+      const hamburger = document.getElementById('navbar-hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuLinks = document.querySelectorAll('.mobile-menu__link');
+
+      function toggleMobileMenu() {
+        const isActive = hamburger.classList.toggle('navbar__hamburger--active');
+        mobileMenu.classList.toggle('mobile-menu--active', isActive);
+        if (isActive) {
+          document.documentElement.style.overflow = 'hidden';
+          document.body.style.overflow = 'hidden';
+          if (window.lenis) window.lenis.stop();
+        } else {
+          document.documentElement.style.overflow = '';
+          document.body.style.overflow = '';
+          if (window.lenis) window.lenis.start();
+        }
+      }
+
+      if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', toggleMobileMenu);
+
+        mobileMenuLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+              toggleMobileMenu();
+            }
+          });
+        });
+      }
+
+      // 6. Global Orientation Change & Layout Recalculation
+      window.addEventListener('orientationchange', () => {
+        // Debounce slightly to allow the viewport/DOM to finalize its rotated layout dimensions
+        setTimeout(() => {
+          // Recompute GSAP scroll positions and pinned markers
+          ScrollTrigger.refresh();
+          
+          // Re-fire resize events so Three.js renders and game canvas redraw
+          window.dispatchEvent(new Event('resize'));
+        }, 300);
+      });
+    });
+  </script>
+</body>
+</html>
