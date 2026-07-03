@@ -114,7 +114,7 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 
 **emon49**
 - GitHub: [@emon49](https://github.com/emon49)
-- LinkedIn: [Emon Hossain](https://www.linkedin.com/in/emon0/)
+- LinkedIn: [@emon0](https://www.linkedin.com/in/emon0/)
 
 ## 📜 Acknowledgments
 
