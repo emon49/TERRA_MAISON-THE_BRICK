@@ -268,6 +268,7 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      cursor: pointer;
     }
 
     .navbar__logo-dot {
@@ -609,12 +610,13 @@
     .button-luxury {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 1.5rem;
       padding: 1.25rem 2.75rem;
       border: 1px solid var(--color-accent);
       border-radius: 0;
       background-color: var(--color-accent);
-      color: var(--color-text);
+      color: #FFFFFF;
       font-size: 0.8rem;
       font-weight: 600;
       letter-spacing: 0.15em;
@@ -1284,12 +1286,17 @@
       font-family: var(--font-serif);
       font-size: clamp(2.5rem, 5vw, 4.5rem);
       font-weight: 300;
-      color: var(--color-white);
+      color: var(--color-text);
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      text-shadow: 0 0 10px rgba(255, 0, 255, 0.6), 0 0 30px rgba(255, 0, 255, 0.3);
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
       margin-bottom: 1.5rem;
       animation: neonFlicker 3s infinite alternate;
+    }
+
+    html[data-theme="dark"] .arcade-title {
+      color: var(--color-white);
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.6), 0 0 30px rgba(255, 0, 255, 0.3);
     }
 
     @keyframes neonFlicker {
@@ -1374,6 +1381,10 @@
       font-size: 2.25rem;
       font-weight: 600;
       line-height: 1;
+      color: var(--color-text);
+    }
+
+    html[data-theme="dark"] .arcade-card-value {
       color: var(--color-white);
     }
 
@@ -1406,6 +1417,10 @@
 
     .neon-card-gray {
       border-color: var(--color-border-muted);
+    }
+
+    html[data-theme="light"] .neon-card-gray .arcade-card-value {
+      color: var(--color-text);
     }
 
     .arcade-card-help {
@@ -1556,7 +1571,7 @@
     }
 
     .screen-overlay p {
-      color: rgba(255, 255, 255, 0.85);
+      color: #FFFFFF;
       font-size: 0.85rem;
       line-height: 1.6;
       margin: 0 auto 2rem auto;
@@ -1726,7 +1741,7 @@
       font-family: var(--font-serif);
       font-size: 1.75rem;
       font-weight: 300;
-      color: #fff;
+      color: #FFFFFF;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-bottom: 1rem;
@@ -1986,7 +2001,7 @@
       flex: 1;
       height: 56px;
       background-color: var(--color-accent);
-      color: var(--color-text);
+      color: #FFFFFF;
       font-size: 0.85rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -2310,7 +2325,7 @@
       font-family: var(--font-serif);
       font-size: 1.5rem;
       font-weight: 300;
-      color: #fff;
+      color: var(--color-text);
       letter-spacing: 0.05em;
     }
 
@@ -2418,7 +2433,7 @@
     .cart-item-name {
       font-family: var(--font-serif);
       font-size: 1.2rem;
-      color: #fff;
+      color: var(--color-text);
       font-weight: 300;
       margin: 0.25rem 0;
     }
@@ -2691,7 +2706,7 @@
       font-size: 1.75rem;
       font-weight: 300;
       letter-spacing: 0.15em;
-      color: #fff;
+      color: var(--color-text);
     }
 
     .footer-brand-desc {
@@ -2740,7 +2755,7 @@
     }
 
     .footer-link:hover {
-      color: #fff;
+      color: var(--color-text);
     }
 
     .footer-link:hover::after {
@@ -3209,7 +3224,7 @@
             </p>
             
             <div class="hero__cta-wrapper" id="hero-cta" style="display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap;">
-              <button class="button-luxury">
+              <button class="button-luxury" id="btn-hero-reserve">
                 <span>Reserve Yours &nbsp; — &nbsp; $1,200</span>
               </button>
               <button class="button-secondary" id="btn-engraving-open">Inquire for Custom Engraving</button>
@@ -3959,6 +3974,19 @@
       document.getElementById('hero-scroll').addEventListener('click', () => {
         lenis.scrollTo('#collection');
       });
+
+      // Navbar Logo Scroll to Top
+      document.querySelector('.navbar__logo').addEventListener('click', () => {
+        lenis.scrollTo(0);
+      });
+
+      // Hero Reserve Button scroll to Bespoke
+      const heroReserveBtn = document.getElementById('btn-hero-reserve');
+      if (heroReserveBtn) {
+        heroReserveBtn.addEventListener('click', () => {
+          lenis.scrollTo('#bespoke');
+        });
+      }
 
 
       // --- WEBGL GRACEFUL DEGRADATION DETECTOR ---
